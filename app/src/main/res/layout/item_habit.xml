@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- 分类图标 -->
+        <ImageView
+            android:id="@+id/iv_category_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:drawable/ic_menu_agenda"
+            android:tint="#4CAF50"
+            android:background="@drawable/shape_circle_bg"
+            android:backgroundTint="#E8F5E8"
+            android:padding="12dp" />
+
+        <!-- 习惯信息 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_habit_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="习惯名称"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="进行中"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:background="@drawable/shape_status_bg"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp" />
+
+            </LinearLayout>
+
+            <!-- 习惯描述 -->
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="习惯描述"
+                android:textSize="13sp"
+                android:textColor="#555555"
+                android:layout_marginTop="2dp"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <!-- 频次信息 -->
+            <TextView
+                android:id="@+id/tv_frequency_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="每日一次 · 30分钟"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:layout_marginTop="4dp" />
+
+            <!-- 周期信息 -->
+            <TextView
+                android:id="@+id/tv_cycle_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="周期: 21天(习惯养成)"
+                android:textSize="12sp"
+                android:textColor="#777777"
+                android:layout_marginTop="2dp" />
+
+            <!-- 进度信息 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/tv_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="已坚持 7 天 / 21 天"
+                    android:textSize="12sp"
+                    android:textColor="#888888" />
+
+                <!-- 进度条 -->
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="60dp"
+                    android:layout_height="8dp"
+                    android:progress="33"
+                    android:progressTint="#4CAF50"
+                    android:progressBackgroundTint="#E0E0E0"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 箭头图标 -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_more"
+            android:tint="#CCCCCC"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

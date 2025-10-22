@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/health_gradient_background">
+
+    <!-- 顶部导航栏 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_40"
+        android:paddingHorizontal="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_16">
+
+        <!-- 返回按钮 -->
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+
+            android:padding="@dimen/dp_8"
+            android:src="@drawable/arrows_left_ic"
+            android:contentDescription="返回"
+            app:tint="@color/text_on_blue" />
+<!--        android:background="@drawable/circle_white_background"-->
+        <!-- 页面标题 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="用户信息"
+            android:textColor="@color/text_on_blue"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <!-- 用户信息卡片 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_16"
+        app:cardCornerRadius="@dimen/dp_16"
+        app:cardElevation="@dimen/dp_8"
+        app:cardBackgroundColor="@color/card_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_20">
+
+            <!-- 用户头像 -->
+            <ImageView
+                android:id="@+id/iv_user_avatar"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_80"
+                android:background="@drawable/circle_blue_background"
+                android:padding="@dimen/dp_20"
+                android:src="@drawable/person_ic"
+                android:contentDescription="用户头像"
+                app:tint="@color/white" />
+
+            <!-- 用户信息 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:textSize="@dimen/sp_20"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/tv_user_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="35岁 • 注册时间: 2024年1月 • 健康积分: 1,280分"
+                    android:textSize="@dimen/sp_12"
+                    android:textColor="@color/text_secondary"
+                    android:lineSpacingExtra="@dimen/dp_2" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 功能选项列表 -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/dp_20"
+            android:paddingBottom="@dimen/dp_20">
+
+            <!-- 个人资料 -->
+            <LinearLayout
+                android:id="@+id/ll_personal_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:orientation="horizontal"
+                android:background="@drawable/function_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:src="@drawable/person_ic"
+                    android:contentDescription="个人资料"
+                    app:tint="@color/icon_tint" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_gravity="center_vertical"
+                    android:text="个人资料"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/text_primary" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/arrows_right_ic"
+                    android:contentDescription="进入"
+                    app:tint="@color/text_secondary" />
+
+            </LinearLayout>
+
+            <!-- 偏好设置（取代原来的应用设置） -->
+            <LinearLayout
+                android:id="@+id/ll_preferences"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:orientation="horizontal"
+                android:background="@drawable/function_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:src="@drawable/settings_ic"
+                    android:contentDescription="偏好设置"
+                    app:tint="@color/icon_tint" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_gravity="center_vertical"
+                    android:text="偏好设置"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/text_primary" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/arrows_right_ic"
+                    android:contentDescription="进入"
+                    app:tint="@color/text_secondary" />
+
+            </LinearLayout>
+
+            <!-- 隐私安全 -->
+            <LinearLayout
+                android:id="@+id/ll_privacy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:orientation="horizontal"
+                android:background="@drawable/function_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:src="@drawable/security_ic"
+                    android:contentDescription="隐私安全"
+                    app:tint="@color/icon_tint" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_gravity="center_vertical"
+                    android:text="隐私安全"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/text_primary" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/arrows_right_ic"
+                    android:contentDescription="进入"
+                    app:tint="@color/text_secondary" />
+
+            </LinearLayout>
+
+            <!-- 关于我们 -->
+            <LinearLayout
+                android:id="@+id/ll_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:orientation="horizontal"
+                android:background="@drawable/function_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:src="@drawable/info_ic"
+                    android:contentDescription="关于我们"
+                    app:tint="@color/icon_tint" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_gravity="center_vertical"
+                    android:text="关于我们"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/text_primary" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/arrows_right_ic"
+                    android:contentDescription="进入"
+                    app:tint="@color/text_secondary" />
+
+            </LinearLayout>
+
+            <!-- 退出登录 -->
+            <LinearLayout
+                android:id="@+id/ll_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_24"
+                android:orientation="horizontal"
+                android:background="@drawable/logout_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:src="@drawable/exit_to_app_ic"
+                    android:contentDescription="退出登录"
+                    app:tint="#FFFF5722" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:text="退出登录"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="#FFFF5722" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

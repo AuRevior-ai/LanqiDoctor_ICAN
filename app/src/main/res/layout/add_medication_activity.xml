@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <!-- 标题栏 -->
+    <com.hjq.bar.TitleBar
+        android:id="@+id/tb_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="添加用药"
+        app:leftIcon="@drawable/arrows_left_ic"
+        app:titleColor="@android:color/black"
+        app:backgroundColor="@android:color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 药品名称 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="药品名称 *"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="8dp" />
+
+            <EditText
+                android:id="@+id/et_medication_name"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="请输入药品名称，如：阿司匹林"
+                android:inputType="text"
+                android:maxLength="50" />
+
+            <!-- 用药剂量 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="用药剂量 *"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black" />
+
+                    <EditText
+                        android:id="@+id/et_dosage"
+                        style="@style/EditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="如：1"
+                        android:inputType="numberDecimal"
+                        android:maxLength="10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="单位 *"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black" />
+
+                    <Spinner
+                        android:id="@+id/spinner_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape_edit_text_bg" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 服药频率 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服药频率 *"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="16dp" />
+
+            <Spinner
+                android:id="@+id/spinner_frequency"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/shape_edit_text_bg" />
+
+            <!-- 开始时间 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始时间"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tv_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:text="点击选择开始时间"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/shape_edit_text_bg"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <!-- 结束时间 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="结束时间（可选）"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tv_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:text="点击选择结束时间"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/shape_edit_text_bg"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <!-- 备注 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="备注（可选）"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="16dp" />
+
+            <EditText
+                android:id="@+id/et_notes"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:hint="请输入备注信息，如：饭后服用、副作用等"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:maxLength="200" />
+
+            <!-- 按钮区域 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_cancel"
+                    style="@style/ButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="取消" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_save"
+                    style="@style/ButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="保存" />
+
+            </LinearLayout>
+
+            <!-- 使用说明 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="使用说明：\n• 药品名称和剂量为必填项\n• 开始时间默认为今天\n• 结束时间可选，不设置表示长期服用\n• 保存后可在用药列表中查看和管理"
+                android:textSize="12sp"
+                android:textColor="#757575"
+                android:background="#F9F9F9"
+                android:padding="12dp"
+                android:lineSpacingExtra="4dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

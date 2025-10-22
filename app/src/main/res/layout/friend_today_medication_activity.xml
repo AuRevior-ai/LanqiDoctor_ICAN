@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_color">
+
+    <!-- 标题栏 -->
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        app:leftIcon="@drawable/arrows_left_ic"
+        app:title="亲友今日服药" />
+
+    <!-- 头部信息 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_16"
+        android:background="@color/white">
+
+        <!-- 亲友姓名 -->
+        <TextView
+            android:id="@+id/tv_friend_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="亲友的今日服药"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <!-- 日期 -->
+        <TextView
+            android:id="@+id/tv_today_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:text="2024年01月01日 星期一"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/text_secondary" />
+
+        <!-- 统计信息 -->
+        <TextView
+            android:id="@+id/tv_medication_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="今日共 0 次服药，已完成 0 次，未完成 0 次"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/text_hint"
+            android:background="@drawable/summary_background"
+            android:padding="@dimen/dp_8" />
+
+    </LinearLayout>
+
+    <!-- 分隔线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_8"
+        android:background="@color/background_color" />
+
+    <!-- 内容区域 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- 服药列表 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_today_medications"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dp_16"
+            android:clipToPadding="false"
+            android:visibility="gone" />
+
+        <!-- 加载状态 -->
+        <LinearLayout
+            android:id="@+id/ll_loading_state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginBottom="@dimen/dp_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正在加载服药记录..."
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/text_secondary" />
+
+        </LinearLayout>
+
+        <!-- 空状态 -->
+        <LinearLayout
+            android:id="@+id/ll_empty_state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/dp_32"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_80"
+                android:src="@drawable/ic_medication_empty"
+                android:alpha="0.5"
+                app:tint="@color/text_hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:text="今日暂无服药安排"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/text_secondary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="该成员今天没有服药计划"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/text_hint"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <!-- 错误状态 -->
+        <LinearLayout
+            android:id="@+id/ll_error_state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/dp_32"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/dp_64"
+                android:layout_height="@dimen/dp_64"
+                android:src="@drawable/ic_error"
+                android:alpha="0.5"
+                app:tint="@color/red_500" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:text="加载失败"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/text_secondary" />
+
+            <TextView
+                android:id="@+id/tv_error_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="网络请求失败"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/text_hint"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/btn_retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:text="重试"
+                android:background="@drawable/button_primary_background"
+                android:textColor="@color/white"
+                android:padding="@dimen/dp_12" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

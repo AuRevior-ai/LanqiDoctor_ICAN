@@ -1,0 +1,140 @@
+# For more information about using CMake with Android Studio, read the
+# documentation: https://d.android.com/studio/projects/add-native-code.html
+
+# Sets the minimum version of CMake required to build the native library.
+
+cmake_minimum_required(VERSION 3.18.1)
+
+# Declares and names the project.
+
+project("lanqiDoctor")
+
+set(JNILIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs")
+
+add_library( # Sets the name of the library.
+        llm_base_7b
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        IMPORTED)
+#
+set_target_properties(llm_base_7b PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libs/libllm_base_7b.so)
+##
+
+add_library( # Sets the name of the library.
+        llm_apu_7b
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        IMPORTED)
+#
+set_target_properties(llm_apu_7b PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libs/libllm_apu_7b.so)
+
+add_library( # Sets the name of the library.
+        llm_apu
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        IMPORTED)
+#
+set_target_properties(llm_apu PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libs/libllm_apu.so)
+
+add_library( # Sets the name of the library.
+        vivo_tokenizer
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        IMPORTED)
+#
+set_target_properties(vivo_tokenizer PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libs/libvivo_tokenizer.so)
+#
+#
+add_library( # Sets the name of the library.
+        core_tokenizers
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        IMPORTED)
+#
+set_target_properties(core_tokenizers PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libs/libcore_tokenizers.so)
+
+add_library( # Sets the name of the library.
+        c++
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        IMPORTED)
+#
+set_target_properties(c++ PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libs/libc++.so)
+
+add_library( # Sets the name of the library.
+        dmabuf
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        IMPORTED)
+#
+set_target_properties(dmabuf PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libs/libdmabufheap.so)
+
+
+
+
+
+# Creates and names a library, sets it as either STATIC
+# or SHARED, and provides the relative paths to its source code.
+# You can define multiple libraries, and CMake builds them for you.
+# Gradle automatically packages shared libraries with your APK.
+
+add_library( # Sets the name of the library.
+        aigc
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        llm_bluelm.cpp
+        native-lib.cpp)
+
+# Searches for a specified prebuilt library and stores the path as a
+# variable. Because CMake includes system libraries in the search path by
+# default, you only need to specify the name of the public NDK library
+# you want to add. CMake verifies that the library exists before
+# completing its build.
+
+find_library( # Sets the name of the path variable.
+        log-lib
+
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        log)
+
+# Specifies libraries CMake should link to your target library. You
+# can link multiple libraries, such as libraries you define in this
+# build script, prebuilt third-party libraries, or system libraries.
+
+target_link_libraries( # Specifies the target library.
+        aigc
+
+        llm_base_7b
+        llm_apu_7b
+        c++
+        dmabuf
+        vivo_tokenizer
+        core_tokenizers
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib})

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- 标题栏 -->
+    <com.hjq.bar.TitleBar
+        android:id="@+id/tb_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="在用药管理"
+        app:leftIcon="@drawable/arrows_left_ic"
+        app:titleColor="@android:color/black"
+        app:backgroundColor="@android:color/white" />
+
+    <!-- 内容区域 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 用药列表 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_medication_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:clipToPadding="false" />
+
+        <!-- 空状态视图 -->
+        <LinearLayout
+            android:id="@+id/tv_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@android:drawable/ic_input_add"
+                android:tint="#CCCCCC"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无用药记录"
+                android:textSize="18sp"
+                android:textColor="#666666"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点击右下角添加按钮开始记录用药信息"
+                android:textSize="14sp"
+                android:textColor="#999999"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <!-- 添加用药浮动按钮 -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_medication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@android:drawable/ic_input_add"
+            app:tint="@android:color/white"
+            app:backgroundTint="#2196F3" />
+
+    </FrameLayout>
+
+</LinearLayout>

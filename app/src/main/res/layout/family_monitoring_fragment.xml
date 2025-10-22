@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp_100">
+<!--family_monitoring_fragment-->
+        <!-- 标题 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="家庭成员"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"
+            android:textColor="@color/text_on_blue" />
+
+        <!-- 动态家庭成员容器 -->
+        <LinearLayout
+            android:id="@+id/ll_family_members_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_16"
+            android:orientation="vertical">
+
+            <!-- 这里将动态添加家庭成员卡片 -->
+            <!-- 如果没有家庭成员，显示空状态 -->
+            <LinearLayout
+                android:id="@+id/ll_empty_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/dp_32"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_64"
+                    android:layout_height="@dimen/dp_64"
+                    android:src="@drawable/ic_family_empty"
+                    android:alpha="0.5"
+                    app:tint="@color/text_secondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:text="暂无家庭成员"
+                    android:textSize="@dimen/sp_16"
+                    android:textColor="@color/text_secondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="点击下方&quot;健康数据共享&quot;添加家庭成员"
+                    android:textSize="@dimen/sp_12"
+                    android:textColor="@color/text_hint"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 功能区域 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_24"
+            android:text="家庭健康功能"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"
+            android:textColor="@color/text_on_blue" />
+
+        <!-- 功能按钮组 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_16"
+            android:orientation="vertical">
+
+            <!-- 添加家庭成员（原健康数据共享） -->
+            <LinearLayout
+                android:id="@+id/ll_health_sharing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:orientation="horizontal"
+                android:background="@drawable/function_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_32"
+                    android:layout_height="@dimen/dp_32"
+                    android:src="@drawable/add_ic"
+                    android:contentDescription="添加家庭成员"
+                    app:tint="@color/icon_tint" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="添加家庭成员"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:text="验证家庭成员账号并添加监护关系"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="@color/text_secondary" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_gravity="center_vertical"
+                    app:tint="@color/text_hint" />
+
+            </LinearLayout>
+
+            <!-- 家庭健康报告 -->
+            <LinearLayout
+                android:id="@+id/ll_family_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/function_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_32"
+                    android:layout_height="@dimen/dp_32"
+                    android:src="@drawable/report_ic"
+                    android:contentDescription="家庭健康报告"
+                    app:tint="@color/icon_tint" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="家庭健康报告"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:text="生成家庭成员健康状况报告"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="@color/text_secondary" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_gravity="center_vertical"
+                    app:tint="@color/text_hint" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

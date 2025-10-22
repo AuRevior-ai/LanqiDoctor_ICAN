@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="@dimen/dp_16"
+    android:paddingVertical="@dimen/dp_12"
+    android:layout_marginTop="@dimen/dp_8"
+    android:layout_marginBottom="@dimen/dp_4">
+
+    <!-- 左侧分割线 -->
+    <View
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="1dp"
+        android:background="@color/common_line_color" />
+
+    <!-- 时间组标题 -->
+    <TextView
+        android:id="@+id/tv_time_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_12"
+        android:text="早上"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:background="@drawable/time_group_background"
+        android:paddingHorizontal="@dimen/dp_12"
+        android:paddingVertical="@dimen/dp_4" />
+
+    <!-- 右侧分割线 -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:background="@color/common_line_color" />
+
+</LinearLayout>

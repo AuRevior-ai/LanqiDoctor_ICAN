@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "编译项目",
+			"type": "shell",
+			"command": "gradlew",
+			"args": [
+				"build",
+				"--info"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": [
+				"$gradle"
+			]
+		}
+	]
+}

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- 标题栏 -->
+    <com.hjq.bar.TitleBar
+        android:id="@+id/tb_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="添加习惯"
+        app:leftIcon="@drawable/arrows_left_ic"
+        app:titleColor="@android:color/black"
+        app:backgroundColor="@android:color/white" />
+
+    <!-- 主要内容区域 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 基本信息 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="📝 基本信息"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#2196F3"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- 习惯名称 -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        app:boxStrokeColor="#2196F3"
+                        app:hintTextColor="#2196F3">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_habit_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="习惯名称"
+                            android:inputType="text"
+                            android:maxLength="50" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- 习惯描述 -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        app:boxStrokeColor="#2196F3"
+                        app:hintTextColor="#2196F3">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_habit_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="习惯描述"
+                            android:inputType="textMultiLine"
+                            android:lines="3"
+                            android:maxLength="200" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- 习惯分类 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="习惯分类"
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="8dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/spinner_background"
+                        android:layout_marginBottom="16dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- 频次设置 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="⏱️ 频次设置"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#4CAF50"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- 频次类型 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="频次类型"
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="8dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_frequency_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/spinner_background"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- 频次值设置 -->
+                    <LinearLayout
+                        android:id="@+id/layout_frequency_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="每"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginEnd="8dp" />
+
+                        <Spinner
+                            android:id="@+id/spinner_frequency_period"
+                            android:layout_width="80dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/spinner_background"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:id="@+id/tv_frequency_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="天"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="执行"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginEnd="8dp" />
+
+                        <EditText
+                            android:id="@+id/et_frequency_count"
+                            android:layout_width="60dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/edittext_background"
+                            android:inputType="number"
+                            android:text="1"
+                            android:gravity="center"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="次"
+                            android:textSize="14sp"
+                            android:textColor="#666666" />
+
+                    </LinearLayout>
+
+                    <!-- 持续周期 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="持续周期："
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginEnd="8dp" />
+
+                        <EditText
+                            android:id="@+id/et_duration_days"
+                            android:layout_width="80dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/edittext_background"
+                            android:inputType="number"
+                            android:text="21"
+                            android:gravity="center"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="天"
+                            android:textSize="14sp"
+                            android:textColor="#666666" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- 提醒设置 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="🔔 提醒设置"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FF9800"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- 是否启用提醒 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <Switch
+                            android:id="@+id/switch_reminder_enabled"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:thumb="@drawable/switch_thumb"
+                            android:track="@drawable/switch_track" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="启用提醒"
+                            android:textSize="14sp"
+                            android:textColor="#666666" />
+
+                    </LinearLayout>
+
+                    <!-- 提醒时间列表 -->
+                    <LinearLayout
+                        android:id="@+id/layout_reminder_times"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <!-- 提醒时间标题 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="提醒时间"
+                                android:textSize="14sp"
+                                android:textColor="#666666" />
+
+                            <Button
+                                android:id="@+id/btn_add_reminder_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="36dp"
+                                android:text="添加时间"
+                                android:textSize="12sp"
+                                android:textColor="#2196F3"
+                                android:background="?attr/selectableItemBackground"
+                                android:padding="8dp" />
+
+                        </LinearLayout>
+
+                        <!-- 动态添加的提醒时间列表 -->
+                        <LinearLayout
+                            android:id="@+id/layout_reminder_time_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- 底部按钮 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="#FFFFFF"
+        android:elevation="4dp">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="取消"
+            android:textColor="#666666"
+            android:background="@drawable/button_outline_selector" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="保存习惯"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_selector" />
+
+    </LinearLayout>
+
+</LinearLayout>

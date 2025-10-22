@@ -1,0 +1,54 @@
+{
+  "server": {
+    "baseUrl": "https://api.lanqi.edulearn.cn",
+    "apiVersion": "v1",
+    "timeout": 30000
+  },
+  "endpoints": {
+    "auth": {
+      "login": "/auth/login",
+      "register": "/auth/register",
+      "sendVerificationCode": "/auth/send-verification-code",
+      "verifyEmail": "/auth/verify-email",
+      "resetPassword": "/auth/reset-password"
+    },
+    "user": {
+      "profile": "/user/profile",
+      "updateProfile": "/user/profile"
+    }
+  },
+  "email": {
+    "smtp": {
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "username": "noreply@lanqidoctor.com",
+      "password": "your_app_password",
+      "encryption": "TLS"
+    },
+    "templates": {
+      "verification": {
+        "subject": "蓝岐医童 - 邮箱验证码",
+        "template": "verification_code_template.html"
+      },
+      "welcome": {
+        "subject": "欢迎使用蓝岐医童",
+        "template": "welcome_template.html"
+      }
+    }
+  },
+  "validation": {
+    "email": {
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "maxLength": 100
+    },
+    "password": {
+      "minLength": 6,
+      "maxLength": 20,
+      "requireSpecialChar": false
+    },
+    "verificationCode": {
+      "length": 6,
+      "expireMinutes": 5
+    }
+  }
+}

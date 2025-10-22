@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- 选择复选框 -->
+        <CheckBox
+            android:id="@+id/checkbox_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:buttonTint="#4CAF50" />
+
+        <!-- 习惯图标 -->
+        <ImageView
+            android:id="@+id/iv_habit_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_health"
+            android:scaleType="centerCrop"
+            app:tint="#4CAF50" />
+
+        <!-- 习惯信息 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- 习惯名称 -->
+            <TextView
+                android:id="@+id/tv_habit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="早起锻炼"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginBottom="4dp" />
+
+            <!-- 习惯描述 -->
+            <TextView
+                android:id="@+id/tv_habit_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="每天早上进行30分钟的有氧运动"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginBottom="4dp" />
+
+            <!-- 推荐理由 -->
+            <TextView
+                android:id="@+id/tv_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="💡 推荐理由：有助于改善您的心血管健康"
+                android:textSize="12sp"
+                android:textColor="#4CAF50"
+                android:background="#F1F8E9"
+                android:padding="6dp"
+                android:layout_marginTop="4dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- 推荐指数 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="推荐指数"
+                android:textSize="10sp"
+                android:textColor="#999999" />
+
+            <!-- 星级评分 -->
+            <LinearLayout
+                android:id="@+id/layout_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="2dp">
+
+                <ImageView
+                    android:id="@+id/star1"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_star_filled"
+                    app:tint="#FFD700" />
+
+                <ImageView
+                    android:id="@+id/star2"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_star_filled"
+                    app:tint="#FFD700" />
+
+                <ImageView
+                    android:id="@+id/star3"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_star_filled"
+                    app:tint="#FFD700" />
+
+                <ImageView
+                    android:id="@+id/star4"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_star_filled"
+                    app:tint="#FFD700" />
+
+                <ImageView
+                    android:id="@+id/star5"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_star_empty"
+                    app:tint="#E0E0E0" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

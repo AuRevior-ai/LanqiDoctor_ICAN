@@ -1,0 +1,16 @@
+{
+  "server": {
+    "baseUrl": "https://api.lanqidoctor.edulearn.cn",
+    "apiVersion": "v1", 
+    "timeout": 30000
+  },
+  "validation": {
+    "email": {
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "maxLength": 100
+    },
+    "verificationCode": {
+      "length": 6
+    }
+  }
+}

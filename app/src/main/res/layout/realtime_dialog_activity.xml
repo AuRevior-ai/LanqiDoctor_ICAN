@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <!-- 标题 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="实时语音对话"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:paddingTop="16dp" />
+
+    <!-- 耳机提醒区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/shape_round_rect_orange"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_headphones"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="耳机图标" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="⚠️ 请佩戴耳机使用，避免回声问题"
+            android:textSize="14sp"
+            android:textColor="@color/orange_dark"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- 状态显示区域 -->
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="准备就绪"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_marginBottom="32dp"
+        android:padding="16dp"
+        android:background="@drawable/shape_round_rect_gray"
+        android:minHeight="80dp" />
+
+    <!-- 按钮区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="开始对话"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_round_rect_green" />
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="停止对话"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_round_rect_red" />
+
+    </LinearLayout>
+
+    <!-- 麦克风图标 -->
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_mic"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="麦克风图标" />
+
+    <!-- 使用说明 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用说明：\n\n1. 请务必佩戴耳机，避免回声干扰\n2. 点击“开始对话”按钮开始语音交互\n3. 对着麦克风说话，系统会实时处理\n4. 点击“停止对话”结束会话\n5. 请确保网络连接正常"
+        android:textSize="14sp"
+        android:textColor="@color/gray"
+        android:lineSpacingMultiplier="1.2"
+        android:padding="16dp"
+        android:background="@drawable/shape_round_rect_light_gray" />
+
+</LinearLayout>

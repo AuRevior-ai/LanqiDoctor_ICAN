@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp_100">
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <!-- 动态分配剩余空间 -->
+
+        <!-- 症状轨迹可视化卡片 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_symptom_tracking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_16"
+            app:cardCornerRadius="@dimen/dp_16"
+            app:cardElevation="@dimen/dp_8"
+            app:cardBackgroundColor="@color/card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_20">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="用药轨迹可视化"
+                        android:textSize="@dimen/sp_18"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="今日个性化健康日历以查看服药历史"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="@color/text_secondary" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_calendar"
+                    android:layout_width="@dimen/dp_80"
+                    android:layout_height="@dimen/dp_80"
+                    android:background="@drawable/function_button_background"
+                    android:padding="@dimen/dp_20"
+                    android:src="@drawable/calendar_ic"
+                    android:contentDescription="日历"
+                    app:tint="@color/icon_tint" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- 功能按钮组 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_24"
+            android:orientation="horizontal">
+
+            <!-- 语音对话功能 -->
+            <LinearLayout
+                android:id="@+id/ll_voice_chat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/function_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_32"
+                    android:layout_height="@dimen/dp_32"
+                    android:src="@drawable/phone_ic"
+                    android:contentDescription="语音对话"
+                    app:tint="@color/icon_tint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="语音对话"
+                    android:textSize="@dimen/sp_12"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:text="健康交流"
+                    android:textSize="@dimen/sp_10"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
+
+            <!-- 文字输入功能 -->
+            <LinearLayout
+                android:id="@+id/ll_text_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/dp_8"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/function_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_32"
+                    android:layout_height="@dimen/dp_32"
+                    android:src="@drawable/edit_ic"
+                    android:contentDescription="文字输入"
+                    app:tint="@color/icon_tint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="文字输入"
+                    android:textSize="@dimen/sp_12"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:text="健康识别"
+                    android:textSize="@dimen/sp_10"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
+
+            <!-- 健康报告生成功能 -->
+            <LinearLayout
+                android:id="@+id/ll_photo_recognition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/dp_8"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/function_button_background"
+                android:padding="@dimen/dp_16"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/dp_32"
+                    android:layout_height="@dimen/dp_32">
+
+                <!-- 图标更改改这里 -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/camera_ic"
+                        android:contentDescription="健康报告"
+                        app:tint="@color/icon_tint" />
+
+                    <!-- 通知红点,这里不需要 -->
+                    <!-- <View
+                        android:layout_width="@dimen/dp_8"
+                        android:layout_height="@dimen/dp_8"
+                        android:layout_gravity="top|end"
+                        android:background="@drawable/notification_dot" /> -->
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="健康报告"
+                    android:textSize="@dimen/sp_12"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:text="健康规划"
+                    android:textSize="@dimen/sp_10"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 个性目标设置卡片 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_24"
+            app:cardCornerRadius="@dimen/dp_16"
+            app:cardElevation="@dimen/dp_8"
+            app:cardBackgroundColor="@color/card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请选择你的个性目标："
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <!-- 目标选项 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:orientation="horizontal">
+
+                    <!-- 在用药 -->
+                    <LinearLayout
+                        android:id="@+id/ll_goal_medicine"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/dp_8"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/goal_button_background"
+                        android:padding="@dimen/dp_12"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_24"
+                            android:layout_height="@dimen/dp_24"
+                            android:src="@drawable/medical_ic"
+                            android:contentDescription="在用药"
+                            app:tint="@color/icon_tint" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_6"
+                            android:text="在用药"
+                            android:textSize="@dimen/sp_11"
+                            android:textColor="@color/text_primary" />
+
+                    </LinearLayout>
+
+                    <!-- 医嘱识别 -->
+                    <LinearLayout
+                        android:id="@+id/ll_goal_diagnosis"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="@dimen/dp_8"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/goal_button_background"
+                        android:padding="@dimen/dp_12"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_24"
+                            android:layout_height="@dimen/dp_24"
+                            android:src="@drawable/camera_ic"
+                            android:contentDescription="医嘱识别"
+                            app:tint="@color/icon_tint" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_6"
+                            android:text="医嘱识别"
+                            android:textSize="@dimen/sp_11"
+                            android:textColor="@color/text_primary" />
+
+                    </LinearLayout>
+
+                    <!-- 拍照 -->
+                    <LinearLayout
+                        android:id="@+id/ll_goal_photo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/goal_button_background"
+                        android:padding="@dimen/dp_12"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_24"
+                            android:layout_height="@dimen/dp_24"
+                            android:src="@drawable/ic_clock"
+                            android:contentDescription="用户规划的每日服药时间"
+                            app:tint="@color/icon_tint" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_6"
+                            android:text="服药时间"
+                            android:textSize="@dimen/sp_11"
+                            android:textColor="@color/text_primary" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView> 

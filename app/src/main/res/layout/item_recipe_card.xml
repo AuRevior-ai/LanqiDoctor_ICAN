@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_recipe"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 食谱标题行 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <!-- 食谱名称 -->
+            <TextView
+                android:id="@+id/tv_recipe_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/iv_favorite"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="蒸蛋羹"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- 收藏按钮 -->
+            <ImageView
+                android:id="@+id/iv_favorite"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="收藏"
+                android:focusable="true"
+                android:padding="2dp"
+                android:src="@drawable/ic_favorite_outline"
+                app:tint="@color/text_hint" />
+
+        </RelativeLayout>
+
+        <!-- 食谱描述 -->
+        <TextView
+            android:id="@+id/tv_recipe_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="营养丰富的早餐，适合全家食用"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <!-- 标签行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 餐次类型 -->
+            <TextView
+                android:id="@+id/tv_meal_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_meal_type_breakfast"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="早餐"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <!-- 热量 -->
+            <TextView
+                android:id="@+id/tv_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_calories_tag"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="120千卡"
+                android:textColor="@color/orange"
+                android:textSize="12sp"
+                app:drawableStartCompat="@drawable/ic_fire"
+                app:drawableTint="@color/orange" />
+
+            <!-- 制作时间 -->
+            <TextView
+                android:id="@+id/tv_cooking_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_time_tag"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="15分钟"
+                android:textColor="@color/blue"
+                android:textSize="12sp"
+                app:drawableStartCompat="@drawable/ic_clock"
+                app:drawableTint="@color/blue" />
+
+            <!-- 难度 -->
+            <ImageView
+                android:id="@+id/iv_difficulty"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="难度"
+                android:src="@drawable/ic_difficulty_medium"
+                app:tint="@color/text_hint" />
+
+        </LinearLayout>
+
+        <!-- 食材部分 -->
+        <TextView
+            android:id="@+id/tv_ingredients_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="食材用量："
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ll_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

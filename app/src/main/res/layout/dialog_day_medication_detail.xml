@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_20"
+    android:background="@drawable/dialog_background">
+
+    <!-- 日期标题 -->
+    <TextView
+        android:id="@+id/tv_dialog_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2024年07月04日"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="@dimen/dp_16"/>
+
+    <!-- 服药记录列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_medication_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="400dp"
+        android:overScrollMode="never"
+        android:layout_marginBottom="@dimen/dp_16"/>
+
+    <!-- 空状态提示 -->
+    <LinearLayout
+        android:id="@+id/ll_empty_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/dp_32"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:src="@drawable/ic_medication_empty"
+            android:alpha="0.5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="当天无服药安排"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/text_secondary" />
+
+    </LinearLayout>
+
+    <!-- 关闭按钮 -->
+    <Button
+        android:id="@+id/btn_dialog_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭"
+        android:background="@drawable/button_primary_background"
+        android:textColor="@color/white"
+        android:padding="@dimen/dp_12"/>
+
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/health_gradient_background"
+    tools:context=".ui.activity.HealthMainActivity">
+
+    <!-- 顶部导航栏 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_40"
+        android:paddingStart="@dimen/dp_20"
+        android:paddingEnd="@dimen/dp_20"
+        android:paddingBottom="@dimen/dp_16">
+
+        <!-- 应用标题 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="蓝岐健康提醒"
+            android:textColor="@color/text_on_blue"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="normal" />
+
+        <!-- 用户头像 -->
+        <ImageView
+            android:id="@+id/iv_user_avatar"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp_8"
+            android:src="@drawable/person_ic"
+            android:contentDescription="用户头像"
+            app:tint="@color/white" />
+            <!-- android:background="@drawable/circle_white_background" -->
+    </RelativeLayout>
+
+    <!-- 功能标签选择器 -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_36"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_16"
+        android:background="@drawable/tab_layout_background"
+        app:tabIndicator="@drawable/tab_indicator"
+        app:tabIndicatorColor="@color/white"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/icon_tint"
+        app:tabTextColor="@color/text_on_blue"
+        app:tabTextAppearance="@style/TabTextStyle"
+        app:tabGravity="fill" />
+
+    <!-- 内容页面容器 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/dp_24" />
+
+    <!-- 底部导航栏 -->
+    <include layout="@layout/health_bottom_navigation" />
+
+</LinearLayout> 

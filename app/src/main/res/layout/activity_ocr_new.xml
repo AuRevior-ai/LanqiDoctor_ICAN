@@ -1,0 +1,153 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 主内容容器 -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dp_100">
+
+            <!-- OCR识别卡片 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_ocr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_24"
+                app:cardCornerRadius="@dimen/dp_16"
+                app:cardElevation="@dimen/dp_8"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_20">
+
+                    <!-- 标题 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="OCR 文字识别"
+                        android:textSize="@dimen/sp_18"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:gravity="center" />
+
+                    <!-- 图片预览 -->
+                    <ImageView
+                        android:id="@+id/iv_preview"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_180"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:scaleType="centerInside"
+                        android:background="#f0f0f0"
+                        android:src="@drawable/ic_image_placeholder"
+                        android:contentDescription="图片预览" />
+
+                    <!-- 按钮区域 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/btn_camera"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="@dimen/dp_8"
+                            android:background="@drawable/primary_button_background"
+                            android:text="拍照识别"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp_14" />
+
+                        <Button
+                            android:id="@+id/btn_gallery"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/dp_8"
+                            android:background="@drawable/primary_button_background"
+                            android:text="从相册选择"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp_14" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 识别结果卡片 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_24"
+                app:cardCornerRadius="@dimen/dp_16"
+                app:cardElevation="@dimen/dp_8"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_20">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="识别结果："
+                        android:textSize="@dimen/sp_16"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_120"
+                        android:layout_marginTop="@dimen/dp_8">
+
+                        <TextView
+                            android:id="@+id/tv_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#f9f9f9"
+                            android:padding="@dimen/dp_12"
+                            android:text="请选择图片进行识别..."
+                            android:textSize="@dimen/sp_14"
+                            android:lineSpacingExtra="@dimen/dp_4"
+                            android:textColor="@color/text_secondary" />
+                    </ScrollView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 状态显示 -->
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="准备就绪"
+                android:textSize="@dimen/sp_12"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp_16"
+                android:textColor="@color/text_hint" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- 可扩展的全屏Fragment容器 -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>
