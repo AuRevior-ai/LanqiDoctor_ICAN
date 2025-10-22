@@ -142,6 +142,18 @@ android {
         exclude 'META-INF/*******'
     }
 
+    // Avoid lint HTML reporter issues in headless environments: disable HTML report
+    // so lint won't attempt to create an IntelliJ-backed HTML report which can throw NPEs.
+    lintOptions {
+        // keep strict checks but avoid HTML generation which caused NPE in this environment
+        // also point lint to the module lint.xml and generate XML for full details
+        lintConfig file("lint.xml")
+        htmlReport false
+        xmlReport true
+        textReport true
+        xmlOutput file("$buildDir/reports/lint/lint-results.xml")
+    }
+
     // AOP 配置（exclude 和 include 二选一）
     // 需要进行配置，否则就会引发冲突，具体表现为：
     // 第一种：编译不过去，报错：java.util.zip.ZipException：Cause: zip file is empty

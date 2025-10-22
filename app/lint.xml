@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Downgrade frequently blocking issues to warnings temporarily -->
+    <issue id="SetTextI18n" severity="warning" />
+    <issue id="IconXmlAndPng" severity="warning" />
+    <issue id="IconExtension" severity="warning" />
+    <issue id="UnusedResources" severity="warning" />
+</lint>

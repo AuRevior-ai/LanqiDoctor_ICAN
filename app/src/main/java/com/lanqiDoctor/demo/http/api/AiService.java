@@ -26,6 +26,9 @@ public class AiService {
                 // 初始化蓝心客户端
                 LanXinChatApi.initLanXinClient(AiConfig.getAppId(), AiConfig.getAppKey());
                 System.out.println("AiService: 初始化蓝心AI服务成功");
+            } else if (AiConfig.isQwenModel()) {
+                // 初始化通义千问客户端（无需特殊初始化）
+                System.out.println("AiService: 初始化通义千问AI服务成功");
             } else {
                 System.out.println("AiService: 初始化OpenAI服务成功");
             }
@@ -52,6 +55,9 @@ public class AiService {
             if (AiConfig.isLanXinModel()) {
                 // 使用蓝心API
                 sendLanXinRequest(messages, listener);
+            } else if (AiConfig.isQwenModel()) {
+                // 使用通义千问API
+                sendQwenRequest(messages, listener);
             } else {
                 // 使用OpenAI API
                 sendOpenAIRequest(messages, listener, lifecycleOwner);
@@ -84,6 +90,9 @@ public class AiService {
             if (AiConfig.isLanXinModel()) {
                 // 使用蓝心流式API
                 sendLanXinStreamRequest(messages, callback);
+            } else if (AiConfig.isQwenModel()) {
+                // 使用通义千问流式API
+                sendQwenStreamRequest(messages, callback);
             } else {
                 // 使用OpenAI流式API（如果需要）
                 sendOpenAIStreamRequest(messages, callback, lifecycleOwner);
@@ -161,6 +170,81 @@ public class AiService {
         } catch (Exception e) {
             if (callback != null) {
                 callback.onError("发送流式请求失败: " + e.getMessage());
+            }
+        }
+    }
+    
+    /**
+     * 发送通义千问API请求
+     */
+    private static void sendQwenRequest(List<ChatMessage> messages, OnHttpListener<AiChatApi.Bean> listener) {
+        try {
+            QwenChatApi api = new QwenChatApi()
+                    .setModel(AiConfig.getModelName())
+                    .setMessages(messages)
+                    .setMaxTokens(AiConfig.MAX_TOKENS)
+                    .setTemperature(AiConfig.TEMPERATURE)
+                    .setStream(false);
+            
+            // 执行同步请求
+            QwenChatApi.Bean result = api.executeSyncChat();
+            
+            if (listener != null) {
+                // 将QwenChatApi.Bean转换为AiChatApi.Bean
+                AiChatApi.Bean convertedBean = convertQwenBeanToAiChatBean(result);
+                listener.onSucceed(convertedBean);
+            }
+        } catch (Exception e) {
+            if (listener != null) {
+                listener.onFail(e);
+            }
+        }
+    }
+    
+    /**
+     * 发送通义千问流式API请求
+     */
+    private static void sendQwenStreamRequest(List<ChatMessage> messages, StreamResponseCallback callback) {
+        try {
+            QwenChatApi api = new QwenChatApi()
+                    .setModel(AiConfig.getModelName())
+                    .setMessages(messages)
+                    .setMaxTokens(AiConfig.MAX_TOKENS)
+                    .setTemperature(AiConfig.TEMPERATURE)
+                    .setStream(true);
+            
+            api.executeStreamChat(new QwenChatApi.StreamChatCallback() {
+                @Override
+                public void onStreamMessage(QwenChatApi.Bean deltaBean) {
+                    if (callback != null) {
+                        callback.onStreamMessage(convertQwenBeanToAiChatBean(deltaBean));
+                    }
+                }
+                
+                @Override
+                public void onStreamComplete(QwenChatApi.Bean completeBean) {
+                    if (callback != null) {
+                        callback.onComplete(convertQwenBeanToAiChatBean(completeBean));
+                    }
+                }
+                
+                @Override
+                public void onStreamError(QwenChatApi.Bean errorBean) {
+                    if (callback != null) {
+                        callback.onError("通义千问流式请求错误");
+                    }
+                }
+                
+                @Override
+                public void onError(String error) {
+                    if (callback != null) {
+                        callback.onError(error);
+                    }
+                }
+            });
+        } catch (Exception e) {
+            if (callback != null) {
+                callback.onError("发送通义千问流式请求失败: " + e.getMessage());
             }
         }
     }
@@ -357,6 +441,93 @@ public class AiService {
             }
         } catch (Exception e) {
             System.err.println("AiService: 创建简单Bean失败 - " + e.getMessage());
+        }
+        return new AiChatApi.Bean(); // 返回空Bean作为最后的备用方案
+    }
+    
+    /**
+     * 将QwenChatApi.Bean转换为AiChatApi.Bean
+     */
+    private static AiChatApi.Bean convertQwenBeanToAiChatBean(QwenChatApi.Bean qwenBean) {
+        if (qwenBean == null) {
+            return null;
+        }
+        
+        try {
+            // 使用反射或直接创建新的Bean实例
+            AiChatApi.Bean aiBean = new AiChatApi.Bean();
+            
+            // 通过反射设置choices字段
+            java.lang.reflect.Field choicesField = AiChatApi.Bean.class.getDeclaredField("choices");
+            choicesField.setAccessible(true);
+            
+            List<AiChatApi.Bean.Choice> aiChoices = new java.util.ArrayList<>();
+            
+            if (qwenBean.getChoices() != null) {
+                for (QwenChatApi.Bean.Choice qwenChoice : qwenBean.getChoices()) {
+                    AiChatApi.Bean.Choice aiChoice = new AiChatApi.Bean.Choice();
+                    
+                    // 设置message字段
+                    if (qwenChoice.getMessage() != null) {
+                        java.lang.reflect.Field messageField = AiChatApi.Bean.Choice.class.getDeclaredField("message");
+                        messageField.setAccessible(true);
+                        messageField.set(aiChoice, qwenChoice.getMessage());
+                    }
+                    
+                    // 设置delta字段
+                    if (qwenChoice.getDelta() != null) {
+                        java.lang.reflect.Field deltaField = AiChatApi.Bean.Choice.class.getDeclaredField("delta");
+                        deltaField.setAccessible(true);
+                        deltaField.set(aiChoice, qwenChoice.getDelta());
+                    }
+                    
+                    aiChoices.add(aiChoice);
+                }
+            }
+            choicesField.set(aiBean, aiChoices);
+            
+            // 转换data字段
+            if (qwenBean.getData() != null && qwenBean.getData().getContent() != null) {
+                java.lang.reflect.Field dataField = AiChatApi.Bean.class.getDeclaredField("data");
+                dataField.setAccessible(true);
+                AiChatApi.Bean.Data aiData = new AiChatApi.Bean.Data();
+
+                // 通过反射设置 content 字段
+                java.lang.reflect.Field contentField = AiChatApi.Bean.Data.class.getDeclaredField("content");
+                contentField.setAccessible(true);
+                contentField.set(aiData, qwenBean.getData().getContent());
+
+                dataField.set(aiBean, aiData);
+            }
+
+            return aiBean;
+            
+        } catch (Exception e) {
+            System.err.println("AiService: 通义千问Bean转换失败 - " + e.getMessage());
+            e.printStackTrace();
+            
+            // 如果反射失败，创建一个简单的Bean
+            return createSimpleQwenAiChatBean(qwenBean);
+        }
+    }
+    
+    /**
+     * 创建简单的AiChatApi.Bean（通义千问备用方案）
+     */
+    private static AiChatApi.Bean createSimpleQwenAiChatBean(QwenChatApi.Bean qwenBean) {
+        try {
+            // 尝试从通义千问Bean中提取内容
+            if (qwenBean != null && qwenBean.getChoices() != null && !qwenBean.getChoices().isEmpty()) {
+                QwenChatApi.Bean.Choice qwenChoice = qwenBean.getChoices().get(0);
+                if (qwenChoice.getMessage() != null) {
+                    AiChatApi.Bean bean = new AiChatApi.Bean();
+                    // 这里可以使用JSON序列化/反序列化的方式
+                    // 但为了简单起见，返回空Bean
+                    return bean;
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("AiService: 创建简单通义千问Bean失败 - " + e.getMessage());
         }
         return new AiChatApi.Bean(); // 返回空Bean作为最后的备用方案
     }

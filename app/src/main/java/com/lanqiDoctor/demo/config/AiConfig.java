@@ -23,6 +23,16 @@ public class AiConfig {
     /** 蓝心模型名称 */
     public static final String LANXIN_MODEL = "vivo-BlueLM-TB-Pro";
     
+    // === 阿里通义千问配置 ===
+    /** 通义千问API配置 */
+    public static final String QWEN_API_KEY = "your-qwen-api-key-here";
+    
+    /** 通义千问API Base URL */
+    public static final String QWEN_API_BASE_URL = "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation";
+    
+    /** 通义千问模型名称 */
+    public static final String QWEN_MODEL = "qwen-turbo";
+    
     // === 系统人设配置 ===
     /** 默认系统人设 */
     public static final String DEFAULT_SYSTEM_PROMPT = 
@@ -71,14 +81,28 @@ public class AiConfig {
     /** 当前使用的模型类型 */
     public enum ModelType {
         OPENAI,
-        LANXIN
+        LANXIN,
+        QWEN
     }
     
     /** 当前使用的模型 */
-    public static final ModelType CURRENT_MODEL = ModelType.LANXIN;
+    public static final ModelType CURRENT_MODEL = ModelType.QWEN;
     
     /** 根据当前模型获取模型名称 */
-    public static final String MODEL = CURRENT_MODEL == ModelType.LANXIN ? LANXIN_MODEL : OPENAI_MODEL;
+    public static String getModelName() {
+        switch (CURRENT_MODEL) {
+            case LANXIN:
+                return LANXIN_MODEL;
+            case QWEN:
+                return QWEN_MODEL;
+            case OPENAI:
+            default:
+                return OPENAI_MODEL;
+        }
+    }
+    
+    /** 获取当前模型名称（兼容旧代码） */
+    public static final String MODEL = LANXIN_MODEL; // 临时设置为蓝心模型，实际使用时会被getModelName()覆盖
     
     /** 最大token数 */
     public static final int MAX_TOKENS = 2048;
@@ -110,12 +134,20 @@ public class AiConfig {
         return LANXIN_APP_KEY;
     }
     
+    public static String getQwenApiKey() {
+        return QWEN_API_KEY;
+    }
+    
     public static boolean isLanXinModel() {
         return CURRENT_MODEL == ModelType.LANXIN;
     }
     
     public static boolean isOpenAIModel() {
         return CURRENT_MODEL == ModelType.OPENAI;
+    }
+    
+    public static boolean isQwenModel() {
+        return CURRENT_MODEL == ModelType.QWEN;
     }
     
     /**
