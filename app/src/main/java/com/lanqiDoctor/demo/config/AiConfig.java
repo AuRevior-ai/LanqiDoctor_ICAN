@@ -25,7 +25,7 @@ public class AiConfig {
     
     // === 阿里通义千问配置 ===
     /** 通义千问API配置 */
-    public static final String QWEN_API_KEY = "your-qwen-api-key-here";
+    public static final String QWEN_API_KEY = "sk-399bbe8ede3a4624881931c334bc5c13";
     
     /** 通义千问API Base URL */
     public static final String QWEN_API_BASE_URL = "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation";
