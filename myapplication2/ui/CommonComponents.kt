@@ -21,6 +21,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -29,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import com.example.myapplication2.ui.theme.*
 
 /**
- * 顶部导航栏组件
+ * 顶部导航栏组件 - 美化版本
  * 
  * 显示应用标题和用户头像，处理状态栏间距
  * 
@@ -48,30 +49,20 @@ fun TopNavigationBar(
         // 居中显示的应用标题
         Text(
             text = "蓝岐健康提醒",
-            color = TextOnBlue,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Medium,
+            color = TextPrimary,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.Center)
         )
         
-        // 右侧用户头像按钮
-        Box(
-            modifier = Modifier
-                .size(40.dp)
-                .clip(CircleShape)
-                .background(Color.White)
-                .clickable { onUserClick() }
-                .align(Alignment.CenterEnd)
-        ) {
-            Icon(
-                imageVector = Icons.Default.Person,
-                contentDescription = "用户头像",
-                tint = IconTint,
-                modifier = Modifier
-                    .size(24.dp)
-                    .align(Alignment.Center)
-            )
-        }
+        // 右侧用户头像按钮 - 使用美化图标按钮
+        NeonIconButton(
+            icon = Icons.Default.Person,
+            onClick = onUserClick,
+            modifier = Modifier.align(Alignment.CenterEnd),
+            backgroundColor = Color.White,
+            iconTint = IconTint
+        )
     }
 }
 
@@ -110,9 +101,9 @@ fun FunctionTags(
 }
 
 /**
- * 标签芯片组件
+ * 标签芯片组件 - 使用美化版本
  * 
- * 单个功能标签的实现
+ * 单个功能标签的实现，带有荧光效果
  * 
  * @param text 标签文字
  * @param isSelected 是否选中
@@ -126,33 +117,16 @@ fun TagChip(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(
-        shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = if (isSelected) Color.White else Color.White.copy(alpha = 0.3f)
-        ),
+    NeonTagChip(
+        text = text,
+        isSelected = isSelected,
+        onClick = onClick,
         modifier = modifier
-            .height(36.dp)
-            .clickable { onClick() }
-    ) {
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Text(
-                text = text,
-                color = if (isSelected) IconTint else TextOnBlue,
-                fontSize = 11.sp,
-                textAlign = TextAlign.Center,
-                maxLines = 1,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            )
-        }
-    }
+    )
 }
 
 /**
- * 底部导航栏组件
+ * 底部导航栏组件 - 方形长条版本
  * 
  * 显示应用底部导航栏，包含首页、添加、我的三个功能入口
  * 
@@ -168,75 +142,48 @@ fun BottomNavigationBar(
     onAddClick: () -> Unit,
     onProfileClick: () -> Unit
 ) {
-    Card(
+    Surface(
         modifier = modifier
             .fillMaxWidth()
-            .navigationBarsPadding(),
-        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
-        colors = CardDefaults.cardColors(containerColor = CardBackground)
+            .navigationBarsPadding()
+            .shadow(
+                elevation = 8.dp,
+                shape = RoundedCornerShape(0.dp),
+                spotColor = ShadowMedium
+            ),
+        color = CardBackground
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp),
+                .padding(vertical = 8.dp, horizontal = 16.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
             // 首页导航项
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.clickable { onHomeClick() }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Home,
-                    contentDescription = "首页",
-                    tint = IconTint,
-                    modifier = Modifier.size(24.dp)
-                )
-                Text(
-                    text = "首页",
-                    fontSize = 10.sp,
-                    color = IconTint
-                )
-            }
+            NeonBottomNavItem(
+                icon = Icons.Default.Home,
+                label = "首页",
+                isSelected = true,
+                onClick = onHomeClick
+            )
             
-            // 中央添加记录按钮（圆形突出设计）
-            Box(
-                modifier = Modifier
-                    .size(56.dp)
-                    .background(
-                        color = IconTint,
-                        shape = CircleShape
-                    )
-                    .clickable { onAddClick() }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "添加",
-                    tint = Color.White,
-                    modifier = Modifier
-                        .size(28.dp)
-                        .align(Alignment.Center)
-                )
-            }
+            // 中央添加记录按钮
+            NeonFloatingButton(
+                icon = Icons.Default.Add,
+                onClick = onAddClick,
+                backgroundColor = ButtonPrimary,
+                iconTint = Color.White,
+                size = 52.dp
+            )
             
             // 我的页面导航项
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.clickable { onProfileClick() }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = "我的",
-                    tint = TextSecondary,
-                    modifier = Modifier.size(24.dp)
-                )
-                Text(
-                    text = "我的",
-                    fontSize = 10.sp,
-                    color = TextSecondary
-                )
-            }
+            NeonBottomNavItem(
+                icon = Icons.Default.Person,
+                label = "我的",
+                isSelected = false,
+                onClick = onProfileClick
+            )
         }
     }
 } 

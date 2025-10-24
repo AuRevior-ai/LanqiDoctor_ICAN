@@ -22,6 +22,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -73,9 +74,9 @@ fun FamilyMonitoringPage(
 }
 
 /**
- * 家庭成员监护卡片
+ * 家庭成员监护卡片 - 美化版本
  * 
- * 显示家庭成员的健康状态监护信息
+ * 显示家庭成员的健康状态监护信息，带有柔和阴影
  */
 @Composable
 fun FamilyMembersCard() {
@@ -83,38 +84,42 @@ fun FamilyMembersCard() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
-            .shadow(8.dp, RoundedCornerShape(16.dp)),
-        shape = RoundedCornerShape(16.dp),
+            .shadow(
+                elevation = 12.dp,
+                shape = RoundedCornerShape(20.dp),
+                spotColor = ShadowMedium
+            ),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = CardBackground)
     ) {
         Column(
-            modifier = Modifier.padding(20.dp)
+            modifier = Modifier.padding(24.dp)
         ) {
             // 卡片标题
             Text(
                 text = "家庭成员健康监护",
-                fontSize = 18.sp,
+                fontSize = 19.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextPrimary
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             
             // 家庭成员状态列表：显示爸爸、妈妈、爷爷的健康状态
             Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                horizontalArrangement = Arrangement.spacedBy(20.dp)
             ) {
-                FamilyMemberItem("爸爸", "正常", Color.Green, Modifier.weight(1f))
-                FamilyMemberItem("妈妈", "正常", Color.Green, Modifier.weight(1f))
-                FamilyMemberItem("爷爷", "正常", Color.Green, Modifier.weight(1f))
+                FamilyMemberItem("爸爸", "正常", StatusSuccess, Modifier.weight(1f))
+                FamilyMemberItem("妈妈", "正常", StatusSuccess, Modifier.weight(1f))
+                FamilyMemberItem("爷爷", "正常", StatusSuccess, Modifier.weight(1f))
             }
         }
     }
 }
 
 /**
- * 家庭成员项目组件
+ * 家庭成员项目组件 - 美化版本
  * 
- * 显示单个家庭成员的头像、姓名和健康状态
+ * 显示单个家庭成员的头像、姓名和健康状态，带有柔和设计
  * 
  * @param name 成员姓名
  * @param status 健康状态文字描述
@@ -132,12 +137,17 @@ fun FamilyMemberItem(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 成员头像圆形背景
+        // 成员头像圆形背景 - 带柔和阴影
         Box(
             modifier = Modifier
-                .size(50.dp)
+                .size(56.dp)
+                .shadow(
+                    elevation = 6.dp,
+                    shape = CircleShape,
+                    spotColor = ShadowMedium
+                )
                 .background(
-                    color = ButtonBackground,
+                    color = SurfaceGlow,
                     shape = CircleShape
                 )
         ) {
@@ -147,22 +157,25 @@ fun FamilyMemberItem(
                 contentDescription = name,
                 tint = IconTint,
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(28.dp)
                     .align(Alignment.Center)
             )
         }
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         // 成员姓名
         Text(
             text = name,
-            fontSize = 12.sp,
+            fontSize = 13.sp,
+            fontWeight = FontWeight.Medium,
             color = TextPrimary,
             textAlign = TextAlign.Center
         )
+        Spacer(modifier = Modifier.height(2.dp))
         // 健康状态
         Text(
             text = status,
-            fontSize = 10.sp,
+            fontSize = 11.sp,
+            fontWeight = FontWeight.Medium,
             color = statusColor,
             textAlign = TextAlign.Center
         )
@@ -213,9 +226,9 @@ fun MonitoringFunctionButtons(onNavigate: (NavigationScreen) -> Unit) {
 }
 
 /**
- * 紧急联系卡片
+ * 紧急联系卡片 - 美化版本
  * 
- * 显示紧急联系人信息
+ * 显示紧急联系人信息，带有柔和设计
  */
 @Composable
 fun EmergencyContactCard() {
@@ -223,46 +236,61 @@ fun EmergencyContactCard() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
-            .shadow(8.dp, RoundedCornerShape(16.dp)),
-        shape = RoundedCornerShape(16.dp),
+            .shadow(
+                elevation = 12.dp,
+                shape = RoundedCornerShape(20.dp),
+                spotColor = ShadowMedium
+            ),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = CardBackground)
     ) {
         Column(
-            modifier = Modifier.padding(20.dp)
+            modifier = Modifier.padding(24.dp)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Icon(
-                    imageVector = Icons.Default.Phone,
-                    contentDescription = "紧急联系",
-                    tint = Color.Red,
-                    modifier = Modifier.size(24.dp)
-                )
+                // 图标背景
+                Box(
+                    modifier = Modifier
+                        .size(44.dp)
+                        .background(
+                            color = StatusError.copy(alpha = 0.15f),
+                            shape = CircleShape
+                        ),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Phone,
+                        contentDescription = "紧急联系",
+                        tint = StatusError,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
                     text = "紧急联系人",
-                    fontSize = 16.sp,
+                    fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
             }
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "120急救: 120\n家庭医生: 138-xxxx-1234\n紧急联系人: 139-xxxx-5678",
                 fontSize = 14.sp,
                 color = TextSecondary,
-                lineHeight = 20.sp
+                lineHeight = 22.sp
             )
         }
     }
 }
 
 /**
- * 健康报告卡片
+ * 健康报告卡片 - 美化版本
  * 
- * 显示家庭健康报告信息
+ * 显示家庭健康报告信息，带有柔和设计
  */
 @Composable
 fun HealthReportCard() {
@@ -270,12 +298,16 @@ fun HealthReportCard() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
-            .shadow(8.dp, RoundedCornerShape(16.dp)),
-        shape = RoundedCornerShape(16.dp),
+            .shadow(
+                elevation = 12.dp,
+                shape = RoundedCornerShape(20.dp),
+                spotColor = ShadowMedium
+            ),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = CardBackground)
     ) {
         Row(
-            modifier = Modifier.padding(20.dp),
+            modifier = Modifier.padding(24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
@@ -283,24 +315,33 @@ fun HealthReportCard() {
             ) {
                 Text(
                     text = "家庭健康周报",
-                    fontSize = 18.sp,
+                    fontSize = 19.sp,
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = "本周家庭成员健康数据汇总",
-                    fontSize = 12.sp,
-                    color = TextSecondary
+                    fontSize = 13.sp,
+                    color = TextSecondary,
+                    lineHeight = 18.sp
                 )
             }
             
+            Spacer(modifier = Modifier.width(12.dp))
+            
+            // 图标背景 - 带柔和阴影
             Box(
                 modifier = Modifier
-                    .size(60.dp)
+                    .size(68.dp)
+                    .shadow(
+                        elevation = 6.dp,
+                        shape = RoundedCornerShape(16.dp),
+                        spotColor = ShadowMedium
+                    )
                     .background(
-                        color = ButtonBackground,
-                        shape = RoundedCornerShape(12.dp)
+                        color = SurfaceGlow,
+                        shape = RoundedCornerShape(16.dp)
                     )
             ) {
                 Icon(
@@ -308,7 +349,7 @@ fun HealthReportCard() {
                     contentDescription = "健康报告",
                     tint = IconTint,
                     modifier = Modifier
-                        .size(30.dp)
+                        .size(34.dp)
                         .align(Alignment.Center)
                 )
             }

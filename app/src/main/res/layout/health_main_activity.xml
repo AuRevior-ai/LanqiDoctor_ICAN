@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_36"
         android:layout_marginHorizontal="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_8"
         android:background="@drawable/tab_layout_background"
         app:tabIndicator="@drawable/tab_indicator"
         app:tabIndicatorColor="@color/white"
@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="@dimen/dp_24" />
+        android:layout_marginTop="@dimen/dp_16" />
 
     <!-- 底部导航栏 -->
     <include layout="@layout/health_bottom_navigation" />

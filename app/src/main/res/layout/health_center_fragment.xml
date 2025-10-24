@@ -72,145 +72,176 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- 功能按钮组 -->
+        <!-- 功能按钮组 - 4个横排云朵样式 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_24"
-            android:orientation="horizontal">
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-            <!-- 语音对话功能 -->
+            <!-- 语音对话 - 蓝色 -->
             <LinearLayout
                 android:id="@+id/ll_voice_chat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginEnd="@dimen/dp_8"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/function_button_background"
-                android:padding="@dimen/dp_16"
+                android:padding="@dimen/dp_8"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground">
 
-                <ImageView
-                    android:layout_width="@dimen/dp_32"
-                    android:layout_height="@dimen/dp_32"
-                    android:src="@drawable/phone_ic"
-                    android:contentDescription="语音对话"
-                    app:tint="@color/icon_tint" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="12dp"
+                    app:cardBackgroundColor="@color/neon_blue">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/phone_ic"
+                        android:contentDescription="语音对话"
+                        app:tint="@android:color/white" />
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="语音对话"
-                    android:textSize="@dimen/sp_12"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_13"
+                    android:textStyle="normal"
                     android:textColor="@color/text_primary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:text="健康交流"
-                    android:textSize="@dimen/sp_10"
-                    android:textColor="@color/text_secondary" />
 
             </LinearLayout>
 
-            <!-- 文字输入功能 -->
+            <!-- 文字输入 - 橙色 -->
             <LinearLayout
                 android:id="@+id/ll_text_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="@dimen/dp_8"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/function_button_background"
-                android:padding="@dimen/dp_16"
+                android:padding="@dimen/dp_8"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground">
 
-                <ImageView
-                    android:layout_width="@dimen/dp_32"
-                    android:layout_height="@dimen/dp_32"
-                    android:src="@drawable/edit_ic"
-                    android:contentDescription="文字输入"
-                    app:tint="@color/icon_tint" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="12dp"
+                    app:cardBackgroundColor="@color/neon_orange">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/edit_ic"
+                        android:contentDescription="文字输入"
+                        app:tint="@android:color/white" />
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="文字输入"
-                    android:textSize="@dimen/sp_12"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_13"
+                    android:textStyle="normal"
                     android:textColor="@color/text_primary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:text="健康识别"
-                    android:textSize="@dimen/sp_10"
-                    android:textColor="@color/text_secondary" />
 
             </LinearLayout>
 
-            <!-- 健康报告生成功能 -->
+            <!-- 健康日报 - 青绿色 -->
             <LinearLayout
-                android:id="@+id/ll_photo_recognition"
+                android:id="@+id/ll_health_daily"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/dp_8"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/function_button_background"
-                android:padding="@dimen/dp_16"
+                android:padding="@dimen/dp_8"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground">
 
-                <FrameLayout
-                    android:layout_width="@dimen/dp_32"
-                    android:layout_height="@dimen/dp_32">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="12dp"
+                    app:cardBackgroundColor="@color/neon_teal">
 
-                <!-- 图标更改改这里 -->
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/camera_ic"
-                        android:contentDescription="健康报告"
-                        app:tint="@color/icon_tint" />
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/calendar_ic"
+                        android:contentDescription="健康日报"
+                        app:tint="@android:color/white" />
 
-                    <!-- 通知红点,这里不需要 -->
-                    <!-- <View
-                        android:layout_width="@dimen/dp_8"
-                        android:layout_height="@dimen/dp_8"
-                        android:layout_gravity="top|end"
-                        android:background="@drawable/notification_dot" /> -->
-
-                </FrameLayout>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="健康报告"
-                    android:textSize="@dimen/sp_12"
-                    android:textStyle="bold"
+                    android:text="健康日报"
+                    android:textSize="@dimen/sp_13"
+                    android:textStyle="normal"
                     android:textColor="@color/text_primary" />
+
+            </LinearLayout>
+
+            <!-- 既往病史 - 绿色 -->
+            <LinearLayout
+                android:id="@+id/ll_photo_recognition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/dp_8"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="12dp"
+                    app:cardBackgroundColor="@color/neon_green">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/info_ic"
+                        android:contentDescription="既往病史"
+                        app:tint="@android:color/white" />
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:text="健康规划"
-                    android:textSize="@dimen/sp_10"
-                    android:textColor="@color/text_secondary" />
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="既往病史"
+                    android:textSize="@dimen/sp_13"
+                    android:textStyle="normal"
+                    android:textColor="@color/text_primary" />
 
             </LinearLayout>
 

@@ -75,54 +75,49 @@ fun FunctionScreen(
                 .fillMaxSize()
                 .statusBarsPadding()
         ) {
-            // 顶部导航栏
+            // 顶部导航栏 - 美化版本
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(20.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(
+                NeonIconButton(
+                    icon = Icons.AutoMirrored.Filled.ArrowBack,
                     onClick = onBack,
-                    modifier = Modifier
-                        .size(40.dp)
-                        .background(
-                            color = Color.White.copy(alpha = 0.2f),
-                            shape = CircleShape
-                        )
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "返回",
-                        tint = TextOnBlue
-                    )
-                }
+                    backgroundColor = Color.White.copy(alpha = 0.9f),
+                    iconTint = TextPrimary
+                )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
                     text = title,
-                    fontSize = 20.sp,
+                    fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
-                    color = TextOnBlue
+                    color = TextPrimary
                 )
             }
             
             Spacer(modifier = Modifier.height(32.dp))
             
-            // 内容区域
+            // 内容区域 - 美化版本
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp)
-                    .shadow(8.dp, RoundedCornerShape(20.dp)),
-                shape = RoundedCornerShape(20.dp),
+                    .shadow(
+                        elevation = 16.dp,
+                        shape = RoundedCornerShape(24.dp),
+                        spotColor = ShadowMedium
+                    ),
+                shape = RoundedCornerShape(24.dp),
                 colors = CardDefaults.cardColors(containerColor = CardBackground)
             ) {
                 Column(
-                    modifier = Modifier.padding(24.dp)
+                    modifier = Modifier.padding(28.dp)
                 ) {
                     Text(
                         text = title,
-                        fontSize = 24.sp,
+                        fontSize = 26.sp,
                         fontWeight = FontWeight.Bold,
                         color = TextPrimary,
                         textAlign = TextAlign.Center,
@@ -135,26 +130,16 @@ fun FunctionScreen(
                         text = description,
                         fontSize = 16.sp,
                         color = TextSecondary,
-                        lineHeight = 24.sp
+                        lineHeight = 26.sp
                     )
                     
-                    Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.height(36.dp))
                     
-                    Button(
+                    NeonPrimaryButton(
+                        text = "返回首页",
                         onClick = onBack,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = IconTint
-                        ),
-                        shape = RoundedCornerShape(12.dp)
-                    ) {
-                        Text(
-                            text = "返回首页",
-                            color = Color.White,
-                            fontSize = 16.sp,
-                            modifier = Modifier.padding(vertical = 8.dp)
-                        )
-                    }
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
         }
@@ -197,54 +182,49 @@ fun GoalDetailScreen(
                 .fillMaxSize()
                 .statusBarsPadding()
         ) {
-            // 顶部导航栏
+            // 顶部导航栏 - 美化版本
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(20.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(
+                NeonIconButton(
+                    icon = Icons.AutoMirrored.Filled.ArrowBack,
                     onClick = onBack,
-                    modifier = Modifier
-                        .size(40.dp)
-                        .background(
-                            color = Color.White.copy(alpha = 0.2f),
-                            shape = CircleShape
-                        )
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "返回",
-                        tint = TextOnBlue
-                    )
-                }
+                    backgroundColor = Color.White.copy(alpha = 0.9f),
+                    iconTint = TextPrimary
+                )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
                     text = "${goal}功能",
-                    fontSize = 20.sp,
+                    fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
-                    color = TextOnBlue
+                    color = TextPrimary
                 )
             }
             
             Spacer(modifier = Modifier.height(32.dp))
             
-            // 内容区域
+            // 内容区域 - 美化版本
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp)
-                    .shadow(8.dp, RoundedCornerShape(20.dp)),
-                shape = RoundedCornerShape(20.dp),
+                    .shadow(
+                        elevation = 16.dp,
+                        shape = RoundedCornerShape(24.dp),
+                        spotColor = ShadowMedium
+                    ),
+                shape = RoundedCornerShape(24.dp),
                 colors = CardDefaults.cardColors(containerColor = CardBackground)
             ) {
                 Column(
-                    modifier = Modifier.padding(24.dp)
+                    modifier = Modifier.padding(28.dp)
                 ) {
                     Text(
                         text = "${goal}功能",
-                        fontSize = 24.sp,
+                        fontSize = 26.sp,
                         fontWeight = FontWeight.Bold,
                         color = TextPrimary,
                         textAlign = TextAlign.Center,
@@ -257,48 +237,26 @@ fun GoalDetailScreen(
                         text = goalDetails,
                         fontSize = 16.sp,
                         color = TextSecondary,
-                        lineHeight = 24.sp
+                        lineHeight = 26.sp
                     )
                     
-                    Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.height(36.dp))
                     
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        OutlinedButton(
+                        NeonSecondaryButton(
+                            text = "返回",
                             onClick = onBack,
-                            modifier = Modifier.weight(1f),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = IconTint
-                            ),
-                            border = ButtonDefaults.outlinedButtonBorder.copy(
-                                brush = Brush.linearGradient(listOf(IconTint, IconTint))
-                            ),
-                            shape = RoundedCornerShape(12.dp)
-                        ) {
-                            Text(
-                                text = "返回",
-                                fontSize = 16.sp,
-                                modifier = Modifier.padding(vertical = 8.dp)
-                            )
-                        }
+                            modifier = Modifier.weight(1f)
+                        )
                         
-                        Button(
+                        NeonPrimaryButton(
+                            text = "开始设置",
                             onClick = { /* TODO: 开始设置功能 */ },
-                            modifier = Modifier.weight(1f),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = IconTint
-                            ),
-                            shape = RoundedCornerShape(12.dp)
-                        ) {
-                            Text(
-                                text = "开始设置",
-                                color = Color.White,
-                                fontSize = 16.sp,
-                                modifier = Modifier.padding(vertical = 8.dp)
-                            )
-                        }
+                            modifier = Modifier.weight(1f)
+                        )
                     }
                 }
             }

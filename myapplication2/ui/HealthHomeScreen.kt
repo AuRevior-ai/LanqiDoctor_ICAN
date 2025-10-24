@@ -115,7 +115,7 @@ fun HomeScreen(
     onNavigate: (NavigationScreen) -> Unit,
     onGoalClick: (String) -> Unit
 ) {
-    // 创建蓝色渐变背景画刷
+    // 创建浅米色渐变背景画刷
     val gradientBrush = Brush.verticalGradient(
         colors = listOf(BlueGradientStart, BlueGradientEnd)
     )
@@ -123,7 +123,7 @@ fun HomeScreen(
     // 当前选中的功能标签状态管理
     var selectedTag by remember { mutableStateOf("健康中心") }
 
-    // 主容器：使用Box布局，背景为蓝色渐变
+    // 主容器：使用Box布局，背景为浅米色渐变
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -138,7 +138,7 @@ fun HomeScreen(
                 onUserClick = { onNavigate(NavigationScreen.USER_PROFILE) }
             )
             
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             
             // 功能标签选择器：三个标签页切换
             FunctionTags(
@@ -146,7 +146,7 @@ fun HomeScreen(
                 onTagSelected = { selectedTag = it }
             )
             
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             
             // 根据选中的标签显示不同的页面内容
             when (selectedTag) {

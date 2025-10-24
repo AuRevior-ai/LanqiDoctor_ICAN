@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/dp_100">
+            android:paddingBottom="@dimen/dp_80">
 
             <!-- 这里是你原来的所有内容，保持不变 -->
             <!-- 症状轨迹可视化卡片 -->
@@ -25,9 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_16"
-                app:cardCornerRadius="@dimen/dp_16"
-                app:cardElevation="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_0"
+                app:cardCornerRadius="@dimen/dp_20"
+                app:cardElevation="@dimen/dp_12"
                 app:cardBackgroundColor="@color/card_background">
 
                 <LinearLayout
@@ -70,207 +70,188 @@
                 <!-- 保持原有内容不变 -->
             </androidx.cardview.widget.CardView>
 
-            <!-- 功能按钮区域 - 改为2行2列布局 -->
+            <!-- 功能按钮组 - 横排4个云朵样式 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_24"
-                android:orientation="vertical">
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_16"
+                android:orientation="horizontal"
+                android:gravity="center">
 
-                <!-- 第一行：语音对话、文字输入 -->
+                <!-- 语音对话 - 蓝色荧光 -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/ll_voice_chat"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_8"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground">
 
-                    <!-- 语音对话功能 -->
-                    <LinearLayout
-                        android:id="@+id/ll_voice_chat"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/dp_8"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:background="@drawable/function_button_background"
-                        android:padding="@dimen/dp_16"
-                        android:clickable="true"
-                        android:focusable="true">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="12dp"
+                        app:cardBackgroundColor="@color/neon_blue">
 
                         <ImageView
-                            android:layout_width="@dimen/dp_32"
-                            android:layout_height="@dimen/dp_32"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
                             android:src="@drawable/phone_ic"
                             android:contentDescription="语音对话"
-                            app:tint="@color/icon_tint" />
+                            app:tint="@android:color/white" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_8"
-                            android:text="语音对话"
-                            android:textSize="@dimen/sp_12"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_primary" />
+                    </androidx.cardview.widget.CardView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_4"
-                            android:text="健康交流"
-                            android:textSize="@dimen/sp_10"
-                            android:textColor="@color/text_secondary" />
-
-                    </LinearLayout>
-
-                    <!-- 文字输入功能 -->
-                    <LinearLayout
-                        android:id="@+id/ll_text_input"
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/dp_8"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:background="@drawable/function_button_background"
-                        android:padding="@dimen/dp_16"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <ImageView
-                            android:layout_width="@dimen/dp_32"
-                            android:layout_height="@dimen/dp_32"
-                            android:src="@drawable/edit_ic"
-                            android:contentDescription="文字输入"
-                            app:tint="@color/icon_tint" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_8"
-                            android:text="文字输入"
-                            android:textSize="@dimen/sp_12"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_primary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_4"
-                            android:text="健康识别"
-                            android:textSize="@dimen/sp_10"
-                            android:textColor="@color/text_secondary" />
-
-                    </LinearLayout>
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="语音对话"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="normal"
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
-                <!-- 第二行：健康日报、既往病史 -->
+                <!-- 文字输入 - 橙色荧光 -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/ll_text_input"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_12"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_8"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground">
 
-                    <!-- 健康日报识别功能 -->
-                    <LinearLayout
-                        android:id="@+id/ll_photo_recognition"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/dp_8"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:background="@drawable/function_button_background"
-                        android:padding="@dimen/dp_16"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <FrameLayout
-                            android:layout_width="@dimen/dp_32"
-                            android:layout_height="@dimen/dp_32">
-                            <!-- 图标在这里改 -->
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@android:drawable/ic_menu_report_image"
-                                android:contentDescription="健康日报"
-                                app:tint="@color/icon_tint" />
-
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_8"
-                            android:text="健康日报"
-                            android:textSize="@dimen/sp_12"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_primary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_4"
-                            android:text="健康规划"
-                            android:textSize="@dimen/sp_10"
-                            android:textColor="@color/text_secondary" />
-
-                    </LinearLayout>
-
-                    <!-- 既往病史功能 -->
-                    <LinearLayout
-                        android:id="@+id/ll_medical_history"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/dp_8"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:background="@drawable/function_button_background"
-                        android:padding="@dimen/dp_16"
-                        android:clickable="true"
-                        android:focusable="true">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="12dp"
+                        app:cardBackgroundColor="@color/neon_orange">
 
                         <ImageView
-                            android:layout_width="@dimen/dp_32"
-                            android:layout_height="@dimen/dp_32"
-                            android:src="@android:drawable/ic_menu_agenda"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/edit_ic"
+                            android:contentDescription="文字输入"
+                            app:tint="@android:color/white" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="文字输入"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="normal"
+                        android:textColor="@color/text_primary" />
+
+                </LinearLayout>
+
+                <!-- 健康日报 - 青绿色荧光 -->
+                <LinearLayout
+                    android:id="@+id/ll_photo_recognition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_8"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="12dp"
+                        app:cardBackgroundColor="@color/neon_teal">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/report_ic"
+                            android:contentDescription="健康日报"
+                            app:tint="@android:color/white" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="健康日报"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="normal"
+                        android:textColor="@color/text_primary" />
+
+                </LinearLayout>
+
+                <!-- 既往病史 - 绿色荧光 -->
+                <LinearLayout
+                    android:id="@+id/ll_medical_history"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_8"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="12dp"
+                        app:cardBackgroundColor="@color/neon_green">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/info_ic"
                             android:contentDescription="既往病史"
-                            app:tint="@color/icon_tint" />
+                            app:tint="@android:color/white" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_8"
-                            android:text="既往病史"
-                            android:textSize="@dimen/sp_12"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_primary" />
+                    </androidx.cardview.widget.CardView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_4"
-                            android:text="病史记录"
-                            android:textSize="@dimen/sp_10"
-                            android:textColor="@color/text_secondary" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="既往病史"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="normal"
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
             </LinearLayout>
-            <!-- 其他所有原有布局内容都保持在这里 -->
             <!-- 个性目标设置卡片 -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_24"
-                app:cardCornerRadius="@dimen/dp_16"
-                app:cardElevation="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_16"
+                app:cardCornerRadius="@dimen/dp_20"
+                app:cardElevation="@dimen/dp_12"
                 app:cardBackgroundColor="@color/card_background">
 
                 <LinearLayout

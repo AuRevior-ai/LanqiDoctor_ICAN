@@ -22,6 +22,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -58,30 +59,31 @@ fun HealthCenterPage(
             onButtonClick = { onNavigate(NavigationScreen.SYMPTOM_TRACKING) }
         )
         
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         
-        // 三个功能按钮：语音对话、文字输入、药品图片识别
+        // 四个功能按钮：横排云朵样式
         FunctionButtons(
             onVoiceClick = { onNavigate(NavigationScreen.VOICE_CHAT) },
             onTextClick = { onNavigate(NavigationScreen.TEXT_INPUT) },
-            onPhotoClick = { onNavigate(NavigationScreen.PHOTO_RECOGNITION) }
+            onDailyReportClick = { onNavigate(NavigationScreen.SYMPTOM_TRACKING) },
+            onHistoryClick = { onNavigate(NavigationScreen.PHOTO_RECOGNITION) }
         )
         
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         
         // 个性目标设置卡片：在用药、医嘱识别、拍照功能
         PersonalGoalsCard(
             onGoalClick = onGoalClick
         )
         
-        Spacer(modifier = Modifier.height(100.dp)) // 底部导航栏空间
+        Spacer(modifier = Modifier.height(80.dp)) // 底部导航栏空间
     }
 }
 
 /**
- * 症状轨迹可视化卡片
+ * 症状轨迹可视化卡片 - 美化版本
  * 
- * 显示症状追踪和健康日历功能
+ * 显示症状追踪和健康日历功能，带有荧光效果
  * 
  * @param onButtonClick 按钮点击回调
  */
@@ -93,12 +95,16 @@ fun SymptomTrackingCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
-            .shadow(8.dp, RoundedCornerShape(16.dp)),
-        shape = RoundedCornerShape(16.dp),
+            .shadow(
+                elevation = 12.dp,
+                shape = RoundedCornerShape(20.dp),
+                spotColor = ShadowMedium
+            ),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = CardBackground)
     ) {
         Row(
-            modifier = Modifier.padding(20.dp),
+            modifier = Modifier.padding(24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
@@ -106,91 +112,125 @@ fun SymptomTrackingCard(
             ) {
                 Text(
                     text = "用药轨迹可视化",
-                    fontSize = 18.sp,
+                    fontSize = 19.sp,
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = "进入个性化健康日历以查看服药历史",
-                    fontSize = 12.sp,
-                    color = TextSecondary
+                    fontSize = 13.sp,
+                    color = TextSecondary,
+                    lineHeight = 18.sp
                 )
             }
             
-            // 日历图标
+            Spacer(modifier = Modifier.width(12.dp))
+            
+            // 日历图标按钮 - 带发光效果
             Box(
-                modifier = Modifier
-                    .size(80.dp)
-                    .background(
-                        color = ButtonBackground,
-                        shape = RoundedCornerShape(12.dp)
-                    )
-                    .clickable { onButtonClick() }
+                modifier = Modifier.size(84.dp)
             ) {
-                Icon(
-                    imageVector = Icons.Default.DateRange,
-                    contentDescription = "日历",
-                    tint = IconTint,
+                // 发光层
+                Box(
                     modifier = Modifier
-                        .size(40.dp)
-                        .align(Alignment.Center)
+                        .matchParentSize()
+                        .blur(10.dp)
+                        .background(
+                            color = GlowBlue,
+                            shape = RoundedCornerShape(16.dp)
+                        )
                 )
+                
+                // 按钮主体
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .shadow(
+                            elevation = 8.dp,
+                            shape = RoundedCornerShape(16.dp),
+                            spotColor = GlowBlue
+                        )
+                        .background(
+                            brush = Brush.verticalGradient(
+                                colors = listOf(NeonBlueSoft, ButtonPrimary.copy(alpha = 0.3f))
+                            ),
+                            shape = RoundedCornerShape(16.dp)
+                        )
+                        .clickable { onButtonClick() }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.DateRange,
+                        contentDescription = "日历",
+                        tint = IconTint,
+                        modifier = Modifier
+                            .size(44.dp)
+                            .align(Alignment.Center)
+                    )
+                }
             }
         }
     }
 }
 
 /**
- * 功能按钮组
+ * 功能按钮组 - 横排云朵样式
  * 
- * 显示三个主要功能按钮
+ * 显示四个主要功能按钮，模仿第二张图片的云朵样式
  * 
  * @param onVoiceClick 语音对话点击回调
  * @param onTextClick 文字输入点击回调
- * @param onPhotoClick 图片识别点击回调
+ * @param onDailyReportClick 健康日报点击回调
+ * @param onHistoryClick 既往病史点击回调
  */
 @Composable
 fun FunctionButtons(
     onVoiceClick: () -> Unit,
     onTextClick: () -> Unit,
-    onPhotoClick: () -> Unit
+    onDailyReportClick: () -> Unit,
+    onHistoryClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+            .padding(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        FunctionButton(
+        CloudStyleFunctionButton(
             icon = Icons.Default.Phone,
             title = "语音对话",
-            subtitle = "健康交流",
             onClick = onVoiceClick,
-            modifier = Modifier.weight(1f)
+            iconBackgroundColor = NeonBlue,
+            glowColor = GlowBlue
         )
-        FunctionButton(
+        CloudStyleFunctionButton(
             icon = Icons.Default.Edit,
             title = "文字输入",
-            subtitle = "健康识别",
             onClick = onTextClick,
-            modifier = Modifier.weight(1f)
+            iconBackgroundColor = Color(0xFFFF9B7A),  // 橙红色
+            glowColor = GlowOrange
         )
-        FunctionButton(
-            icon = Icons.Default.Add,
-            title = "药品图片",
-            subtitle = "健康规划",
-            hasNotification = true,
-            onClick = onPhotoClick,
-            modifier = Modifier.weight(1f)
+        CloudStyleFunctionButton(
+            icon = Icons.Default.DateRange,
+            title = "健康日报",
+            onClick = onDailyReportClick,
+            iconBackgroundColor = Color(0xFF7AC8E8),  // 青绿色
+            glowColor = GlowTeal
+        )
+        CloudStyleFunctionButton(
+            icon = Icons.Default.Info,
+            title = "既往病史",
+            onClick = onHistoryClick,
+            iconBackgroundColor = Color(0xFF84E8B4),  // 绿色
+            glowColor = GlowGreen
         )
     }
 }
 
 /**
- * 功能按钮组件
+ * 功能按钮组件 - 美化版本
  * 
- * 单个功能按钮的实现
+ * 单个功能按钮的实现，带有荧光效果和柔和阴影
  * 
  * @param icon 按钮图标
  * @param title 按钮标题
@@ -208,69 +248,20 @@ fun FunctionButton(
     hasNotification: Boolean = false,
     modifier: Modifier = Modifier
 ) {
-    Card(
+    NeonFunctionCard(
+        icon = icon,
+        title = title,
+        subtitle = subtitle,
+        onClick = onClick,
+        hasNotification = hasNotification,
         modifier = modifier
-            .aspectRatio(1f)
-            .shadow(4.dp, RoundedCornerShape(16.dp))
-            .clickable { onClick() },
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = CardBackground)
-    ) {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(12.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = title,
-                    tint = IconTint,
-                    modifier = Modifier.size(28.dp)
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = title,
-                    fontSize = 13.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = TextPrimary,
-                    textAlign = TextAlign.Center,
-                    maxLines = 1
-                )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = subtitle,
-                    fontSize = 10.sp,
-                    color = TextSecondary,
-                    textAlign = TextAlign.Center,
-                    maxLines = 1
-                )
-            }
-            
-            if (hasNotification) {
-                Box(
-                    modifier = Modifier
-                        .size(12.dp)
-                        .background(
-                            color = Color.Red,
-                            shape = CircleShape
-                        )
-                        .align(Alignment.TopEnd)
-                        .offset((-4).dp, 4.dp)
-                )
-            }
-        }
-    }
+    )
 }
 
 /**
- * 个性目标设置卡片
+ * 个性目标设置卡片 - 紧凑版本
  * 
- * 显示用户可以设置的个性化健康目标选项
+ * 显示用户可以设置的个性化健康目标选项，带有柔和阴影
  * 
  * @param onGoalClick 目标点击回调
  */
@@ -282,26 +273,24 @@ fun PersonalGoalsCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
-            .shadow(8.dp, RoundedCornerShape(16.dp)),
-        shape = RoundedCornerShape(16.dp),
+            .shadow(
+                elevation = 12.dp,
+                shape = RoundedCornerShape(20.dp),
+                spotColor = ShadowMedium
+            ),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = CardBackground)
     ) {
         Column(
             modifier = Modifier.padding(20.dp)
         ) {
             // 卡片标题
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = "设置个性健康计划",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = TextPrimary
-                )
-            }
+            Text(
+                text = "请选择你的个性目标:",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                color = TextPrimary
+            )
             
             Spacer(modifier = Modifier.height(16.dp))
             
@@ -333,9 +322,9 @@ fun PersonalGoalsCard(
 }
 
 /**
- * 目标项目组件
+ * 目标项目组件 - 紧凑版本
  * 
- * 显示单个健康目标选项的图标和标题
+ * 显示单个健康目标选项的图标和标题，带有柔和的发光效果
  * 
  * @param icon 目标图标
  * @param title 目标标题
@@ -353,13 +342,18 @@ fun GoalItem(
         modifier = modifier.clickable { onClick() },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 目标图标背景容器
+        // 目标图标背景容器 - 带柔和阴影
         Box(
             modifier = Modifier
-                .size(60.dp)
+                .size(56.dp)
+                .shadow(
+                    elevation = 6.dp,
+                    shape = RoundedCornerShape(14.dp),
+                    spotColor = ShadowMedium
+                )
                 .background(
-                    color = ButtonBackground,
-                    shape = RoundedCornerShape(12.dp)
+                    color = SurfaceGlow,
+                    shape = RoundedCornerShape(14.dp)
                 )
         ) {
             // 目标图标
@@ -377,6 +371,7 @@ fun GoalItem(
         Text(
             text = title,
             fontSize = 12.sp,
+            fontWeight = FontWeight.Medium,
             color = TextPrimary,
             textAlign = TextAlign.Center
         )
