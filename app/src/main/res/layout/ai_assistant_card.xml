@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- AI助手卡片布局 - 仿照图三样式 -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dp_20"
+    android:layout_marginTop="@dimen/dp_0"
+    app:cardCornerRadius="@dimen/dp_20"
+    app:cardElevation="@dimen/dp_12"
+    app:cardBackgroundColor="@color/card_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_20">
+
+        <!-- 顶部：头像和问候语 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- AI助手头像 -->
+            <ImageView
+                android:id="@+id/iv_ai_avatar"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:src="@drawable/ic_ai_avatar"
+                android:contentDescription="AI助手头像"
+                android:scaleType="centerCrop" />
+
+            <!-- 问候语 -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/dp_12"
+                android:text="我是小蓝，你的智能健康助手~"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+        </LinearLayout>
+
+        <!-- 智能推荐问题区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:orientation="horizontal">
+
+            <!-- 左侧列：健康咨询 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:orientation="vertical">
+
+                <!-- 栏目标题 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="健康咨询"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <!-- 推荐问题1 -->
+                <LinearLayout
+                    android:id="@+id/ll_suggestion_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp_12"
+                    android:background="@drawable/suggestion_button_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="怎样合理安排服药时间？"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="@color/text_primary"
+                        android:maxLines="2"
+                        android:ellipsize="end" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_16"
+                        android:layout_height="@dimen/dp_16"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:src="@drawable/ic_arrow_right"
+                        android:contentDescription="进入"
+                        app:tint="@color/icon_tint" />
+
+                </LinearLayout>
+
+                <!-- 推荐问题2 -->
+                <LinearLayout
+                    android:id="@+id/ll_suggestion_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp_12"
+                    android:background="@drawable/suggestion_button_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="药品存放有哪些注意事项？"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="@color/text_primary"
+                        android:maxLines="2"
+                        android:ellipsize="end" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_16"
+                        android:layout_height="@dimen/dp_16"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:src="@drawable/ic_arrow_right"
+                        android:contentDescription="进入"
+                        app:tint="@color/icon_tint" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 右侧列：用药指导 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/dp_8"
+                android:orientation="vertical">
+
+                <!-- 栏目标题 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用药指导"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <!-- 推荐问题3 -->
+                <LinearLayout
+                    android:id="@+id/ll_suggestion_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp_12"
+                    android:background="@drawable/suggestion_button_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="如何设置用药提醒？"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="@color/text_primary"
+                        android:maxLines="2"
+                        android:ellipsize="end" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_16"
+                        android:layout_height="@dimen/dp_16"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:src="@drawable/ic_arrow_right"
+                        android:contentDescription="进入"
+                        app:tint="@color/icon_tint" />
+
+                </LinearLayout>
+
+                <!-- 推荐问题4 -->
+                <LinearLayout
+                    android:id="@+id/ll_suggestion_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp_12"
+                    android:background="@drawable/suggestion_button_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="查看我的健康档案"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="@color/text_primary"
+                        android:maxLines="2"
+                        android:ellipsize="end" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_16"
+                        android:layout_height="@dimen/dp_16"
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:src="@drawable/ic_arrow_right"
+                        android:contentDescription="进入"
+                        app:tint="@color/icon_tint" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 底部输入框 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:orientation="horizontal"
+            android:background="@drawable/input_box_background"
+            android:padding="@dimen/dp_12"
+            android:gravity="center_vertical">
+
+            <!-- 相机图标 -->
+            <ImageView
+                android:id="@+id/iv_camera_input"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:src="@drawable/camera_ic"
+                android:contentDescription="拍照输入"
+                android:clickable="true"
+                android:focusable="true"
+                app:tint="@color/icon_tint" />
+
+            <!-- 输入框 -->
+            <EditText
+                android:id="@+id/et_ai_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/dp_12"
+                android:background="@null"
+                android:hint="发消息或按住说话..."
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:maxLines="1"
+                android:minHeight="@dimen/dp_32" />
+
+            <!-- 麦克风图标 -->
+            <ImageView
+                android:id="@+id/iv_voice_input"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:src="@drawable/ic_microphone"
+                android:contentDescription="语音输入"
+                android:clickable="true"
+                android:focusable="true"
+                app:tint="@color/icon_tint" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+

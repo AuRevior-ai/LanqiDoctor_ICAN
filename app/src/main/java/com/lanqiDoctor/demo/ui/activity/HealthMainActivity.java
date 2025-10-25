@@ -17,8 +17,9 @@ import com.hjq.base.BaseActivity;
 import com.lanqiDoctor.demo.R;
 import com.lanqiDoctor.demo.app.AppActivity;
 import com.lanqiDoctor.demo.ui.adapter.HealthPagerAdapter;
+import com.lanqiDoctor.demo.ui.fragment.DailyMedicationFragment;
 import com.lanqiDoctor.demo.ui.fragment.FamilyMonitoringFragment;
-import com.lanqiDoctor.demo.ui.fragment.HealthCenterFragment;
+import com.lanqiDoctor.demo.ui.fragment.HealthCenterFragmentNew;
 import com.lanqiDoctor.demo.ui.fragment.MobileHealthAssistantFragment;
 import com.lanqiDoctor.demo.ui.activity.TodayMedicationActivity;
 import com.lanqiDoctor.demo.manager.CloudSyncManager;
@@ -40,8 +41,6 @@ import java.util.List;
  */
 public class HealthMainActivity extends AppActivity {
     //    public class HealthMainActivity extends BaseActivity {
-    private TextView titleText;
-    private ImageView userAvatar;
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
     private HealthPagerAdapter pagerAdapter;
@@ -62,8 +61,6 @@ public class HealthMainActivity extends AppActivity {
 
     @Override
     protected void initView() {
-        titleText = findViewById(R.id.tv_title);
-        userAvatar = findViewById(R.id.iv_user_avatar);
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
 
@@ -78,17 +75,18 @@ public class HealthMainActivity extends AppActivity {
 
     @Override
     protected void initData() {
-        titleText.setText("蓝岐健康提醒");
 
         // 初始化Fragment列表
         fragmentList = new ArrayList<>();
-        fragmentList.add(new HealthCenterFragment());
-        fragmentList.add(new FamilyMonitoringFragment());
-        fragmentList.add(new MobileHealthAssistantFragment());
+        fragmentList.add(new HealthCenterFragmentNew());  // AI助手
+        fragmentList.add(new DailyMedicationFragment());  // 日常服药
+        fragmentList.add(new FamilyMonitoringFragment());  // 家庭监护
+        fragmentList.add(new MobileHealthAssistantFragment());  // 健康助手
 
         // 初始化标题列表
         titleList = new ArrayList<>();
-        titleList.add("健康中心");
+        titleList.add("AI助手");
+        titleList.add("日常服药");
         titleList.add("家庭监护");
         titleList.add("健康助手");
 
@@ -109,14 +107,6 @@ public class HealthMainActivity extends AppActivity {
     }
 
     private void initListener() {
-        // 用户头像点击事件
-        userAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HealthMainActivity.this, UserProfileActivity.class));
-            }
-        });
-
         // 底部导航点击事件
         llHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,8 +160,8 @@ public class HealthMainActivity extends AppActivity {
         Fragment currentFragment = fragmentList.get(viewPager.getCurrentItem());
 
         // 2. 优先让 Fragment 处理返回键
-        if (currentFragment instanceof HealthCenterFragment) {
-            boolean isHandled = ((HealthCenterFragment) currentFragment).onBackPressed();
+        if (currentFragment instanceof HealthCenterFragmentNew) {
+            boolean isHandled = ((HealthCenterFragmentNew) currentFragment).onBackPressed();
             if (isHandled) return; // 如果 Fragment 已处理，则不再执行默认逻辑
         }
         // 3. 默认逻辑（如退出 Activity）

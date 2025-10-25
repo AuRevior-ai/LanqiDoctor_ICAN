@@ -123,6 +123,14 @@ public class ChatLlmActivity extends AppCompatActivity implements View.OnClickLi
 
     private void initData() {
         startNewChat();
+        
+        // 检查是否有预设问题
+        String presetQuestion = getIntent().getStringExtra("preset_question");
+        if (presetQuestion != null && !presetQuestion.isEmpty()) {
+            // 自动发送预设问题
+            mMessageEditText.setText(presetQuestion);
+            mMessageEditText.postDelayed(() -> sendMessage(), 500);
+        }
     }
 
     /**

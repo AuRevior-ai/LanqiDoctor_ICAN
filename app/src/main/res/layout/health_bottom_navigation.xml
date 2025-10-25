@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingVertical="@dimen/dp_16"
-        android:paddingBottom="@dimen/dp_24">
+        android:paddingVertical="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_12">
 
         <!-- 首页导航项 -->
         <LinearLayout
@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="@dimen/dp_8"
+            android:padding="@dimen/dp_4"
             android:clickable="true"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground">
@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="@dimen/dp_8"
+            android:padding="@dimen/dp_4"
             android:clickable="true"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground">
@@ -82,7 +82,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="@dimen/dp_8"
+            android:padding="@dimen/dp_4"
             android:clickable="true"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground">

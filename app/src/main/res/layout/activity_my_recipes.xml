@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/health_gradient_background">
+    android:background="@color/blue_gradient_start">
 
     <!-- 顶部导航栏 -->
     <RelativeLayout
@@ -57,18 +57,35 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!-- 周计划标题 -->
-            <TextView
-                android:id="@+id/tv_weekly_plan_title"
+            <!-- 周计划标题区域 -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="本周食谱计划"
-                android:textSize="@dimen/sp_18"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"
+                android:orientation="vertical"
                 android:gravity="center"
                 android:padding="@dimen/dp_16"
-                android:background="@color/bg_light_gray" />
+                android:background="@color/bg_light_gray">
+
+                <!-- 主标题 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="本周食谱计划"
+                    android:textSize="@dimen/sp_18"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <!-- 日期范围 -->
+                <TextView
+                    android:id="@+id/tv_weekly_plan_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:text="10月25日 - 10月31日"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
 
             <!-- 下拉刷新容器 -->
             <com.scwang.smart.refresh.layout.SmartRefreshLayout

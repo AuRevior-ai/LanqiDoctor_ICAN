@@ -201,8 +201,9 @@ public class MyRecipesActivity extends BaseActivity implements
             SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日", Locale.getDefault());
             String startDate = sdf.format(plan.getStartDate());
             String endDate = sdf.format(plan.getEndDate());
-            String title = String.format("本周食谱计划（%s - %s）", startDate, endDate);
-            tvWeeklyPlanTitle.setText(title);
+            // 只显示日期范围，标题在布局中固定
+            String dateRange = String.format("%s - %s", startDate, endDate);
+            tvWeeklyPlanTitle.setText(dateRange);
         }
     }
     

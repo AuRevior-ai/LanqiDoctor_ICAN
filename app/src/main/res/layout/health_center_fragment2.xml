@@ -18,57 +18,8 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/dp_80">
 
-            <!-- 这里是你原来的所有内容，保持不变 -->
-            <!-- 症状轨迹可视化卡片 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_symptom_tracking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_0"
-                app:cardCornerRadius="@dimen/dp_20"
-                app:cardElevation="@dimen/dp_12"
-                app:cardBackgroundColor="@color/card_background">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/dp_20">
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="症状轨迹可视化"
-                            android:textSize="@dimen/sp_18"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_primary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_8"
-                            android:text="设置个性化健康日历以启动服药提醒"
-                            android:textSize="@dimen/sp_12"
-                            android:textColor="@color/text_secondary" />
-                    </LinearLayout>
-                    <ImageView
-                        android:id="@+id/iv_calendar"
-                        android:layout_width="@dimen/dp_80"
-                        android:layout_height="@dimen/dp_80"
-                        android:background="@drawable/function_button_background"
-                        android:padding="@dimen/dp_20"
-                        android:src="@drawable/calendar_ic"
-                        android:contentDescription="日历"
-                        app:tint="@color/icon_tint" />                        
-                </LinearLayout>
-                <!-- 保持原有内容不变 -->
-            </androidx.cardview.widget.CardView>
+            <!-- AI助手界面 - 顶部卡片 -->
+            <include layout="@layout/ai_assistant_card" />
 
             <!-- 功能按钮组 - 横排4个云朵样式 -->
             <LinearLayout
@@ -120,9 +71,9 @@
 
                 </LinearLayout>
 
-                <!-- 文字输入 - 橙色荧光 -->
+                <!-- 症状轨迹可视化 - 橙色荧光 (从顶部移到这里) -->
                 <LinearLayout
-                    android:id="@+id/ll_text_input"
+                    android:id="@+id/ll_symptom_tracking"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -144,8 +95,8 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/edit_ic"
-                            android:contentDescription="文字输入"
+                            android:src="@drawable/calendar_ic"
+                            android:contentDescription="症状轨迹可视化"
                             app:tint="@android:color/white" />
 
                     </androidx.cardview.widget.CardView>
@@ -154,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_8"
-                        android:text="文字输入"
+                        android:text="症状轨迹"
                         android:textSize="@dimen/sp_13"
                         android:textStyle="normal"
                         android:textColor="@color/text_primary" />
