@@ -6,7 +6,10 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingVertical="@dimen/dp_5"
+    android:padding="@dimen/dp_8"
+    android:background="@drawable/navigation_item_background"
+    android:clickable="true"
+    android:focusable="true"
     tools:context="com.lanqiDoctor.demo.ui.adapter.NavigationAdapter">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -19,10 +22,10 @@
         android:id="@+id/tv_home_navigation_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_2"
+        android:layout_marginTop="@dimen/dp_4"
         android:textSize="@dimen/sp_12"
         app:shape_textColor="#A4A4A4"
-        app:shape_textSelectedColor="@color/black"
+        app:shape_textSelectedColor="@color/neon_blue"
         tools:text="@string/home_nav_index" />
 
 </LinearLayout>

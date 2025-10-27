@@ -55,12 +55,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/dp_20"
                         android:layout_weight="1"
-                        android:background="@drawable/home_search_bar_transparent_bg"
+                        android:background="@drawable/home_search_modern_background"
                         android:gravity="center"
-                        android:paddingVertical="@dimen/dp_5"
+                        android:paddingVertical="@dimen/dp_8"
+                        android:paddingHorizontal="@dimen/dp_16"
                         android:text="完善细节，追求完美"
-                        android:textColor="@color/white60"
-                        android:textSize="@dimen/sp_13" />
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_13"
+                        android:elevation="@dimen/dp_2" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_home_search"

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="@dimen/dp_10"
+    android:padding="@dimen/dp_12"
     android:gravity="start">
 
     <TextView
@@ -11,9 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dp_60"
-        android:padding="@dimen/dp_12"
+        android:padding="@dimen/dp_16"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_14"
-        android:background="@drawable/bg_chat_ai_message" />
+        android:lineSpacingMultiplier="1.2"
+        android:background="@drawable/chat_ai_message_modern_background" />
 
 </LinearLayout>

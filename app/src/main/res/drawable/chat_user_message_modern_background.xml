@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外层发光效果 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#255B9FFF" />
+            <corners 
+                android:topLeftRadius="18dp"
+                android:topRightRadius="18dp"
+                android:bottomLeftRadius="18dp"
+                android:bottomRightRadius="4dp" />
+        </shape>
+    </item>
+    
+    <!-- 中层阴影 -->
+    <item android:top="2dp" android:left="2dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#155B9FFF" />
+            <corners 
+                android:topLeftRadius="16dp"
+                android:topRightRadius="16dp"
+                android:bottomLeftRadius="16dp"
+                android:bottomRightRadius="3dp" />
+        </shape>
+    </item>
+    
+    <!-- 内层主体 -->
+    <item android:top="4dp" android:left="4dp" android:right="4dp" android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#5B9FFF" />
+            <corners 
+                android:topLeftRadius="14dp"
+                android:topRightRadius="14dp"
+                android:bottomLeftRadius="14dp"
+                android:bottomRightRadius="2dp" />
+        </shape>
+    </item>
+</layer-list>
