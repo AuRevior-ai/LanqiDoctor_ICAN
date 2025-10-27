@@ -292,7 +292,7 @@
 
                 </LinearLayout>
 
-                <!-- 个人健康画像 - 绿色荧光主题 -->
+                <!-- 个人健康画像 - 蓝色荧光主题 -->
                 <LinearLayout
                     android:id="@+id/ll_health_profile"
                     android:layout_width="0dp"
@@ -309,14 +309,14 @@
                     <ImageView
                         android:layout_width="@dimen/dp_36"
                         android:layout_height="@dimen/dp_36"
-                        android:src="@drawable/assessment_ic"
+                        android:src="@drawable/ic_user_profile"
                         android:contentDescription="个人健康画像"
-                        app:tint="@color/neon_green" />
+                        app:tint="@color/neon_blue" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="个人健康画像"
+                        android:text="健康画像"
                         android:textSize="@dimen/sp_13"
                         android:textStyle="bold"
                         android:textColor="@color/text_primary"

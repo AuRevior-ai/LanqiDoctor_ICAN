@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.util.Log;
 
@@ -161,6 +162,14 @@ public class TodayMedicationActivity extends BaseActivity implements TodayMedica
         loadTodayMedicationData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 每次页面恢复时重新加载数据，确保数据同步
+        Log.d("TodayMedication", "onResume - 重新加载数据");
+        loadTodayMedicationData();
+    }
+
     /**
      * 加载今日服药数据
      */
@@ -226,23 +235,33 @@ public class TodayMedicationActivity extends BaseActivity implements TodayMedica
             // 为每个药物创建今日的服药项目
             for (MedicationRecord medication : activeMedications) {
                 String frequency = medication.getFrequency();
-                Log.d("TodayMedication", "处理药物: " + medication.getMedicationName() + ", 频率: " + frequency);
+                String reminderTimes = medication.getReminderTimes();
+                Log.d("TodayMedication", "处理药物: " + medication.getMedicationName() + 
+                      ", 频率: " + frequency + ", 提醒时间: " + reminderTimes);
 
                 if (frequency == null) {
                     Log.w("TodayMedication", "药物频率为空: " + medication.getMedicationName());
                     continue;
                 }
 
-                List<String> timeKeys = getTimeKeysForFrequency(frequency);
-                Log.d("TodayMedication", "获得时间键数量: " + timeKeys.size());
+                // 直接从药物记录中解析时间，而不是从SharedPreferences
+                Map<String, String> timesMap = parseReminderTimes(reminderTimes);
+                Log.d("TodayMedication", "解析的时间映射: " + timesMap);
 
-                for (String timeKey : timeKeys) {
+                if (timesMap.isEmpty()) {
+                    Log.w("TodayMedication", "没有解析到有效时间，药物: " + medication.getMedicationName());
+                    continue;
+                }
+
+                for (Map.Entry<String, String> timeEntry : timesMap.entrySet()) {
+                    String timeKey = timeEntry.getKey();
+                    String timeString = timeEntry.getValue();
+                    
                     try {
-                        String timeString = timePrefs.getString(timeKey, null);
-                        Log.d("TodayMedication", "时间键 " + timeKey + " 对应时间: " + timeString);
+                        Log.d("TodayMedication", "处理时间 " + timeKey + ": " + timeString);
 
-                        if (timeString == null || "未设置".equals(timeString)) {
-                            Log.w("TodayMedication", "时间未设置，跳过: " + timeKey);
+                        if (timeString == null || "未设置".equals(timeString) || "按需".equals(timeString)) {
+                            Log.w("TodayMedication", "时间未设置或按需服用，跳过: " + timeKey);
                             continue;
                         }
 
@@ -274,7 +293,7 @@ public class TodayMedicationActivity extends BaseActivity implements TodayMedica
                         item.setIntakeRecord(intakeRecord);
 
                         // 确定时间组
-                        String timeGroup = getTimeGroup(timeKey);
+                        String timeGroup = getTimeGroupFromTimeKey(timeKey);
                         item.setTimeGroup(timeGroup);
 
                         // 添加到对应的时间组
@@ -286,7 +305,7 @@ public class TodayMedicationActivity extends BaseActivity implements TodayMedica
                             Log.w("TodayMedication", "未找到时间组: " + timeGroup);
                         }
                     } catch (Exception e) {
-                        Log.e("TodayMedication", "处理时间键时发生异常: " + timeKey, e);
+                        Log.e("TodayMedication", "处理时间键时发生异常: " + timeKey + " -> " + timeString, e);
                     }
                 }
             }
@@ -592,5 +611,55 @@ public class TodayMedicationActivity extends BaseActivity implements TodayMedica
         }
 
         return statusMap;
+    }
+
+    /**
+     * 解析药物的提醒时间JSON字符串
+     * @param reminderTimes JSON格式的时间字符串，如 {"once_time":"08:00","three_morning":"08:00","three_noon":"12:00","three_evening":"18:00"}
+     * @return 时间映射，键为时间类型，值为具体时间
+     */
+    private Map<String, String> parseReminderTimes(String reminderTimes) {
+        Map<String, String> timesMap = new HashMap<>();
+        
+        if (reminderTimes == null || reminderTimes.trim().isEmpty()) {
+            Log.w("TodayMedication", "提醒时间为空");
+            return timesMap;
+        }
+        
+        try {
+            // 简单的JSON解析，去掉大括号和引号
+            String cleanJson = reminderTimes.replace("{", "").replace("}", "").replace("\"", "");
+            String[] pairs = cleanJson.split(",");
+            
+            for (String pair : pairs) {
+                String[] keyValue = pair.split(":");
+                if (keyValue.length == 2) {
+                    String key = keyValue[0].trim();
+                    String value = keyValue[1].trim();
+                    timesMap.put(key, value);
+                    Log.d("TodayMedication", "解析时间对: " + key + " = " + value);
+                }
+            }
+        } catch (Exception e) {
+            Log.e("TodayMedication", "解析提醒时间失败: " + reminderTimes, e);
+        }
+        
+        return timesMap;
+    }
+
+    /**
+     * 根据时间键确定时间组
+     */
+    private String getTimeGroupFromTimeKey(String timeKey) {
+        if (timeKey.contains("morning") || timeKey.equals("once_time")) {
+            return "早上";
+        } else if (timeKey.contains("noon")) {
+            return "中午";
+        } else if (timeKey.contains("evening")) {
+            return "晚上";
+        } else {
+            // 默认根据时间确定
+            return "早上";
+        }
     }
 }

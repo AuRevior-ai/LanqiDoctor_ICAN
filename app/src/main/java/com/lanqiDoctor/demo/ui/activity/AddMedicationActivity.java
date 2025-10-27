@@ -428,6 +428,9 @@ public class AddMedicationActivity extends BaseActivity {
         medication.setUnit(unit);
         medication.setStartDate(startCalendar.getTimeInMillis());
         
+        // 根据频率设置默认的服药时间
+        setDefaultReminderTimes(medication, frequency);
+        
         // 设置结束时间（如果选择了）
         if (!tvEndDate.getText().toString().trim().isEmpty() && 
             !tvEndDate.getText().toString().equals("点击选择结束时间")) {
@@ -463,4 +466,37 @@ public class AddMedicationActivity extends BaseActivity {
         TodayMedicationManager.getInstance(this).forceReinitTodayMedicationData();
         setResult(RESULT_OK);
         finish();
-    }}
+    }
+    
+    /**
+     * 根据服药频率设置默认的提醒时间
+     */
+    private void setDefaultReminderTimes(MedicationRecord medication, String frequency) {
+        String reminderTimes = "";
+        
+        switch (frequency) {
+            case "每日1次":
+                // 默认早上8点
+                reminderTimes = "{\"once_time\":\"08:00\"}";
+                break;
+            case "每日2次":
+                // 默认早上8点和晚上8点
+                reminderTimes = "{\"twice_morning\":\"08:00\",\"twice_evening\":\"20:00\"}";
+                break;
+            case "每日3次":
+                // 默认早中晚：8点、12点、18点
+                reminderTimes = "{\"three_morning\":\"08:00\",\"three_noon\":\"12:00\",\"three_evening\":\"18:00\"}";
+                break;
+            case "按需服用":
+                // 按需服用不设置固定时间
+                reminderTimes = "{\"as_needed\":\"按需\"}";
+                break;
+            default:
+                // 默认一天一次
+                reminderTimes = "{\"once_time\":\"08:00\"}";
+                break;
+        }
+        
+        medication.setReminderTimes(reminderTimes);
+    }
+}

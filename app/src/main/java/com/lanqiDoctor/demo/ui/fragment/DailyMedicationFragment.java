@@ -20,6 +20,7 @@ public class DailyMedicationFragment extends BaseFragment {
     private LinearLayout llGoalMedicine;
     private LinearLayout llGoalDiagnosis;
     private LinearLayout llGoalPhoto;
+    private LinearLayout llHealthTrack;
 
     @Override
     protected int getLayoutId() {
@@ -32,6 +33,9 @@ public class DailyMedicationFragment extends BaseFragment {
         llGoalMedicine = (LinearLayout) findViewById(R.id.ll_goal_medicine);
         llGoalDiagnosis = (LinearLayout) findViewById(R.id.ll_goal_diagnosis);
         llGoalPhoto = (LinearLayout) findViewById(R.id.ll_goal_photo);
+        
+        // 健康轨迹卡片
+        llHealthTrack = (LinearLayout) findViewById(R.id.ll_health_track);
     }
 
     @Override
@@ -60,6 +64,15 @@ public class DailyMedicationFragment extends BaseFragment {
         if (llGoalPhoto != null) {
             llGoalPhoto.setOnClickListener(v -> {
                 startActivity(ClockActivity.class);
+            });
+        }
+        
+        // 健康轨迹
+        if (llHealthTrack != null) {
+            llHealthTrack.setOnClickListener(v -> {
+                // 跳转到月历页面，显示每天服药情况
+                Intent intent = new Intent(getContext(), MonthCalendarActivity.class);
+                startActivity(intent);
             });
         }
     }

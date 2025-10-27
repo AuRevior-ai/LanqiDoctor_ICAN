@@ -137,6 +137,72 @@
 
         </LinearLayout>
 
+    <!-- 健康轨迹可视化卡片 -->
+    <LinearLayout
+        android:id="@+id/ll_health_track"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_140"
+        android:orientation="horizontal"
+        android:background="@drawable/health_track_card_modern_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:elevation="@dimen/dp_8">
+
+        <!-- 左侧介绍内容 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_8">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="健康轨迹"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginTop="@dimen/dp_4"
+                android:paddingBottom="@dimen/dp_4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="查看您的个人健康数据分析报告"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#666666"
+                android:lineSpacingExtra="@dimen/dp_2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:text="点击查看详细报告 →"
+                android:textSize="@dimen/sp_12"
+                android:textColor="#84E8B4"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- 右侧图标 -->
+        <ImageView
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_16"
+            android:src="@drawable/assessment_ic"
+            android:contentDescription="健康轨迹"
+            app:tint="#84E8B4" />
+
+    </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>
