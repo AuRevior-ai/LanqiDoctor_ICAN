@@ -5,8 +5,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
-
 import com.hjq.base.BaseFragment;
 import com.hjq.toast.ToastUtils;
 import com.lanqiDoctor.demo.R;
@@ -39,9 +37,9 @@ public class MobileHealthAssistantFragment extends BaseFragment {
     private Integer latestHeartRate = null;
     private Double latestSleep = null;
     // 健康数据卡片
-    private CardView cardStepsData;
-    private CardView cardHeartRateData;
-    private CardView cardSleepData;
+    private LinearLayout cardStepsData;
+    private LinearLayout cardHeartRateData;
+    private LinearLayout cardSleepData;
     
     // 功能按钮 - 2x2网格
     private LinearLayout llDataSync;
@@ -65,9 +63,9 @@ public class MobileHealthAssistantFragment extends BaseFragment {
     @Override
     protected void initView() {
         // 健康数据卡片 - 添加显式类型转换
-        cardStepsData = (CardView) findViewById(R.id.card_steps_data);
-        cardHeartRateData = (CardView) findViewById(R.id.card_heart_rate_data);
-        cardSleepData = (CardView) findViewById(R.id.card_sleep_data);
+        cardStepsData = (LinearLayout) findViewById(R.id.card_steps_data);
+        cardHeartRateData = (LinearLayout) findViewById(R.id.card_heart_rate_data);
+        cardSleepData = (LinearLayout) findViewById(R.id.card_sleep_data);
         
         // 功能按钮 - 2x2网格
         llDataSync = (LinearLayout) findViewById(R.id.ll_data_sync);

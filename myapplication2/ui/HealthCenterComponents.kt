@@ -259,9 +259,9 @@ fun FunctionButton(
 }
 
 /**
- * 个性目标设置卡片 - 紧凑版本
+ * 个性目标设置卡片 - 优化版本
  * 
- * 显示用户可以设置的个性化健康目标选项，带有柔和阴影
+ * 显示用户可以设置的个性化健康目标选项，带有更柔和的阴影效果
  * 
  * @param onGoalClick 目标点击回调
  */
@@ -274,9 +274,9 @@ fun PersonalGoalsCard(
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
             .shadow(
-                elevation = 12.dp,
+                elevation = 6.dp,  // 降低阴影强度
                 shape = RoundedCornerShape(20.dp),
-                spotColor = ShadowMedium
+                spotColor = ShadowLight  // 使用更轻的阴影颜色
             ),
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = CardBackground)
@@ -294,26 +294,32 @@ fun PersonalGoalsCard(
             
             Spacer(modifier = Modifier.height(16.dp))
             
-            // 三个目标选项：在用药、医嘱识别、拍照功能
+            // 三个目标选项：在用药、医嘱识别、服药时间功能 - 使用云朵样式
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                GoalItem(
+                PersonalGoalItem(
                     icon = Icons.Default.Favorite,
                     title = "在用药",
                     onClick = { onGoalClick("在用药") },
+                    iconBackgroundColor = Color(0xFFFF9B7A),  // 橙红色
+                    glowColor = GlowOrange,
                     modifier = Modifier.weight(1f)
                 )
-                GoalItem(
+                PersonalGoalItem(
                     icon = Icons.Default.Info,
                     title = "医嘱识别",
                     onClick = { onGoalClick("医嘱识别") },
+                    iconBackgroundColor = Color(0xFF7AC8E8),  // 青绿色
+                    glowColor = GlowTeal,
                     modifier = Modifier.weight(1f)
                 )
-                GoalItem(
-                    icon = Icons.Default.CheckCircle,
-                    title = "拍照",
-                    onClick = { onGoalClick("拍照") },
+                PersonalGoalItem(
+                    icon = Icons.Default.Schedule,
+                    title = "服药时间",
+                    onClick = { onGoalClick("服药时间") },
+                    iconBackgroundColor = Color(0xFF84E8B4),  // 绿色
+                    glowColor = GlowGreen,
                     modifier = Modifier.weight(1f)
                 )
             }
@@ -322,7 +328,108 @@ fun PersonalGoalsCard(
 }
 
 /**
- * 目标项目组件 - 紧凑版本
+ * 个性目标项目组件 - 云朵样式版本
+ * 
+ * 使用与主要功能按钮相同的云朵样式，创造统一的视觉效果
+ * 
+ * @param icon 目标图标
+ * @param title 目标标题
+ * @param onClick 点击回调
+ * @param modifier 修饰符
+ * @param iconBackgroundColor 图标背景颜色
+ * @param glowColor 发光颜色
+ */
+@Composable
+fun PersonalGoalItem(
+    icon: ImageVector,
+    title: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    iconBackgroundColor: Color = NeonBlue,
+    glowColor: Color = GlowBlue
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+    
+    Column(
+        modifier = modifier
+            .clickable(
+                onClick = onClick,
+                indication = null,
+                interactionSource = interactionSource
+            )
+            .padding(4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // 云朵图标容器 - 缩小版本适合个性目标
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.size(64.dp)
+        ) {
+            // 外层发光效果 - 适中的荧光
+            Box(
+                modifier = Modifier
+                    .size(60.dp)
+                    .blur(16.dp)
+                    .background(
+                        color = glowColor,
+                        shape = RoundedCornerShape(18.dp)
+                    )
+            )
+            
+            // 内层发光效果
+            Box(
+                modifier = Modifier
+                    .size(56.dp)
+                    .blur(8.dp)
+                    .background(
+                        color = glowColor.copy(alpha = 0.6f),
+                        shape = RoundedCornerShape(16.dp)
+                    )
+            )
+            
+            // 图标背景主体 - 圆角方形
+            Surface(
+                modifier = Modifier
+                    .size(52.dp)
+                    .shadow(
+                        elevation = if (isPressed) 3.dp else 6.dp,
+                        shape = RoundedCornerShape(15.dp),
+                        spotColor = glowColor
+                    ),
+                shape = RoundedCornerShape(15.dp),
+                color = iconBackgroundColor
+            ) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = title,
+                        tint = Color.White,
+                        modifier = Modifier.size(28.dp)
+                    )
+                }
+            }
+        }
+        
+        Spacer(modifier = Modifier.height(8.dp))
+        
+        // 标题文字
+        Text(
+            text = title,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Medium,
+            color = TextPrimary,
+            textAlign = TextAlign.Center,
+            maxLines = 1
+        )
+    }
+}
+
+/**
+ * 目标项目组件 - 紧凑版本（保留原版本以备兼容）
  * 
  * 显示单个健康目标选项的图标和标题，带有柔和的发光效果
  * 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 医嘱识别按钮背景 - 青绿色系 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- 按下状态 -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- 外层发光效果 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#4D7AC8E8" />
+                    <corners android:radius="@dimen/dp_20" />
+                </shape>
+            </item>
+            
+            <!-- 主体背景 - 按下颜色 -->
+            <item android:left="@dimen/dp_4" android:top="@dimen/dp_4" 
+                  android:right="@dimen/dp_4" android:bottom="@dimen/dp_4">
+                <shape android:shape="rectangle">
+                    <solid android:color="#6BB7D8" />
+                    <corners android:radius="@dimen/dp_16" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    
+    <!-- 普通状态 -->
+    <item>
+        <layer-list>
+            <!-- 外层发光效果 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#337AC8E8" />
+                    <corners android:radius="@dimen/dp_20" />
+                </shape>
+            </item>
+            
+            <!-- 主体背景 -->
+            <item android:left="@dimen/dp_4" android:top="@dimen/dp_4" 
+                  android:right="@dimen/dp_4" android:bottom="@dimen/dp_4">
+                <shape android:shape="rectangle">
+                    <solid android:color="#7AC8E8" />
+                    <corners android:radius="@dimen/dp_16" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    
+</selector>

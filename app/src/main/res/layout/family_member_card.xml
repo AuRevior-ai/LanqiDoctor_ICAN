@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 家庭成员卡片 - 现代化云朵风格 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/dp_12"
+    android:layout_marginBottom="@dimen/dp_16"
+    android:layout_marginHorizontal="@dimen/dp_4"
     android:orientation="horizontal"
-    android:background="@drawable/family_member_card_background"
-    android:padding="@dimen/dp_16"
+    android:background="@drawable/family_member_card_modern_background"
+    android:padding="@dimen/dp_20"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:elevation="@dimen/dp_6">
 
-    <ImageView
-        android:id="@+id/iv_member_avatar"
-        android:layout_width="@dimen/dp_50"
-        android:layout_height="@dimen/dp_50"
+    <!-- 现代化头像设计 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/circle_blue_background"
-        android:padding="@dimen/dp_12"
-        android:src="@drawable/person_ic"
-        android:contentDescription="家庭成员头像"
-        app:tint="@color/white" />
+        android:padding="@dimen/dp_2">
+        
+        <ImageView
+            android:id="@+id/iv_member_avatar"
+            android:layout_width="@dimen/dp_56"
+            android:layout_height="@dimen/dp_56"
+            android:background="@drawable/circle_white_background"
+            android:padding="@dimen/dp_16"
+            android:src="@drawable/person_ic"
+            android:contentDescription="家庭成员头像"
+            app:tint="@color/neon_blue" />
+            
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
@@ -32,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="家庭成员"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_17"
             android:textStyle="bold"
             android:textColor="@color/text_primary" />
 
@@ -40,10 +53,34 @@
             android:id="@+id/tv_member_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginTop="@dimen/dp_6"
             android:text="member@example.com"
-            android:textSize="@dimen/sp_12"
+            android:textSize="@dimen/sp_13"
             android:textColor="@color/text_secondary" />
+
+    </LinearLayout>
+
+    <!-- 右侧状态指示器 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dp_8"
+            android:layout_height="@dimen/dp_8"
+            android:src="@drawable/status_online_dot"
+            android:contentDescription="在线状态" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:text="在线"
+            android:textSize="@dimen/sp_10"
+            android:textColor="@color/neon_green" />
 
     </LinearLayout>
 

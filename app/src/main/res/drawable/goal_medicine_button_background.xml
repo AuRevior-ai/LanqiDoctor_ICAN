@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 在用药按钮背景 - 蓝色系 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- 按下状态 -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- 外层发光效果 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#4D5B9FFF" />
+                    <corners android:radius="@dimen/dp_20" />
+                </shape>
+            </item>
+            
+            <!-- 主体背景 - 按下颜色 -->
+            <item android:left="@dimen/dp_4" android:top="@dimen/dp_4" 
+                  android:right="@dimen/dp_4" android:bottom="@dimen/dp_4">
+                <shape android:shape="rectangle">
+                    <solid android:color="#4A8FEF" />
+                    <corners android:radius="@dimen/dp_16" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    
+    <!-- 普通状态 -->
+    <item>
+        <layer-list>
+            <!-- 外层发光效果 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#335B9FFF" />
+                    <corners android:radius="@dimen/dp_20" />
+                </shape>
+            </item>
+            
+            <!-- 主体背景 -->
+            <item android:left="@dimen/dp_4" android:top="@dimen/dp_4" 
+                  android:right="@dimen/dp_4" android:bottom="@dimen/dp_4">
+                <shape android:shape="rectangle">
+                    <solid android:color="#5B9FFF" />
+                    <corners android:radius="@dimen/dp_16" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    
+</selector>

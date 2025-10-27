@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 健康功能按钮现代化背景 - 数据同步 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- 按压状态 -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- 外层荧光效果 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#407AC8E8" />
+                    <corners android:radius="@dimen/dp_16" />
+                </shape>
+            </item>
+            
+            <!-- 主背景层 -->
+            <item 
+                android:left="@dimen/dp_2"
+                android:top="@dimen/dp_2" 
+                android:right="@dimen/dp_2"
+                android:bottom="@dimen/dp_4">
+                <shape android:shape="rectangle">
+                    <solid android:color="#F0FFFFFF" />
+                    <corners android:radius="@dimen/dp_14" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    
+    <!-- 默认状态 -->
+    <item>
+        <layer-list>
+            <!-- 外层荧光效果 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#307AC8E8" />
+                    <corners android:radius="@dimen/dp_16" />
+                </shape>
+            </item>
+            
+            <!-- 主背景层 -->
+            <item 
+                android:left="@dimen/dp_2"
+                android:top="@dimen/dp_2" 
+                android:right="@dimen/dp_2"
+                android:bottom="@dimen/dp_4">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/card_background" />
+                    <corners android:radius="@dimen/dp_14" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    
+</selector>
