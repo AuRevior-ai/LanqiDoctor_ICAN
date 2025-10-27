@@ -54,7 +54,7 @@ ext {
         case SERVER_TYPE_PRODUCT:
             LOG_ENABLE = false
             BUGLY_ID = "请自行替换 Bugly 上面的 AppID"
-            HOST_URL = "https:/api.lanqi.edulearn.cn/"
+            HOST_URL = "https://api.lanqi.edulearn.cn/"
             break
     }
 }
