@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/chat_background_gradient">
 
     <com.lanqiDoctor.demo.widget.StatusLayout
         android:id="@+id/hl_status_hint"
@@ -15,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="@dimen/dp_15"
-            android:paddingVertical="@dimen/dp_10" />
+            android:paddingVertical="@dimen/dp_16"
+            android:clipToPadding="false" />
 
     </com.lanqiDoctor.demo.widget.StatusLayout>
 

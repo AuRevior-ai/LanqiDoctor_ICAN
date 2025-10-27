@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外层发光 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#305B9FFF" />
+        </shape>
+    </item>
+    
+    <!-- 中层阴影 -->
+    <item android:top="3dp" android:left="3dp" android:right="3dp" android:bottom="3dp">
+        <shape android:shape="oval">
+            <solid android:color="#205B9FFF" />
+        </shape>
+    </item>
+    
+    <!-- 内层主体 -->
+    <item android:top="6dp" android:left="6dp" android:right="6dp" android:bottom="6dp">
+        <shape android:shape="oval">
+            <solid android:color="#5B9FFF" />
+        </shape>
+    </item>
+    
+    <!-- 内层高光 -->
+    <item android:top="8dp" android:left="8dp" android:right="16dp" android:bottom="16dp">
+        <shape android:shape="oval">
+            <gradient
+                android:startColor="#40FFFFFF"
+                android:endColor="#00FFFFFF"
+                android:angle="135" />
+        </shape>
+    </item>
+</layer-list>

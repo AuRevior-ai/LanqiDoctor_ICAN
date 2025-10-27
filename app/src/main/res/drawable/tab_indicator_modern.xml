@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外层发光 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#405B9FFF" />
+            <corners android:radius="3dp" />
+        </shape>
+    </item>
+    
+    <!-- 内层主体 -->
+    <item android:top="1dp" android:left="1dp" android:right="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#5B9FFF" />
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
+</layer-list>
