@@ -5,27 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/blue_gradient_start"
+    android:background="@drawable/user_page_background_gradient"
     tools:context="com.lanqiDoctor.demo.ui.activity.PersonalDataActivity">
 
     <com.hjq.bar.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/personal_data_title" />
+        app:title="@string/personal_data_title"
+        app:leftIcon="@drawable/arrows_left_ic"
+        app:titleColor="@android:color/black"
+        app:backgroundColor="@android:color/white" />
 
     <com.hjq.widget.layout.SettingBar
         android:id="@+id/fl_person_data_avatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/white_selector"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_12"
+        android:background="@drawable/user_info_card_modern_background"
+        android:elevation="@dimen/dp_6"
         app:bar_leftText="@string/personal_data_head">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_person_data_avatar"
-            android:layout_width="@dimen/dp_110"
-            android:layout_height="@dimen/dp_110"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
             android:layout_gravity="end|center_vertical"
-            android:layout_margin="@dimen/dp_20"
+            android:layout_margin="@dimen/dp_16"
+            android:background="@drawable/user_avatar_modern_background"
+            android:padding="@dimen/dp_12"
             android:scaleType="centerCrop"
             tools:src="@drawable/avatar_placeholder_ic" />
 
@@ -35,8 +43,10 @@
         android:id="@+id/sb_person_data_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
-        android:background="@color/white"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:background="@drawable/user_menu_item_modern_background"
+        android:elevation="@dimen/dp_2"
         app:bar_leftText="@string/personal_data_id"
         tools:bar_rightText="880634" />
 
@@ -44,6 +54,10 @@
         android:id="@+id/sb_person_data_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:background="@drawable/user_menu_item_modern_background"
+        android:elevation="@dimen/dp_2"
         app:bar_leftText="@string/personal_data_name"
         app:bar_rightTextHint="@string/personal_data_name_hint"
         tools:bar_rightText="Android 轮子哥" />
@@ -52,6 +66,10 @@
         android:id="@+id/sb_person_data_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:background="@drawable/user_menu_item_modern_background"
+        android:elevation="@dimen/dp_2"
         app:bar_leftText="@string/personal_data_address"
         app:bar_rightDrawable="@drawable/arrows_right_ic"
         app:bar_rightTextHint="@string/personal_data_address_hint" />

@@ -4,15 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/dp_0"
-    app:cardElevation="@dimen/dp_8"
-    app:cardBackgroundColor="@color/card_background">
+    app:cardElevation="@dimen/dp_0"
+    app:cardBackgroundColor="@android:color/transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingVertical="@dimen/dp_8"
-        android:paddingBottom="@dimen/dp_12">
+        android:background="@drawable/bottom_nav_modern_background"
+        android:paddingVertical="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_16"
+        android:elevation="@dimen/dp_8">
 
         <!-- 首页导航项 -->
         <LinearLayout
@@ -22,16 +24,16 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="@dimen/dp_4"
+            android:padding="@dimen/dp_8"
             android:clickable="true"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground">
 
             <ImageView
-                android:layout_width="@dimen/dp_24"
-                android:layout_height="@dimen/dp_24"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
                 android:src="@drawable/home_ic"
-                app:tint="@color/icon_tint"
+                app:tint="@color/neon_blue"
                 android:contentDescription="首页" />
 
             <TextView
@@ -39,8 +41,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_4"
                 android:text="首页"
-                android:textSize="@dimen/sp_10"
-                android:textColor="@color/icon_tint" />
+                android:textSize="@dimen/sp_11"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
 
         </LinearLayout>
 
@@ -52,16 +55,16 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="@dimen/dp_4"
+            android:padding="@dimen/dp_8"
             android:clickable="true"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground">
 
             <ImageView
-                android:layout_width="@dimen/dp_24"
-                android:layout_height="@dimen/dp_24"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
                 android:src="@drawable/add_ic"
-                app:tint="@color/icon_tint"
+                app:tint="@color/neon_teal"
                 android:contentDescription="添加" />
 
             <TextView
@@ -69,8 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_4"
                 android:text="今日服药情况"
-                android:textSize="@dimen/sp_10"
-                android:textColor="@color/icon_tint" />
+                android:textSize="@dimen/sp_11"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
 
         </LinearLayout>
 
@@ -82,16 +86,16 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="@dimen/dp_4"
+            android:padding="@dimen/dp_8"
             android:clickable="true"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground">
 
             <ImageView
-                android:layout_width="@dimen/dp_24"
-                android:layout_height="@dimen/dp_24"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
                 android:src="@drawable/person_ic"
-                app:tint="@color/icon_tint"
+                app:tint="@color/neon_orange"
                 android:contentDescription="我的" />
 
             <TextView
@@ -99,11 +103,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_4"
                 android:text="我的"
-                android:textSize="@dimen/sp_10"
-                android:textColor="@color/icon_tint" />
+                android:textSize="@dimen/sp_11"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView> 
+</androidx.cardview.widget.CardView>

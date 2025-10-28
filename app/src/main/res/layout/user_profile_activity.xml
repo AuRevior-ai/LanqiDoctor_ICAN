@@ -202,8 +202,7 @@
                     android:layout_width="@dimen/dp_24"
                     android:layout_height="@dimen/dp_24"
                     android:src="@drawable/security_ic"
-                    android:contentDescription="隐私安全"
-                    app:tint="#7AC8E8" />
+                    android:contentDescription="隐私安全" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -242,7 +241,7 @@
                     android:layout_height="@dimen/dp_24"
                     android:src="@drawable/info_ic"
                     android:contentDescription="关于我们"
-                    app:tint="#84E8B4" />
+                    app:tint="@color/neon_green" />
 
                 <TextView
                     android:layout_width="0dp"
