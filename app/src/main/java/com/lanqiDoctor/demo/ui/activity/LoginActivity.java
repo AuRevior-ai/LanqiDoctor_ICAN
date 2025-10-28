@@ -27,6 +27,9 @@ import com.lanqiDoctor.demo.aop.SingleClick;
 import com.lanqiDoctor.demo.app.AppActivity;
 import com.lanqiDoctor.demo.config.NetworkConfig;
 import com.lanqiDoctor.demo.http.api.LoginApi;
+
+// 测试模式：服务器502时可临时跳过登录
+import android.app.AlertDialog;
 import com.lanqiDoctor.demo.http.glide.GlideApp;
 import com.lanqiDoctor.demo.http.model.HttpData;
 import com.lanqiDoctor.demo.manager.InputTextManager;

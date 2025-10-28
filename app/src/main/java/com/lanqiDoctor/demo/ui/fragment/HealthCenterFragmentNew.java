@@ -54,6 +54,12 @@ public class HealthCenterFragmentNew extends BaseFragment {
     private android.widget.TextView tvSuggestion3;
     private LinearLayout llRefreshSuggestions;
     
+    // 切换按钮
+    private LinearLayout btnToggleFunctions;  // 切换按钮
+    private ImageView ivToggleIcon;           // 切换图标
+    private android.widget.TextView tvToggleText;  // 切换文字
+    private boolean isFunctionButtonsVisible = true;  // 功能栏是否可见
+    
     // AI聊天界面组件
     private RecyclerView rvChatList;
     private EditText etMessage;
@@ -96,6 +102,11 @@ public class HealthCenterFragmentNew extends BaseFragment {
         tvSuggestion3 = (android.widget.TextView) findViewById(R.id.tv_suggestion_3);
         llRefreshSuggestions = (LinearLayout) findViewById(R.id.ll_refresh_suggestions);
         
+        // 切换按钮
+        btnToggleFunctions = (LinearLayout) findViewById(R.id.btn_toggle_functions);
+        ivToggleIcon = (ImageView) findViewById(R.id.iv_toggle_icon);
+        tvToggleText = (android.widget.TextView) findViewById(R.id.tv_toggle_text);
+        
         // 聊天界面组件
         rvChatList = (RecyclerView) findViewById(R.id.rv_chat_list);
         etMessage = (EditText) findViewById(R.id.et_message);
@@ -109,9 +120,6 @@ public class HealthCenterFragmentNew extends BaseFragment {
         chatAdapter.setData(visibleMessages);
         rvChatList.setLayoutManager(new LinearLayoutManager(getContext()));
         rvChatList.setAdapter(chatAdapter);
-        
-        // 添加滚动监听，隐藏/显示功能按钮
-        setupScrollListener();
     }
 
     @Override
@@ -127,67 +135,6 @@ public class HealthCenterFragmentNew extends BaseFragment {
         startNewChat();
     }
 
-    /**
-     * 设置滚动监听，实现滚动隐藏/显示功能按钮
-     */
-    private void setupScrollListener() {
-        rvChatList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                
-                if (dy > 20 && llFunctionButtons.getVisibility() == android.view.View.VISIBLE) {
-                    // 向上滚动，隐藏功能按钮和推荐问题
-                    hideFunctionButtons();
-                    hideSuggestionsContainer();
-                } else if (dy < -20 && llFunctionButtons.getVisibility() == android.view.View.GONE) {
-                    // 向下滚动，显示功能按钮和推荐问题
-                    showFunctionButtons();
-                    showSuggestionsContainer();
-                }
-            }
-        });
-    }
-    
-    /**
-     * 隐藏功能按钮
-     */
-    private void hideFunctionButtons() {
-        if (llFunctionButtons != null && llFunctionButtons.getVisibility() == android.view.View.VISIBLE) {
-            llFunctionButtons.animate()
-                .translationY(-llFunctionButtons.getHeight())
-                .alpha(0.0f)
-                .setDuration(200)
-                .withEndAction(() -> llFunctionButtons.setVisibility(android.view.View.GONE));
-        }
-    }
-    
-    /**
-     * 显示功能按钮
-     */
-    private void showFunctionButtons() {
-        if (llFunctionButtons != null && llFunctionButtons.getVisibility() == android.view.View.GONE) {
-            llFunctionButtons.setVisibility(android.view.View.VISIBLE);
-            llFunctionButtons.animate()
-                .translationY(0)
-                .alpha(1.0f)
-                .setDuration(200);
-        }
-    }
-    
-    /**
-     * 显示推荐问题容器
-     */
-    private void showSuggestionsContainer() {
-        if (llSuggestionsContainer != null && llSuggestionsContainer.getVisibility() == android.view.View.GONE) {
-            llSuggestionsContainer.setVisibility(android.view.View.VISIBLE);
-            llSuggestionsContainer.animate()
-                .alpha(1f)
-                .translationY(0)
-                .setDuration(200)
-                .start();
-        }
-    }
 
     @Permissions(Permission.RECORD_AUDIO)
     private void initListener() {
@@ -254,6 +201,81 @@ public class HealthCenterFragmentNew extends BaseFragment {
             llRefreshSuggestions.setOnClickListener(v -> {
                 refreshSuggestions();
             });
+        }
+        
+        // 切换按钮点击事件
+        if (btnToggleFunctions != null) {
+            btnToggleFunctions.setOnClickListener(v -> {
+                toggleFunctionButtons();
+            });
+        }
+    }
+    
+    /**
+     * 切换功能按钮显示/隐藏
+     */
+    private void toggleFunctionButtons() {
+        if (isFunctionButtonsVisible) {
+            // 当前显示，点击后隐藏
+            hideFunctionButtons();
+        } else {
+            // 当前隐藏，点击后显示
+            showFunctionButtons();
+        }
+    }
+    
+    /**
+     * 隐藏功能按钮
+     */
+    private void hideFunctionButtons() {
+        if (llFunctionButtons != null) {
+            llFunctionButtons.animate()
+                .alpha(0f)
+                .translationY(-llFunctionButtons.getHeight())
+                .setDuration(250)
+                .withEndAction(() -> {
+                    llFunctionButtons.setVisibility(android.view.View.GONE);
+                    isFunctionButtonsVisible = false;
+                    updateToggleButton();
+                })
+                .start();
+        }
+    }
+    
+    /**
+     * 显示功能按钮
+     */
+    private void showFunctionButtons() {
+        if (llFunctionButtons != null) {
+            llFunctionButtons.setVisibility(android.view.View.VISIBLE);
+            llFunctionButtons.setAlpha(0f);
+            llFunctionButtons.setTranslationY(-llFunctionButtons.getHeight());
+            llFunctionButtons.animate()
+                .alpha(1f)
+                .translationY(0)
+                .setDuration(250)
+                .withEndAction(() -> {
+                    isFunctionButtonsVisible = true;
+                    updateToggleButton();
+                })
+                .start();
+        }
+    }
+    
+    /**
+     * 更新切换按钮的图标和文字
+     */
+    private void updateToggleButton() {
+        if (ivToggleIcon != null && tvToggleText != null) {
+            if (isFunctionButtonsVisible) {
+                // 显示状态：显示"收起"和向上箭头
+                ivToggleIcon.setImageResource(R.drawable.ic_expand_less);
+                tvToggleText.setText("收起");
+            } else {
+                // 隐藏状态：显示"展开"和向下箭头
+                ivToggleIcon.setImageResource(R.drawable.ic_expand_more);
+                tvToggleText.setText("展开");
+            }
         }
     }
     
@@ -336,6 +358,11 @@ public class HealthCenterFragmentNew extends BaseFragment {
         addMessage("user", message);
         etMessage.setText("");
         ToastUtils.show("请稍候...");
+        
+        // 发送消息后自动隐藏功能栏
+        if (isFunctionButtonsVisible) {
+            hideFunctionButtons();
+        }
         
         // 根据配置选择同步或流式请求
         if (AiConfig.USE_STREAM_MODE && AiConfig.isLanXinModel()) {

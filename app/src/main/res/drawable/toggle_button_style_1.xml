@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 样式1: 简约圆形按钮 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#80FFFFFF">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/icon_tint" />
+        </shape>
+    </item>
+</ripple>
+
