@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- 按下状态的外层光晕 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="16dp" />
+                    <solid android:color="#445B9FFF" />
+                </shape>
+            </item>
+            <!-- 按下状态的内层背景 -->
+            <item android:left="3dp" android:top="3dp" android:right="3dp" android:bottom="3dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="13dp" />
+                    <gradient
+                        android:angle="135"
+                        android:startColor="#5B9FFF"
+                        android:endColor="#4A8FEF"
+                        android:type="linear" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <!-- 普通状态的外层光晕 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="16dp" />
+                    <solid android:color="#335B9FFF" />
+                </shape>
+            </item>
+            <!-- 普通状态的内层背景 -->
+            <item android:left="3dp" android:top="3dp" android:right="3dp" android:bottom="3dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="13dp" />
+                    <gradient
+                        android:angle="135"
+                        android:startColor="#FFFFFF"
+                        android:endColor="#F0F6FF"
+                        android:type="linear" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

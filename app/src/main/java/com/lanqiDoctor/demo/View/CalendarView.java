@@ -153,8 +153,8 @@ public class CalendarView extends LinearLayout {
 
             ImageView statusIcon = new ImageView(getContext());
             TextView statusText = new TextView(getContext());
-            statusText.setTextSize(12);
-            statusText.setPadding(dp2px(2), 0, 0, 0);
+            statusText.setTextSize(9);
+            statusText.setPadding(dp2px(1), 0, 0, 0);
 
             if (day.isCurrentMonth()) {
                 String dateKey = String.format("%d-%d-%d", currentYear, currentMonth, day.getDay());
@@ -175,7 +175,7 @@ public class CalendarView extends LinearLayout {
                         statusIcon.setImageDrawable(null);
                         statusText.setText("");
                     }
-                    statusLayout.addView(statusIcon, new LayoutParams(dp2px(14), dp2px(14)));
+                    statusLayout.addView(statusIcon, new LayoutParams(dp2px(10), dp2px(10)));
                     statusLayout.addView(statusText);
                 }
             }

@@ -24,6 +24,8 @@ import com.lanqiDoctor.demo.ui.adapter.TodayMedicationAdapter;
 import com.lanqiDoctor.demo.model.TodayMedicationItem;
 import com.lanqiDoctor.demo.manager.CloudSyncManager;
 import com.lanqiDoctor.demo.manager.TodayMedicationManager;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -620,30 +622,56 @@ public class TodayMedicationActivity extends BaseActivity implements TodayMedica
      */
     private Map<String, String> parseReminderTimes(String reminderTimes) {
         Map<String, String> timesMap = new HashMap<>();
-        
+
         if (reminderTimes == null || reminderTimes.trim().isEmpty()) {
             Log.w("TodayMedication", "提醒时间为空");
             return timesMap;
         }
-        
+
+        Log.d("TodayMedication", "原始提醒时间: " + reminderTimes);
+
+        // 首选：使用标准 JSON 解析，避免像 08:00 被误分割
         try {
-            // 简单的JSON解析，去掉大括号和引号
-            String cleanJson = reminderTimes.replace("{", "").replace("}", "").replace("\"", "");
-            String[] pairs = cleanJson.split(",");
-            
-            for (String pair : pairs) {
-                String[] keyValue = pair.split(":");
-                if (keyValue.length == 2) {
-                    String key = keyValue[0].trim();
-                    String value = keyValue[1].trim();
+            JSONObject obj = new JSONObject(reminderTimes);
+            for (java.util.Iterator<String> it = obj.keys(); it.hasNext(); ) {
+                String key = it.next();
+                String value = obj.optString(key, "").trim();
+                if (!value.isEmpty()) {
                     timesMap.put(key, value);
-                    Log.d("TodayMedication", "解析时间对: " + key + " = " + value);
+                    Log.d("TodayMedication", "解析时间对(JSON): " + key + " = " + value);
+                } else {
+                    Log.w("TodayMedication", "键 " + key + " 的时间为空，已跳过");
                 }
+            }
+        } catch (JSONException jsonEx) {
+            // 回退：兼容历史上非严格 JSON 的字符串，使用限制分割避免时间内的冒号被拆分
+            Log.w("TodayMedication", "JSON解析失败，尝试兼容性解析", jsonEx);
+            try {
+                String cleanJson = reminderTimes.replace("{", "").replace("}", "").replace("\"", "");
+                String[] pairs = cleanJson.split(",");
+                for (String pair : pairs) {
+                    String[] keyValue = pair.split(":", 2); // 只分割成两段，避免 08:00 被拆成三段
+                    if (keyValue.length >= 2) {
+                        String key = keyValue[0].trim();
+                        String value = keyValue[1].trim();
+                        if (!key.isEmpty() && !value.isEmpty()) {
+                            timesMap.put(key, value);
+                            Log.d("TodayMedication", "解析时间对(Fallback): " + key + " = " + value);
+                        } else {
+                            Log.w("TodayMedication", "无效的键值对(空键或空值): " + pair);
+                        }
+                    } else {
+                        Log.w("TodayMedication", "无效的键值对: " + pair + ", 分割长度: " + keyValue.length);
+                    }
+                }
+            } catch (Exception e2) {
+                Log.e("TodayMedication", "解析提醒时间失败(兼容性): " + reminderTimes, e2);
             }
         } catch (Exception e) {
             Log.e("TodayMedication", "解析提醒时间失败: " + reminderTimes, e);
         }
-        
+
+        Log.d("TodayMedication", "最终解析的时间映射大小: " + timesMap.size());
         return timesMap;
     }
 

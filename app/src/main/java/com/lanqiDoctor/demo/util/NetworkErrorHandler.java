@@ -42,8 +42,12 @@ public class NetworkErrorHandler {
                     return "发送验证码过于频繁，请稍后再试";
                 case 500:
                     return "服务器暂时无法处理请求，请稍后重试";
+                case 502:
+                    return "服务器网关错误，请检查网络连接或稍后重试";
                 case 503:
                     return "邮件服务暂时不可用，请稍后重试";
+                case 504:
+                    return "服务器响应超时，请稍后重试";
                 case -1:
                     return "网络请求异常，请检查网络连接";
                 default:
@@ -73,6 +77,12 @@ public class NetworkErrorHandler {
                     return "注册请求过于频繁，请稍后再试";
                 case 500:
                     return "服务器暂时无法处理请求，请稍后重试";
+                case 502:
+                    return "服务器网关错误，请检查网络连接或稍后重试";
+                case 503:
+                    return "服务暂时不可用，请稍后重试";
+                case 504:
+                    return "服务器响应超时，请稍后重试";
                 case -1:
                     return "网络请求异常，请检查网络连接";
                 default:
@@ -104,6 +114,12 @@ public class NetworkErrorHandler {
                     return "登录尝试次数过多，请稍后再试";
                 case 500:
                     return "服务器暂时无法处理请求，请稍后重试";
+                case 502:
+                    return "服务器网关错误，请检查网络连接或稍后重试";
+                case 503:
+                    return "服务暂时不可用，请稍后重试";
+                case 504:
+                    return "服务器响应超时，请稍后重试";
                 case -1:
                     return "网络请求异常，请检查网络连接";
                 default:
@@ -183,6 +199,12 @@ public class NetworkErrorHandler {
                     return "操作过于频繁，请稍后再试";
                 case 500:
                     return "服务器暂时无法处理请求，请稍后重试";
+                case 502:
+                    return "服务器网关错误，请检查网络连接或稍后重试";
+                case 503:
+                    return "服务暂时不可用，请稍后重试";
+                case 504:
+                    return "服务器响应超时，请稍后重试";
                 case -1:
                     return "网络请求异常，请检查网络连接";
                 default:
@@ -191,5 +213,19 @@ public class NetworkErrorHandler {
         }
         
         return getNetworkErrorMessage(e);
+    }
+
+    /**
+     * 测试方法：模拟502错误
+     * 用于验证502错误处理是否正确
+     */
+    public static String test502Error() {
+        try {
+            // 模拟一个502错误的ResponseException
+            throw new RuntimeException("Simulated 502 error for testing");
+        } catch (Exception e) {
+            // 这里可以手动创建一个ResponseException来测试
+            return "测试502错误处理: " + getLoginErrorMessage(e);
+        }
     }
 }

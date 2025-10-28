@@ -137,22 +137,56 @@ public class HealthCenterFragmentNew extends BaseFragment {
                 super.onScrolled(recyclerView, dx, dy);
                 
                 if (dy > 20 && llFunctionButtons.getVisibility() == android.view.View.VISIBLE) {
-                    // 向上滚动，隐藏功能按钮
-                    llFunctionButtons.animate()
-                        .translationY(-llFunctionButtons.getHeight())
-                        .alpha(0.0f)
-                        .setDuration(200)
-                        .withEndAction(() -> llFunctionButtons.setVisibility(android.view.View.GONE));
+                    // 向上滚动，隐藏功能按钮和推荐问题
+                    hideFunctionButtons();
+                    hideSuggestionsContainer();
                 } else if (dy < -20 && llFunctionButtons.getVisibility() == android.view.View.GONE) {
-                    // 向下滚动，显示功能按钮
-                    llFunctionButtons.setVisibility(android.view.View.VISIBLE);
-                    llFunctionButtons.animate()
-                        .translationY(0)
-                        .alpha(1.0f)
-                        .setDuration(200);
+                    // 向下滚动，显示功能按钮和推荐问题
+                    showFunctionButtons();
+                    showSuggestionsContainer();
                 }
             }
         });
+    }
+    
+    /**
+     * 隐藏功能按钮
+     */
+    private void hideFunctionButtons() {
+        if (llFunctionButtons != null && llFunctionButtons.getVisibility() == android.view.View.VISIBLE) {
+            llFunctionButtons.animate()
+                .translationY(-llFunctionButtons.getHeight())
+                .alpha(0.0f)
+                .setDuration(200)
+                .withEndAction(() -> llFunctionButtons.setVisibility(android.view.View.GONE));
+        }
+    }
+    
+    /**
+     * 显示功能按钮
+     */
+    private void showFunctionButtons() {
+        if (llFunctionButtons != null && llFunctionButtons.getVisibility() == android.view.View.GONE) {
+            llFunctionButtons.setVisibility(android.view.View.VISIBLE);
+            llFunctionButtons.animate()
+                .translationY(0)
+                .alpha(1.0f)
+                .setDuration(200);
+        }
+    }
+    
+    /**
+     * 显示推荐问题容器
+     */
+    private void showSuggestionsContainer() {
+        if (llSuggestionsContainer != null && llSuggestionsContainer.getVisibility() == android.view.View.GONE) {
+            llSuggestionsContainer.setVisibility(android.view.View.VISIBLE);
+            llSuggestionsContainer.animate()
+                .alpha(1f)
+                .translationY(0)
+                .setDuration(200)
+                .start();
+        }
     }
 
     @Permissions(Permission.RECORD_AUDIO)
@@ -230,7 +264,7 @@ public class HealthCenterFragmentNew extends BaseFragment {
         if (etMessage != null) {
             etMessage.setText(question);
             sendMessage();
-            hideSuggestionsContainer();  // 发送后隐藏推荐框
+            // 移除自动隐藏逻辑，让用户通过滚动来控制显示/隐藏
         }
     }
     

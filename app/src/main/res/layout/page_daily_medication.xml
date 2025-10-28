@@ -175,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"
-                android:text="查看您的个人健康数据分析报告"
+                android:text="查看您的用药情况"
                 android:textSize="@dimen/sp_14"
                 android:textColor="#666666"
                 android:lineSpacingExtra="@dimen/dp_2" />

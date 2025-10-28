@@ -4,25 +4,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/blue_gradient_start"
-    android:padding="16dp">
+    android:background="@drawable/calendar_page_background_gradient"
+    android:padding="@dimen/dp_20">
+
+    <!-- 现代风格标题卡片 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/calendar_modern_background"
+        android:padding="@dimen/dp_24"
+        android:layout_marginBottom="@dimen/dp_24"
+        android:elevation="@dimen/dp_8">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="健康轨迹日历"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="@dimen/dp_8" />
+            
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看您的每日服药记录和健康趋势"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#666666" />
+
+    </LinearLayout>
 
     <!-- 月份切换栏 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:background="@drawable/calendar_modern_background"
+        android:padding="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:elevation="@dimen/dp_6">
 
         <Button
             android:id="@+id/btn_prev"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="上个月"
-            android:background="@drawable/button_prev_next"
-            android:textColor="#64B5F6"
-            android:padding="12dp"
-            android:stateListAnimator="@null"/>
+            android:layout_height="@dimen/dp_48"
+            android:text="◄ 上月"
+            android:background="@drawable/calendar_button_modern_background"
+            android:textColor="#5B9FFF"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            android:paddingHorizontal="@dimen/dp_20"
+            android:stateListAnimator="@null"
+            android:elevation="@dimen/dp_4"/>
 
         <TextView
             android:id="@+id/month_title"
@@ -30,29 +65,41 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            android:textColor="#333333"/>
 
         <Button
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="下个月"
-            android:background="@drawable/button_prev_next"
-            android:textColor="#64B5F6"
-            android:padding="12dp"
-            android:stateListAnimator="@null"/>
+            android:layout_height="@dimen/dp_48"
+            android:text="下月 ►"
+            android:background="@drawable/calendar_button_modern_background"
+            android:textColor="#5B9FFF"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            android:paddingHorizontal="@dimen/dp_20"
+            android:stateListAnimator="@null"
+            android:elevation="@dimen/dp_4"/>
     </LinearLayout>
 
-    <!-- 日历视图 -->
-    <ScrollView
+    <!-- 日历视图容器 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="16dp">
+        android:orientation="vertical"
+        android:background="@drawable/calendar_modern_background"
+        android:padding="@dimen/dp_16"
+        android:elevation="@dimen/dp_8">
 
-        <com.lanqiDoctor.demo.View.CalendarView
-            android:id="@+id/calendar_view"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </ScrollView>
+            android:layout_height="match_parent">
+
+            <com.lanqiDoctor.demo.View.CalendarView
+                android:id="@+id/calendar_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>
