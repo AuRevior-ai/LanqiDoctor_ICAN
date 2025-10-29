@@ -144,11 +144,16 @@ find_library( # Sets the name of the path variable.
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
+# 查找并链接共享 C++ 运行时（更稳妥的方式）
+find_library(cpp_shared NAMES c++_shared)
+
 # OCR 库链接
 target_link_libraries(
   Native
   paddle_light_api_shared
   ${OpenCV_LIBS}
+  # 显式链接 NDK 的共享 C++ 运行时，确保打包 libc++_shared.so
+  ${cpp_shared}
   GLESv2
   EGL
   jnigraphics

@@ -27,6 +27,11 @@ android {
         // 测试服务器的主机地址
         buildConfigField('String', 'HOST_URL', '"' + HOST_URL + '"')
 
+        // 仅为 ARM64 构建本地库，避免 x86_64 导致的 OpenCV/PaddleLite 无二进制问题
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
+
         // OCR 相关配置 (暂时注释掉以解决编译问题)
         // externalNativeBuild {
         //     cmake {
@@ -122,12 +127,12 @@ android {
     }
 
     // OCR CMake 配置 (暂时注释掉以解决编译问题)
-    // externalNativeBuild {
-    //     cmake {
-    //         path "src/main/cpp/CMakeLists.txt"
-    //         version "3.10.2"
-    //     }
-    // }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
 
     // ndkVersion "21.4.7075529"  // 暂时注释掉
 
@@ -140,6 +145,8 @@ android {
     packagingOptions {
         // 剔除这个包下的所有文件（不会移除签名信息）
         exclude 'META-INF/*******'
+        // 若 c++ 运行时通过多路径引入，避免重复打包冲突
+        pickFirst 'lib/**/libc++_shared.so'
     }
 
     // Avoid lint HTML reporter issues in headless environments: disable HTML report
@@ -176,6 +183,46 @@ android {
         }
     }
 }
+
+// 额外：在构建时自动从本机 NDK 复制 libc++_shared.so 到 jniLibs，确保最终 APK 内包含
+def extraJniLibsDir = file("$buildDir/thirdparty-libs/jniLibs")
+android.sourceSets.main.jniLibs.srcDirs += [extraJniLibsDir]
+
+tasks.register('prepareLibcxxShared') {
+    doLast {
+        try {
+            def sdkDir = android.sdkDirectory
+            def ndkRoot = new File(sdkDir, 'ndk')
+            if (!ndkRoot.exists()) {
+                logger.lifecycle("NDK root not found: ${ndkRoot}")
+                return
+            }
+            def candidates = ndkRoot.listFiles()?.findAll { it.isDirectory() }?.sort()
+            if (!candidates || candidates.isEmpty()) {
+                logger.lifecycle('No side-by-side NDK found under SDK/ndk')
+                return
+            }
+            def latestNdk = candidates.last()
+            // NDK r23+ 路径（Windows）
+            def libcxxNew = new File(latestNdk, 'toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so')
+            // 老版本 NDK 路径
+            def libcxxOld = new File(latestNdk, 'sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++_shared.so')
+            def src = libcxxNew.exists() ? libcxxNew : libcxxOld
+            if (!src.exists()) {
+                logger.lifecycle("libc++_shared.so not found in ${latestNdk}")
+                return
+            }
+            def dstDir = new File(extraJniLibsDir, 'arm64-v8a')
+            dstDir.mkdirs()
+            project.copy { from src; into dstDir }
+            logger.lifecycle("Copied libc++_shared.so => ${dstDir}")
+        } catch (Throwable t) {
+            logger.lifecycle("prepareLibcxxShared skipped: ${t.message}")
+        }
+    }
+}
+
+tasks.named('preBuild').configure { dependsOn 'prepareLibcxxShared' }
 
 // 添加构建依赖项：https://developer.android.google.cn/studio/build/dependencies
 // api 与 implementation 的区别：https://www.jianshu.com/p/8962d6ba936e
