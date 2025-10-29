@@ -10,10 +10,10 @@
         android:id="@+id/tv_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_60"
-        android:padding="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_40"
+        android:padding="@dimen/dp_12"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp_14"
+        android:textSize="@dimen/sp_12"
         android:lineSpacingMultiplier="1.2"
         android:background="@drawable/chat_user_message_modern_background" />
 

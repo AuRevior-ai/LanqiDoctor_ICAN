@@ -53,6 +53,7 @@ public class HealthCenterFragmentNew extends BaseFragment {
     private android.widget.TextView tvSuggestion2;
     private android.widget.TextView tvSuggestion3;
     private LinearLayout llRefreshSuggestions;
+    private boolean suggestionsDismissed = false; // 点击任意推荐问题后永久隐藏（本次会话）
     
     // 切换按钮
     private LinearLayout btnToggleFunctions;  // 切换按钮
@@ -183,23 +184,28 @@ public class HealthCenterFragmentNew extends BaseFragment {
         if (tvSuggestion1 != null) {
             tvSuggestion1.setOnClickListener(v -> {
                 sendQuestionToChat(tvSuggestion1.getText().toString());
+                dismissSuggestionsPermanently();
             });
         }
         if (tvSuggestion2 != null) {
             tvSuggestion2.setOnClickListener(v -> {
                 sendQuestionToChat(tvSuggestion2.getText().toString());
+                dismissSuggestionsPermanently();
             });
         }
         if (tvSuggestion3 != null) {
             tvSuggestion3.setOnClickListener(v -> {
                 sendQuestionToChat(tvSuggestion3.getText().toString());
+                dismissSuggestionsPermanently();
             });
         }
         
         // 换一换按钮
         if (llRefreshSuggestions != null) {
             llRefreshSuggestions.setOnClickListener(v -> {
-                refreshSuggestions();
+                if (!suggestionsDismissed) {
+                    refreshSuggestions();
+                }
             });
         }
         
@@ -257,6 +263,10 @@ public class HealthCenterFragmentNew extends BaseFragment {
                 .withEndAction(() -> {
                     isFunctionButtonsVisible = true;
                     updateToggleButton();
+                    // 需求：若“快速问题”栏目仍存在，则在展开边栏时隐藏它
+                    if (!suggestionsDismissed) {
+                        hideSuggestionsContainer();
+                    }
                 })
                 .start();
         }
@@ -286,8 +296,19 @@ public class HealthCenterFragmentNew extends BaseFragment {
         if (etMessage != null) {
             etMessage.setText(question);
             sendMessage();
-            // 移除自动隐藏逻辑，让用户通过滚动来控制显示/隐藏
+            // 点击推荐问题后，通过 dismissSuggestionsPermanently 处理隐藏逻辑
         }
+    }
+
+    /**
+     * 永久隐藏（本次会话）推荐问题与“换一换”
+     */
+    private void dismissSuggestionsPermanently() {
+        suggestionsDismissed = true;
+        if (llRefreshSuggestions != null) {
+            llRefreshSuggestions.setVisibility(View.GONE);
+        }
+        hideSuggestionsContainer();
     }
     
     /**

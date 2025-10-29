@@ -190,11 +190,11 @@
         android:background="@color/blue_gradient_start">
 
         <!-- 顶部：AI助手头像和问候语 -->
-        <LinearLayout
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/dp_16"
+                android:padding="@dimen/dp_12"
             android:layout_marginTop="@dimen/dp_8"
             android:background="@color/white">
 
@@ -208,8 +208,8 @@
                 <!-- AI助手头像 - 使用蓝岐应用图标 -->
                 <ImageView
                     android:id="@+id/iv_ai_avatar"
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_32"
+                    android:layout_height="@dimen/dp_32"
                     android:src="@mipmap/app_icon"
                     android:contentDescription="AI助手头像"
                     android:scaleType="centerCrop" />
@@ -221,7 +221,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="@dimen/dp_12"
                     android:text="我是小蓝，你的智能健康助手~"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_14"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary" />
 
@@ -230,7 +230,7 @@
             <!-- 智能推荐问题区域 -->
             <LinearLayout
                 android:id="@+id/ll_suggestions_container"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/dp_12">
@@ -242,10 +242,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="感冒咳嗽怎么办？"
-                    android:textSize="@dimen/sp_14"
+                    android:textSize="@dimen/sp_12"
                     android:textColor="@color/text_primary"
                     android:background="@drawable/suggestion_bubble_background"
-                    android:padding="@dimen/dp_12"
+                    android:padding="@dimen/dp_8"
                     android:clickable="true"
                     android:focusable="true" />
 
@@ -256,10 +256,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="发烧如何快速退烧？"
-                    android:textSize="@dimen/sp_14"
+                    android:textSize="@dimen/sp_12"
                     android:textColor="@color/text_primary"
                     android:background="@drawable/suggestion_bubble_background"
-                    android:padding="@dimen/dp_12"
+                    android:padding="@dimen/dp_8"
                     android:clickable="true"
                     android:focusable="true" />
 
@@ -270,10 +270,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="头痛的缓解方法？"
-                    android:textSize="@dimen/sp_14"
+                    android:textSize="@dimen/sp_12"
                     android:textColor="@color/text_primary"
                     android:background="@drawable/suggestion_bubble_background"
-                    android:padding="@dimen/dp_12"
+                    android:padding="@dimen/dp_8"
                     android:clickable="true"
                     android:focusable="true" />
 
@@ -381,20 +381,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_12"
+                android:padding="@dimen/dp_8"
                 android:gravity="center_vertical"
                 android:background="@color/white">
 
                 <!-- 相机图标 -->
                 <ImageView
                     android:id="@+id/iv_camera_input"
-                    android:layout_width="@dimen/dp_32"
-                    android:layout_height="@dimen/dp_32"
+                    android:layout_width="@dimen/dp_28"
+                    android:layout_height="@dimen/dp_28"
                     android:src="@drawable/camera_ic"
                     android:contentDescription="拍照输入"
                     android:clickable="true"
                     android:focusable="true"
-                    android:padding="@dimen/dp_4"
+                    android:padding="@dimen/dp_2"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     app:tint="@color/icon_tint" />
 
@@ -404,28 +404,28 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginHorizontal="@dimen/dp_12"
+                    android:layout_marginHorizontal="@dimen/dp_8"
                     android:background="@drawable/modern_input_selector"
                     android:hint="发消息或按住说话..."
-                    android:textSize="@dimen/sp_14"
+                    android:textSize="@dimen/sp_12"
                     android:textColor="@color/text_primary"
                     android:textColorHint="@color/text_secondary"
                     android:maxLines="3"
-                    android:minHeight="@dimen/dp_44"
-                    android:paddingHorizontal="@dimen/dp_16"
-                    android:paddingVertical="@dimen/dp_10" />
+                    android:minHeight="@dimen/dp_40"
+                    android:paddingHorizontal="@dimen/dp_12"
+                    android:paddingVertical="@dimen/dp_8" />
 
                 <!-- 发送按钮 -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_send"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp_44"
-                    android:minWidth="@dimen/dp_70"
-                    android:paddingHorizontal="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_40"
+                    android:minWidth="@dimen/dp_60"
+                    android:paddingHorizontal="@dimen/dp_16"
                     android:background="@drawable/modern_send_button_background"
                     android:text="发送"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp_14"
+                    android:textSize="@dimen/sp_12"
                     android:textStyle="bold"
                     android:elevation="@dimen/dp_4" />
 

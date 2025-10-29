@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/bottom_nav_modern_background"
-        android:paddingVertical="@dimen/dp_12"
-        android:paddingBottom="@dimen/dp_16"
+        android:paddingVertical="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_8"
         android:elevation="@dimen/dp_8">
 
         <!-- 首页导航项 -->
@@ -30,8 +30,8 @@
             android:background="?android:attr/selectableItemBackground">
 
             <ImageView
-                android:layout_width="@dimen/dp_28"
-                android:layout_height="@dimen/dp_28"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
                 android:src="@drawable/home_ic"
                 app:tint="@color/neon_blue"
                 android:contentDescription="首页" />
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_4"
                 android:text="首页"
-                android:textSize="@dimen/sp_11"
+                android:textSize="@dimen/sp_10"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />
 
@@ -61,8 +61,8 @@
             android:background="?android:attr/selectableItemBackground">
 
             <ImageView
-                android:layout_width="@dimen/dp_28"
-                android:layout_height="@dimen/dp_28"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
                 android:src="@drawable/add_ic"
                 app:tint="@color/neon_teal"
                 android:contentDescription="添加" />
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_4"
                 android:text="今日服药情况"
-                android:textSize="@dimen/sp_11"
+                android:textSize="@dimen/sp_10"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />
 
@@ -92,8 +92,8 @@
             android:background="?android:attr/selectableItemBackground">
 
             <ImageView
-                android:layout_width="@dimen/dp_28"
-                android:layout_height="@dimen/dp_28"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
                 android:src="@drawable/person_ic"
                 app:tint="@color/neon_orange"
                 android:contentDescription="我的" />
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_4"
                 android:text="我的"
-                android:textSize="@dimen/sp_11"
+                android:textSize="@dimen/sp_10"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />
 
