@@ -189,14 +189,112 @@
         android:orientation="vertical"
         android:background="@color/blue_gradient_start">
 
-        <!-- 顶部：AI助手头像和问候语 -->
-            <LinearLayout
+        <!-- 心情选择区：作为进入对话前的第一屏 -->
+        <LinearLayout
+            android:id="@+id/ll_mood_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-                android:padding="@dimen/dp_12"
+            android:layout_margin="@dimen/dp_12"
+            android:background="@drawable/soft_card_background"
+            android:padding="@dimen/dp_20">
+
+            <TextView
+                android:id="@+id/tv_mood_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您今天的心情怎么样？"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="简单选择一个表情，我会更贴近你的状态来陪你聊天。"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/text_secondary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp_16">
+
+                <TextView
+                    android:id="@+id/tv_mood_very_happy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="😄\n很棒"
+                    android:textSize="@dimen/sp_16"
+                    android:padding="@dimen/dp_8" />
+
+                <TextView
+                    android:id="@+id/tv_mood_happy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="🙂\n愉快"
+                    android:textSize="@dimen/sp_16"
+                    android:padding="@dimen/dp_8" />
+
+                <TextView
+                    android:id="@+id/tv_mood_neutral"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="😐\n平静"
+                    android:textSize="@dimen/sp_16"
+                    android:padding="@dimen/dp_8" />
+
+                <TextView
+                    android:id="@+id/tv_mood_sad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="😔\n难过"
+                    android:textSize="@dimen/sp_16"
+                    android:padding="@dimen/dp_8" />
+
+                <TextView
+                    android:id="@+id/tv_mood_very_sad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="😢\n低落"
+                    android:textSize="@dimen/sp_16"
+                    android:padding="@dimen/dp_8" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:text="选择后将进入与小蓝的对话，我们也会在‘心情轨迹’中帮你记录这些瞬间。"
+                android:textSize="@dimen/sp_11"
+                android:textColor="@color/text_secondary" />
+
+        </LinearLayout>
+
+        <!-- 顶部：AI助手头像和问候语 -->
+        <LinearLayout
+            android:id="@+id/ll_chat_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_12"
             android:layout_marginTop="@dimen/dp_8"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:visibility="gone">
 
             <!-- 头像和问候语 -->
             <LinearLayout

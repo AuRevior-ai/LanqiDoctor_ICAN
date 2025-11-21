@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/soft_card_background">
+
+    <TextView
+        android:id="@+id/tv_mood_prompt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="您今天的心情怎么样？"
+        android:textSize="18sp"
+        android:textColor="@color/text_primary"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="选择一个表情来告诉我你的状态，我会记住并在对话中更贴心地回应。"
+        android:textSize="13sp"
+        android:textColor="@color/text_secondary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/btn_mood_very_happy"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="😄\n很棒"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_mood_happy"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="🙂\n愉快"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_mood_neutral"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="😐\n平静"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_mood_sad"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="😔\n难过"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_mood_very_sad"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="😢\n低落"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+<!--
+  已废弃：原先的心情选择弹窗布局，现已由
+  AI 助手页面内嵌的心情选择区替代，仅保留
+  一个空壳以避免资源引用错误。
+-->
+<merge xmlns:android="http://schemas.android.com/apk/res/android" />
+
+</LinearLayout>

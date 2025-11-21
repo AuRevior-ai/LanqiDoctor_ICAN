@@ -412,6 +412,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name="com.lanqiDoctor.demo.ui.activity.MoodTrackActivity"
+            android:label="心情轨迹"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.lanqiDoctor.demo.ui.activity.MonthCalendarActivity"
             android:screenOrientation="portrait"
             android:exported="false" />

@@ -67,11 +67,11 @@ public class DailyMedicationFragment extends BaseFragment {
             });
         }
         
-        // 健康轨迹
+        // 心情轨迹
         if (llHealthTrack != null) {
             llHealthTrack.setOnClickListener(v -> {
-                // 跳转到月历页面，显示每天服药情况
-                Intent intent = new Intent(getContext(), MonthCalendarActivity.class);
+                // 跳转到心情轨迹介绍页面
+                Intent intent = new Intent(getContext(), com.lanqiDoctor.demo.ui.activity.MoodTrackActivity.class);
                 startActivity(intent);
             });
         }

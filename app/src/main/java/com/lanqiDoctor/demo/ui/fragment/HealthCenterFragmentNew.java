@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ import com.hjq.permissions.Permission;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.TextView;
 
 /**
  * 健康中心Fragment - 新版本
@@ -46,6 +48,14 @@ public class HealthCenterFragmentNew extends BaseFragment {
     private LinearLayout llSymptomTracking;
     private LinearLayout llPhotoRecognition;
     private LinearLayout llMedicalHistory;
+
+    // 心情选择区域
+    private LinearLayout llMoodSection;
+    private TextView tvMoodVeryHappy;
+    private TextView tvMoodHappy;
+    private TextView tvMoodNeutral;
+    private TextView tvMoodSad;
+    private TextView tvMoodVerySad;
     
     // 智能推荐问题
     private LinearLayout llSuggestionsContainer;  // 推荐问题容器（用于隐藏）
@@ -85,6 +95,22 @@ public class HealthCenterFragmentNew extends BaseFragment {
         return R.layout.page_ai_assistant;
     }
 
+    /**
+     * 带心情提示的新对话开始
+     */
+    private void startNewChatWithMood(String mood) {
+        messages.clear();
+        visibleMessages.clear();
+
+        if (AiConfig.shouldIncludeSystemPrompt()) {
+            ChatMessage systemMessage = new ChatMessage("system", AiConfig.getSystemPrompt());
+            messages.add(systemMessage);
+        }
+
+        String welcomeMessage = "已记录您的今日心情：" + mood + "。您好！我是小蓝，你的智能健康助手~ 有什么健康问题可以帮助您吗？";
+        addMessage("assistant", welcomeMessage);
+    }
+
     @Override
     protected void initView() {
         // 功能按钮容器
@@ -96,6 +122,14 @@ public class HealthCenterFragmentNew extends BaseFragment {
         llPhotoRecognition = (LinearLayout) findViewById(R.id.ll_photo_recognition);
         llMedicalHistory = (LinearLayout) findViewById(R.id.ll_medical_history);
         
+        // 心情选择区域
+        llMoodSection = (LinearLayout) findViewById(R.id.ll_mood_section);
+        tvMoodVeryHappy = (TextView) findViewById(R.id.tv_mood_very_happy);
+        tvMoodHappy = (TextView) findViewById(R.id.tv_mood_happy);
+        tvMoodNeutral = (TextView) findViewById(R.id.tv_mood_neutral);
+        tvMoodSad = (TextView) findViewById(R.id.tv_mood_sad);
+        tvMoodVerySad = (TextView) findViewById(R.id.tv_mood_very_sad);
+
         // 智能推荐问题
         llSuggestionsContainer = (LinearLayout) findViewById(R.id.ll_suggestions_container);
         tvSuggestion1 = (android.widget.TextView) findViewById(R.id.tv_suggestion_1);
@@ -131,14 +165,59 @@ public class HealthCenterFragmentNew extends BaseFragment {
         
         // 初始化事件监听
         initListener();
-        
-        // 启动新对话并添加欢迎消息
-        startNewChat();
+
+        // 初始展示心情选择区，聊天区在选择后再显示欢迎语
+        if (llMoodSection != null) {
+            llMoodSection.setVisibility(View.VISIBLE);
+        }
+        if (llSuggestionsContainer != null) {
+            llSuggestionsContainer.setVisibility(View.GONE);
+        }
     }
 
 
     @Permissions(Permission.RECORD_AUDIO)
     private void initListener() {
+        // 心情选择
+        View.OnClickListener moodClickListener = v -> {
+            String moodText = "";
+            if (v == tvMoodVeryHappy) moodText = "很棒 😄";
+            else if (v == tvMoodHappy) moodText = "愉快 🙂";
+            else if (v == tvMoodNeutral) moodText = "平静 😐";
+            else if (v == tvMoodSad) moodText = "难过 😔";
+            else if (v == tvMoodVerySad) moodText = "低落 😢";
+
+            if (!TextUtils.isEmpty(moodText)) {
+                // 淡出心情区
+                if (llMoodSection != null && llMoodSection.getVisibility() == View.VISIBLE) {
+                    llMoodSection.animate()
+                            .alpha(0f)
+                            .translationY(-llMoodSection.getHeight() / 4f)
+                            .setDuration(250)
+                            .withEndAction(() -> llMoodSection.setVisibility(View.GONE))
+                            .start();
+                }
+
+                // 显示聊天头部和欢迎语
+                if (getView() != null) {
+                    LinearLayout header = getView().findViewById(R.id.ll_chat_header);
+                    if (header != null && header.getVisibility() != View.VISIBLE) {
+                        header.setAlpha(0f);
+                        header.setVisibility(View.VISIBLE);
+                        header.animate().alpha(1f).setDuration(200).start();
+                    }
+                }
+
+                startNewChatWithMood(moodText);
+            }
+        };
+
+        if (tvMoodVeryHappy != null) tvMoodVeryHappy.setOnClickListener(moodClickListener);
+        if (tvMoodHappy != null) tvMoodHappy.setOnClickListener(moodClickListener);
+        if (tvMoodNeutral != null) tvMoodNeutral.setOnClickListener(moodClickListener);
+        if (tvMoodSad != null) tvMoodSad.setOnClickListener(moodClickListener);
+        if (tvMoodVerySad != null) tvMoodVerySad.setOnClickListener(moodClickListener);
+
         // AI助手页面 - 功能按钮事件
         if (llVoiceChat != null) {
             llVoiceChat.setOnClickListener(v -> {
