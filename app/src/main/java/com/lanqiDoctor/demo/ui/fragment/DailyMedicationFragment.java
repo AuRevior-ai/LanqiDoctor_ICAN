@@ -12,7 +12,7 @@ import com.lanqiDoctor.demo.ui.activity.*;
  * 
  * 包含个性目标设置：在用药、医嘱识别、服药时间
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 2.0
  */
 public class DailyMedicationFragment extends BaseFragment {

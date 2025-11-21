@@ -16,7 +16,7 @@ import java.util.Calendar;
 /**
  * 习惯提醒闹钟管理器
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class HabitAlarmManager {

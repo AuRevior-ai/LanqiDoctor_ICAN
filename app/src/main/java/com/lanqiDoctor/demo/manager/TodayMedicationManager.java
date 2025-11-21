@@ -17,7 +17,7 @@ import java.util.List;
  * 今日服药管理器
  * 负责在应用启动时初始化今日服药数据
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class TodayMedicationManager {

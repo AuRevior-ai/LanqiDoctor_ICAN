@@ -27,11 +27,11 @@
     },
     "templates": {
       "verification": {
-        "subject": "蓝岐医童 - 邮箱验证码",
+        "subject": "智途心伴 - 邮箱验证码",
         "template": "verification_code_template.html"
       },
       "welcome": {
-        "subject": "欢迎使用蓝岐医童",
+        "subject": "欢迎使用智途心伴",
         "template": "welcome_template.html"
       }
     }

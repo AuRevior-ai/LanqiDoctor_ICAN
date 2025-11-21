@@ -19,7 +19,7 @@ import com.lanqiDoctor.demo.manager.CloudSyncManager;
 /**
  * 用户偏好设置页面
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class UserPreferencesActivity extends BaseActivity implements View.OnClickListener {

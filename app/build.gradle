@@ -81,7 +81,7 @@ android {
             signingConfig signingConfigs.config
             // 添加清单占位符
             addManifestPlaceholders([
-                    'app_name'    :    '蓝岐医童 Debug 版'
+                    'app_name'    :    '智途心伴 Debug 版'
             ])
             // 调试模式下只保留一种架构的 so 库，提升打包速度 (暂时注释掉)
             // ndk {
@@ -95,7 +95,7 @@ android {
             applicationIdSuffix ''
             // 添加清单占位符
             addManifestPlaceholders([
-                    'app_name'    :    '蓝岐医童 Preview 版'
+                    'app_name'    :    '智途心伴 Preview 版'
             ])
         }
 

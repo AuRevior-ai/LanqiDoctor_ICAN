@@ -413,7 +413,7 @@ public final class ClockActivity extends AppActivity {
                     );
                     channel.enableVibration(true);
                     channel.enableLights(true);
-                    channel.setDescription("蓝岐医童用药提醒通知");
+                    channel.setDescription("智途心伴用药提醒通知");
                     nm.createNotificationChannel(channel);
                 }
             }
@@ -438,7 +438,7 @@ public final class ClockActivity extends AppActivity {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                     .setSmallIcon(R.mipmap.launcher_ic)
-                    .setContentTitle("蓝岐医童用药提醒")
+                    .setContentTitle("智途心伴用药提醒")
                     .setContentText(message)
                     .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
                     .setPriority(NotificationCompat.PRIORITY_HIGH)

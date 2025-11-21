@@ -5,7 +5,7 @@ import com.lanqiDoctor.demo.database.entity.MedicationIntakeRecord;
 /**
  * 今日服药项目数据模型
  * 
- * @author 蓝岐医童开发团队 rrrrrrzy
+ * @author 智途心伴开发团队 rrrrrrzy
  * @version 1.0
  */
 public class TodayMedicationItem {

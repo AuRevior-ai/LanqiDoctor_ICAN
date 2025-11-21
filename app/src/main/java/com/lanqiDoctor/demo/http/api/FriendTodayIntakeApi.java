@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 获取亲友今日服药记录API
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public final class FriendTodayIntakeApi implements IRequestApi {

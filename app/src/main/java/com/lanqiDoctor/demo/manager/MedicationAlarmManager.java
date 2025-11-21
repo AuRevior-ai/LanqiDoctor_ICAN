@@ -105,7 +105,7 @@ public class MedicationAlarmManager {
             String timeString = entry.getKey();
             List<String> medications = entry.getValue();
 
-            String message = "蓝岐医童提醒您，应该服用：" + String.join("+", medications);
+            String message = "智途心伴提醒您，应该服用：" + String.join("+", medications);
             android.util.Log.i("MedicationAlarmManager", "设置闹钟 " + timeString + ": " + message);
 
             setMedicationAlarmByTime(timeString, requestCode++, message);
@@ -235,7 +235,7 @@ public class MedicationAlarmManager {
             Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
             intent.putExtra(AlarmClock.EXTRA_HOUR, hour);
             intent.putExtra(AlarmClock.EXTRA_MINUTES, minute);
-            intent.putExtra(AlarmClock.EXTRA_MESSAGE, "蓝岐医童用药提醒 - " + alarmLabel + " (" + timeString + ")");
+            intent.putExtra(AlarmClock.EXTRA_MESSAGE, "智途心伴用药提醒 - " + alarmLabel + " (" + timeString + ")");
             intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
             intent.putIntegerArrayListExtra(AlarmClock.EXTRA_DAYS, dates);
             intent.putExtra(AlarmClock.EXTRA_VIBRATE, true);
@@ -381,7 +381,7 @@ public class MedicationAlarmManager {
             String label = timeToLabelMap.get(time);
             options[i] = time + " (" + label + ")";
         }
-        options[setTimes.size()] = "删除所有蓝岐医童闹钟";
+        options[setTimes.size()] = "删除所有智途心伴闹钟";
         options[setTimes.size() + 1] = "打开系统闹钟应用";
 
         new androidx.appcompat.app.AlertDialog.Builder(activityContext)
@@ -392,7 +392,7 @@ public class MedicationAlarmManager {
                         String selectedTime = setTimes.get(which);
                         deleteSystemAlarmByTime(selectedTime);
                     } else if (which == setTimes.size()) {
-                        // 删除所有蓝岐医童闹钟
+                        // 删除所有智途心伴闹钟
                         deleteAllSystemAlarms();
                     } else {
                         // 打开系统闹钟应用
@@ -452,13 +452,13 @@ public class MedicationAlarmManager {
             // 方法1：通过标签删除闹钟
             Intent intent = new Intent(AlarmClock.ACTION_DISMISS_ALARM)
                     .putExtra(AlarmClock.EXTRA_ALARM_SEARCH_MODE, AlarmClock.ALARM_SEARCH_MODE_LABEL)
-                    .putExtra(AlarmClock.EXTRA_MESSAGE, "蓝岐医童用药提醒");
+                    .putExtra(AlarmClock.EXTRA_MESSAGE, "智途心伴用药提醒");
 
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             if (intent.resolveActivity(context.getPackageManager()) != null) {
                 context.startActivity(intent);
-                android.util.Log.i("MedicationAlarmManager", "正在删除所有蓝岐医童相关的系统闹钟");
+                android.util.Log.i("MedicationAlarmManager", "正在删除所有智途心伴相关的系统闹钟");
             } else {
                 android.util.Log.w("MedicationAlarmManager", "无法通过标签删除系统闹钟");
                 openSystemAlarmApp();

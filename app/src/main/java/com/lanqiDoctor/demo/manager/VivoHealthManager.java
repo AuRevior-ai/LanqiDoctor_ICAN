@@ -16,7 +16,7 @@ import java.util.Random;
  * 健康数据管理器
  * 提供健康数据的存储、获取和模拟功能
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class VivoHealthManager {

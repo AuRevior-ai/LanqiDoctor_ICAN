@@ -7,7 +7,7 @@ import com.lanqiDoctor.demo.http.model.HttpData;
 /**
  * 添加好友/家庭成员API
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public final class AddFriendApi implements IRequestApi {

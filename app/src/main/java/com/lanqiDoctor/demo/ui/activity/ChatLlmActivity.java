@@ -154,7 +154,7 @@ public class ChatLlmActivity extends AppCompatActivity implements View.OnClickLi
         
         // 添加欢迎消息
         String welcomeMessage = AiConfig.isLanXinModel()
-                ? "您好！我是蓝岐医童，基于Vivo蓝心大模型，有什么健康问题可以帮助您吗？"
+                ? "您好！我是智途心伴，基于Vivo蓝心大模型，有什么健康问题可以帮助您吗？"
                 : "您好！我是AI助手，有什么可以帮助您的吗？";
         addMessage("assistant", welcomeMessage);
     }

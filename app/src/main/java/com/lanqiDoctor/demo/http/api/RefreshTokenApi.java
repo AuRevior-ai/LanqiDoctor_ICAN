@@ -5,7 +5,7 @@ import com.hjq.http.config.IRequestApi;
 /**
  * 刷新Token API
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public final class RefreshTokenApi implements IRequestApi {

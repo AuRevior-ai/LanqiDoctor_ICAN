@@ -20,7 +20,7 @@ import com.lanqiDoctor.demo.util.LoginCheckUtil;
  * 显示用户个人信息、健康档案、设置选项等
  * 迁移自myapplication2项目的用户信息功能
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class UserProfileActivity extends BaseActivity {

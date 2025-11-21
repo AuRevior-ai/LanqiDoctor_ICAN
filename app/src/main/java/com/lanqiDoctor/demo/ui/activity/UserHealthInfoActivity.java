@@ -14,7 +14,7 @@ import com.lanqiDoctor.demo.manager.VivoHealthManager;
 /**
  * 用户健康信息设置页面
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class UserHealthInfoActivity extends BaseActivity {

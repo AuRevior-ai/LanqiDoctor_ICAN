@@ -21,7 +21,7 @@ import okhttp3.Call;
  * 用户状态管理器
  * 负责用户登录状态、用户信息和偏好设置的持久化存储
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class UserStateManager {

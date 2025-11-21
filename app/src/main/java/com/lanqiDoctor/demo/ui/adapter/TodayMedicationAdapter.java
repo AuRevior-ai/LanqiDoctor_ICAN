@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 今日服药情况适配器
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class TodayMedicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

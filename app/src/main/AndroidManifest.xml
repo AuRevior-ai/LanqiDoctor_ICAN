@@ -285,7 +285,7 @@
         <!-- 健康管理主页面 -->
         <activity
             android:name="com.lanqiDoctor.demo.ui.activity.HealthMainActivity"
-            android:label="蓝岐健康提醒"
+            android:label="智途心情管家"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 

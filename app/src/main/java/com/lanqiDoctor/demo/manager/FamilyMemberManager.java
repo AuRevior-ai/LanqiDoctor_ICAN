@@ -24,7 +24,7 @@ import okhttp3.Call;
  * 家庭成员管理器
  * 负责家庭成员的本地缓存和服务器同步
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class FamilyMemberManager {

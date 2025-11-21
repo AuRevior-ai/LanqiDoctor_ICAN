@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * 亲友今日服药适配器（只读模式）
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class FriendTodayMedicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

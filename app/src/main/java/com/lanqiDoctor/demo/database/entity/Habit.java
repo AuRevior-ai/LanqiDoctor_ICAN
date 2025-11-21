@@ -3,7 +3,7 @@ package com.lanqiDoctor.demo.database.entity;
 /**
  * 习惯实体类
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class Habit {

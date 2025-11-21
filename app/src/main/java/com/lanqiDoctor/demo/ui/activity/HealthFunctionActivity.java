@@ -15,7 +15,7 @@ import com.lanqiDoctor.demo.R;
  * 通用的功能详情显示页面，用于展示各种健康功能的具体信息
  * 包括：语音对话、文字输入、药品图片识别、症状轨迹可视化、个性目标等
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class HealthFunctionActivity extends BaseActivity {

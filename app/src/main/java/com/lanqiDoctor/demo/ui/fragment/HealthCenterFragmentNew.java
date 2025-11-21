@@ -37,7 +37,7 @@ import android.widget.TextView;
  * 1. AI助手 - 嵌入式聊天界面
  * 2. 日常服药 - 个性目标设置
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 2.0
  */
 public class HealthCenterFragmentNew extends BaseFragment {
@@ -107,7 +107,7 @@ public class HealthCenterFragmentNew extends BaseFragment {
             messages.add(systemMessage);
         }
 
-        String welcomeMessage = "已记录您的今日心情：" + mood + "。您好！我是小蓝，你的智能健康助手~ 有什么健康问题可以帮助您吗？";
+        String welcomeMessage = "已记录您的今日心情：" + mood + "。您好！我是阿心，你的智能健康助手和情绪管家~ 有什么健康问题可以帮助您吗？";
         addMessage("assistant", welcomeMessage);
     }
 
@@ -441,7 +441,7 @@ public class HealthCenterFragmentNew extends BaseFragment {
         }
         
         // 添加欢迎消息
-        String welcomeMessage = "您好！我是小蓝，你的智能健康助手~ 有什么健康问题可以帮助您吗？";
+        String welcomeMessage = "您好！我是阿心，你的智能健康助手和情绪管家~ 有什么健康问题可以帮助您吗？";
         addMessage("assistant", welcomeMessage);
     }
 

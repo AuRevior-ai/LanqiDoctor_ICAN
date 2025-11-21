@@ -47,7 +47,7 @@ import java.util.List;
  * - 健康建议生成
  * - 健康趋势图表
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class HealthProfileActivity extends BaseActivity {

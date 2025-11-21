@@ -5,7 +5,7 @@ import com.hjq.http.config.IRequestApi;
 /**
  * 用户注册 - 邮箱版本
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 2.0
  */
 public final class RegisterApi implements IRequestApi {

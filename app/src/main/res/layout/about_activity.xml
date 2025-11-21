@@ -46,7 +46,7 @@
             android:autoLink="all"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="@dimen/dp_20"
-            android:text="蓝岐医童开发团队出品"
+            android:text="智途心伴开发团队出品"
             android:textColor="#80222222"
             android:textSize="@dimen/sp_14" />
 

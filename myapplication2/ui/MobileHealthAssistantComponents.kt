@@ -3,7 +3,7 @@
  * 
  * 包含移动健康助手功能相关的UI组件
  * 
- * @author 蓝岐健康提醒团队
+ * @author 智途心情管家团队
  * @version 1.0
  * @since 2025-06-21
  */
@@ -60,7 +60,7 @@ fun MobileHealthAssistantPage(
         
         Spacer(modifier = Modifier.height(24.dp))
         
-        // AI智能健康助手卡片
+        // AI智能健康助手和情绪管家卡片
         AIHealthAssistantCard()
         
         Spacer(modifier = Modifier.height(24.dp))

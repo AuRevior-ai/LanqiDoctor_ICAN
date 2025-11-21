@@ -33,7 +33,7 @@ import okhttp3.Call;
  * 食谱管理器
  * 负责食谱推荐、周计划生成、AI交互等功能
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class RecipeManager {

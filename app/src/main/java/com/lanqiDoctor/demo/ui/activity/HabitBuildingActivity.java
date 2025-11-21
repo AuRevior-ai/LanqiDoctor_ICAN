@@ -28,7 +28,7 @@ import java.util.List;
  * - 习惯统计分析
  * - 习惯提醒设置
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class HabitBuildingActivity extends BaseActivity {

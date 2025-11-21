@@ -23,7 +23,7 @@ import java.util.Set;
 /**
  * AI推荐习惯适配器
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class RecommendedHabitAdapter extends RecyclerView.Adapter<RecommendedHabitAdapter.ViewHolder> {

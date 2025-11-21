@@ -26,7 +26,7 @@ import okhttp3.Call;
  * 云端数据同步管理器
  * 负责用药信息和每日服药数据的云端同步
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class CloudSyncManager {

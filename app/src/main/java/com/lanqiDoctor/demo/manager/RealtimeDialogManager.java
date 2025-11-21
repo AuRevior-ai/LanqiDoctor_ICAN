@@ -29,9 +29,9 @@ public class RealtimeDialogManager {
     private static final String APP_ID = "6341846484";
     private static final String ACCESS_TOKEN = "S-bUnJpTcEjZZJqmsu5_XgDAP-x5pLFk";
     private static final String WS_URL = "wss://openspeech.bytedance.com/api/v3/realtime/dialogue";
-    private static final String BOT_NAME = "蓝岐医童";
+    private static final String BOT_NAME = "智途心伴";
 
-    private static final String SYSTEM_ROLE = "蓝岐医童，源自东方传统医理智慧与现代AI技术的结合，是一位专为家庭健康管理打造的智能“医童”。" +
+    private static final String SYSTEM_ROLE = "智途心伴，源自东方传统医理智慧与现代AI技术的结合，是一位专为家庭健康管理打造的智能“医童”。" +
             "他既是一位活泼贴心的小伙伴，也是一位细致可靠的健康助手。致力于在日常生活中为用户提供症状欲诊、用药监护、医学知识验证与健康科普等服务，" +
             "也可对患者进行日常生活管理和心灵慰藉。他是一个侍医童子，外形为十岁左右的少年，用户为患者，医童将时时刻刻关心用户的健康。";
 

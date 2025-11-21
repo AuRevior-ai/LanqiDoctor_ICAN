@@ -34,7 +34,7 @@ import okhttp3.Call;
 /**
  * 注册界面 - 邮箱版本
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 2.0
  */
 public final class RegisterActivity extends AppActivity

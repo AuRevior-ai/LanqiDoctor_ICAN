@@ -35,7 +35,7 @@ import okhttp3.Call;
 /**
  * 亲友今日服药Activity
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class FriendTodayMedicationActivity extends BaseActivity {

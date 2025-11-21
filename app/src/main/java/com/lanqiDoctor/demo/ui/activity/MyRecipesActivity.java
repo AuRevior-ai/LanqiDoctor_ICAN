@@ -41,7 +41,7 @@ import java.util.Locale;
  * - 营养成分分析
  * - 地区特色和时令考虑
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class MyRecipesActivity extends BaseActivity implements 

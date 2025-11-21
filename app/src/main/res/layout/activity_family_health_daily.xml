@@ -44,7 +44,7 @@
             android:id="@+id/tv_disclaimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="本内容由'蓝心小v'智能体生成，不保证正确性，请仔细甄别，蓝岐医童开发团队不负任何责任"
+            android:text="本内容由'蓝心小v'智能体生成，不保证正确性，请仔细甄别，智途心伴开发团队不负任何责任"
             android:textSize="@dimen/sp_12"
             android:textColor="@color/text_hint"
             android:gravity="center"

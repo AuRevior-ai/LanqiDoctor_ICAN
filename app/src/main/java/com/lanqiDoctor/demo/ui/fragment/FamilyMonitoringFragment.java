@@ -35,7 +35,7 @@ import static com.umeng.analytics.pro.n.a.A;
  * - 紧急情况通知
  * - 家庭健康报告
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class FamilyMonitoringFragment extends BaseFragment {

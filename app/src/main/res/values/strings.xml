@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">蓝岐健康提醒</string>
+    <string name="app_name">智途心情管家</string>
 
     <!-- 通用的 -->
     <string name="common_loading">加载中&#8230;</string>
@@ -192,7 +192,7 @@
     <string name="about_title">关于我们</string>
     <string name="about_author"><font color="#85b84f">西北工业大学</font>悬壶济世小组</string>
 
-    <string name="about_copyright">蓝岐医童 © 2024 &#8211; 2025</string>
+    <string name="about_copyright">智途心伴 © 2024 &#8211; 2025</string>
 
     <!-- 忘记密码 -->
     <string name="password_forget_title">忘记密码</string>
@@ -311,7 +311,7 @@
     <string name="register_nickname_hint">昵称（可选）</string>
     <string name="privacy_policy_full_text">
 <![CDATA[
-欢迎使用蓝岐医童App！我们深知用户隐私的重要性，并致力于保护您和您孩子的个人信息安全。本隐私政策详细说明了我们如何收集、使用、存储和保护您的信息。\n\n
+欢迎使用智途心伴App！我们深知用户隐私的重要性，并致力于保护您和您孩子的个人信息安全。本隐私政策详细说明了我们如何收集、使用、存储和保护您的信息。\n\n
 
 一、信息收集与使用\n
 1.1 注册信息\n

@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="@dimen/dp_12"
-                android:text="我是小蓝，你的智能健康助手~"
+                android:text="我是阿心，你的智能健康助手和情绪管家~"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />

@@ -30,7 +30,7 @@ import com.hjq.permissions.Permission;
  * - 药品图片识别功能
  * - 个性目标设置（在用药、医嘱识别、拍照）
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class HealthCenterFragment extends BaseFragment {

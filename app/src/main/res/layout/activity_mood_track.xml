@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="记录每一天的心情，提供可视化的追踪，帮助您享受健康生活。\n\n功能包括：\n- 每日心情打卡\n- 可视化趋势图表（后续版本）\n- 贴心备忘与情绪小贴士"
+                android:text="记录每一天的心情，提供可视化的追踪，帮助您享受健康生活。\n\n功能包括：\n- 每日心情打卡\n- 可视化趋势图表\n- 贴心备忘与情绪小贴士\n- 注:由于项目包含商业计划,核心功能暂时屏蔽"
                 android:textSize="14sp"
                 android:textColor="@color/text_secondary" />
 

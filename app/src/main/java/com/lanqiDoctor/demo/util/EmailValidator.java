@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * 邮箱验证工具类
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class EmailValidator {

@@ -35,7 +35,7 @@ import com.lanqiDoctor.demo.ui.adapter.RecommendedHabitAdapter;
 /**
  * AI推荐习惯Activity
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class HabitAiRecommendationActivity extends BaseActivity {

@@ -30,7 +30,7 @@ import java.net.URISyntaxException;
 /**
  * 个人资料页面
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 2.0
  */
 public final class PersonalDataActivity extends AppActivity {

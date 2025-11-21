@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-本文档记录了从 **myapplication2** (Kotlin Compose项目) 到 **蓝岐医童Android项目** (Java传统视图项目) 的完整功能迁移过程。
+本文档记录了从 **myapplication2** (Kotlin Compose项目) 到 **智途心伴Android项目** (Java传统视图项目) 的完整功能迁移过程。
 
 **迁移日期**: 2025年6月22日
 **源项目**: myapplication2 (Kotlin + Jetpack Compose)
@@ -340,4 +340,4 @@ app/src/main/res/drawable/
 
 ---
 
-*本文档详细记录了myapplication2到蓝岐医童项目的完整迁移过程，为后续维护和扩展提供参考。* 
+*本文档详细记录了myapplication2到智途心伴项目的完整迁移过程，为后续维护和扩展提供参考。* 

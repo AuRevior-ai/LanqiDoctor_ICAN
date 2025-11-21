@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 用药信息同步API
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public final class SyncMedicationApi implements IRequestApi {

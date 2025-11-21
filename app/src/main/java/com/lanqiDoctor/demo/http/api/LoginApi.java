@@ -5,7 +5,7 @@ import com.hjq.http.config.IRequestApi;
 /**
  * 用户登录 - 邮箱版本
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 2.0
  */
 public final class LoginApi implements IRequestApi {

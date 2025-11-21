@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * 在用药管理Activity
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class MedicationManagementActivity extends BaseActivity {//又是从这个baseActivity里面拿过来的神人构造函数

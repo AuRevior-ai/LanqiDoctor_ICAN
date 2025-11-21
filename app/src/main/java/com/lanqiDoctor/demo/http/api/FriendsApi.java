@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 好友/家庭成员管理API
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public final class FriendsApi implements IRequestApi {

@@ -3,7 +3,7 @@
  * 
  * 包含应用中通用的UI组件，这些组件可以在多个页面中复用
  * 
- * @author 蓝岐健康提醒团队
+ * @author 智途心情管家团队
  * @version 1.0
  * @since 2025-06-21
  */
@@ -48,7 +48,7 @@ fun TopNavigationBar(
     ) {
         // 居中显示的应用标题
         Text(
-            text = "蓝岐健康提醒",
+            text = "智途心情管家",
             color = TextPrimary,
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,

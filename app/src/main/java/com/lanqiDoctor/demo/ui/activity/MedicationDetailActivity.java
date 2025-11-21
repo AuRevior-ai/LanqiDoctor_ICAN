@@ -18,7 +18,7 @@ import java.util.Locale;
  * 用药详情Activity
  * 这个activity
  * 这个文件干的事情是:在初始化自己的layout的时候,从数据库中读取全部药品信息并且展现出来
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class MedicationDetailActivity extends BaseActivity {//用药详情页面

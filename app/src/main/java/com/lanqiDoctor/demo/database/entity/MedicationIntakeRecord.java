@@ -4,7 +4,7 @@ package com.lanqiDoctor.demo.database.entity;
  * 服药记录实体类
  * 记录用户实际的服药情况
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class MedicationIntakeRecord {

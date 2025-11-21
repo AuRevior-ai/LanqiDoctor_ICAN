@@ -23,7 +23,7 @@ import java.util.Locale;
 /**
  * 食谱卡片适配器
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.RecipeViewHolder> {

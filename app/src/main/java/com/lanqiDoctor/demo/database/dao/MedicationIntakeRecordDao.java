@@ -17,7 +17,7 @@ import java.util.Calendar;
 /**
  * 服药记录数据访问对象
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 

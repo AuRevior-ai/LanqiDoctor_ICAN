@@ -36,7 +36,7 @@ import java.util.Locale;
 /**
  * 添加/编辑习惯Activity
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class AddHabitActivity extends BaseActivity {

@@ -28,7 +28,7 @@ import com.lanqiDoctor.demo.ui.activity.UserHealthInfoActivity;
  * - 运动健身记录
  * - 健康数据导入
  * 
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class MobileHealthAssistantFragment extends BaseFragment {

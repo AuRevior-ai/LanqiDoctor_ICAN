@@ -128,7 +128,7 @@ public class MedicalReportActivity extends AppActivity {
         Log.d("MedicalReportActivity", "既往病史数据：" + medicalData.toString());
 
         List<ChatMessage> messages = new ArrayList<>();
-        messages.add(new ChatMessage("system", "你是\"蓝岐医童\"，一位资深的临床医学AI助手。你需要基于患者的既往病史，生成一份专业、实用的医疗综合报告。\\n\\n" +
+        messages.add(new ChatMessage("system", "你是\"智途心伴\"，一位资深的临床医学AI助手。你需要基于患者的既往病史，生成一份专业、实用的医疗综合报告。\\n\\n" +
                 "# 核心要求\\n" +
                 "- 以临床医生的视角撰写，语言专业但易懂\\n" +
                 "- 重点关注疾病间的关联性和潜在风险\\n" +

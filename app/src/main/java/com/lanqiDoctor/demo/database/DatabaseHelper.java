@@ -11,7 +11,7 @@ import android.util.Log;  // 🔥 添加这行导入！
 /**
  * 数据库帮助类
  *
- * @author 蓝岐医童开发团队
+ * @author 智途心伴开发团队
  * @version 1.0
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
