@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -182,7 +183,11 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
         chart.setDoubleTapToZoomEnabled(false);
         chart.setScaleEnabled(false);
         chart.setDragEnabled(false);
-        chart.setViewPortOffsets(40f, 32f, 16f, 32f);
+        chart.setViewPortOffsets(56f, 32f, 40f, 56f);
+        chart.setExtraTopOffset(12f);
+        chart.setExtraBottomOffset(16f);
+        chart.setExtraLeftOffset(16f);
+        chart.setExtraRightOffset(16f);
         chart.setNoDataText(getString(R.string.mood_statistics_no_data));
         chart.setDrawGridBackground(false);
 
@@ -239,7 +244,7 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
     private void renderYearTrend() {
         List<Entry> entries = new ArrayList<>(MONTH_COUNT);
         List<String> monthLabels = new ArrayList<>(MONTH_COUNT);
-        List<MoodLevel> moodHints = new ArrayList<>(MONTH_COUNT);
+        Map<Integer, MoodLevel> moodHints = new HashMap<>();
 
         Calendar startCalendar = Calendar.getInstance();
         setToMonthStart(startCalendar);
@@ -253,12 +258,12 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
             monthEnd.add(Calendar.MONTH, 1);
 
             float average = calculateAverageMood(monthStart.getTimeInMillis(), monthEnd.getTimeInMillis());
-            entries.add(new Entry(i, average));
             monthLabels.add(monthLabelFormat.format(monthStart.getTime()));
             if (!Float.isNaN(average)) {
+                entries.add(new Entry(i, average));
                 hasDataPoint = true;
+                moodHints.put(i, moodFromScore(average));
             }
-            moodHints.add(Float.isNaN(average) ? null : moodFromScore(average));
         }
 
         Calendar endCalendar = Calendar.getInstance();
@@ -291,11 +296,8 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
             @Override
             public String getPointLabel(Entry entry) {
                 int index = Math.round(entry.getX());
-                if (index >= 0 && index < moodHints.size()) {
-                    MoodLevel moodLevel = moodHints.get(index);
-                    return moodLevel != null ? moodLevel.getEmoji() : "";
-                }
-                return "";
+                MoodLevel moodLevel = moodHints.get(index);
+                return moodLevel != null ? moodLevel.getEmoji() : "";
             }
         });
 
