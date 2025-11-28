@@ -80,6 +80,9 @@
     <string name="common_web_call_phone_allow">拨打</string>
     <string name="common_web_call_phone_reject">取消</string>
 
+    <string name="common_previous">上一月</string>
+    <string name="common_next">下一月</string>
+
     <!-- 网络请求 -->
     <string name="http_loading">加载中&#8230;</string>
 
@@ -365,4 +368,64 @@
 ]]>
 </string>
 
+    <!-- 心情轨迹 -->
+    <string name="mood_track_title">心情轨迹</string>
+    <string name="mood_tab_calendar">日历</string>
+    <string name="mood_tab_memories">忆迹</string>
+    <string name="mood_tab_statistics">统计</string>
+    <string name="mood_add_record">记录心情</string>
+    <string name="mood_empty_hint">还没有记录，今天想记录些什么？</string>
+    <string name="mood_memories_empty">收藏一些难忘的心情瞬间，它们会出现在这里</string>
+    <string name="mood_statistics_empty">暂无心情数据，保持记录即可看到趋势</string>
+    <string name="mood_statistics_year_title">年度心情趋势</string>
+    <string name="mood_statistics_scope">统计范围</string>
+    <string name="mood_statistics_range_one_month">近1月</string>
+    <string name="mood_statistics_range_six_month">近6月</string>
+    <string name="mood_statistics_range_one_year">近1年</string>
+    <string name="mood_statistics_range_all">全部</string>
+    <string name="mood_statistics_overview_title">心情概览</string>
+    <string name="mood_statistics_weekly_title">每周节奏</string>
+    <string name="mood_statistics_week_sun">周日</string>
+    <string name="mood_statistics_week_mon">周一</string>
+    <string name="mood_statistics_week_tue">周二</string>
+    <string name="mood_statistics_week_wed">周三</string>
+    <string name="mood_statistics_week_thu">周四</string>
+    <string name="mood_statistics_week_fri">周五</string>
+    <string name="mood_statistics_week_sat">周六</string>
+    <string name="mood_level_very_happy">超开心</string>
+    <string name="mood_level_happy">开心</string>
+    <string name="mood_level_neutral">平静</string>
+    <string name="mood_level_sad">有点低落</string>
+    <string name="mood_level_very_sad">难过</string>
+    <string name="mood_energy_label">活力</string>
+    <string name="mood_stress_label">压力</string>
+    <string name="mood_note_hint">写点当天的小感受</string>
+    <string name="mood_activity_hint">添加标签（用逗号分隔）</string>
+    <string name="mood_favorite_label">收藏到忆迹</string>
+    <string name="mood_edit_title">编辑心情</string>
+    <string name="mood_create_title">记录今日心情</string>
+    <string name="mood_save">保存</string>
+    <string name="mood_delete">删除</string>
+    <string name="mood_select_mood_hint">请选择一个心情</string>
+    <string name="mood_delete_confirm">确定要删除这条心情记录吗？</string>
+    <string name="mood_delete_success">已删除心情记录</string>
+    <string name="mood_delete_failed">删除失败，请稍后再试</string>
+    <string name="mood_save_success">记录已保存</string>
+    <string name="mood_save_failed">保存失败，请稍后再试</string>
+    <string name="mood_take_photo">拍照</string>
+    <string name="mood_pick_image">从相册选择</string>
+    <string name="mood_write_something">写点什么…</string>
+    <string name="mood_image_pick_failed">图片选择失败，请重试</string>
+    <string name="mood_camera_failed">无法打开相机，请检查权限</string>
+    <string name="mood_image_removed">已移除配图</string>
+    <string name="mood_statistics_total_records">累计记录</string>
+    <string name="mood_statistics_month_records">本月记录</string>
+    <string name="mood_statistics_favorite_records">收藏忆迹</string>
+    <string name="mood_statistics_streak">连续记录</string>
+    <string name="mood_statistics_average_energy">平均活力</string>
+    <string name="mood_statistics_average_stress">平均压力</string>
+    <string name="mood_statistics_frequent_mood">最常见心情</string>
+    <string name="mood_statistics_days">%1$d 天</string>
+    <string name="mood_statistics_no_data">请坚持记录几天，我们会生成趋势分析</string>
+    <string name="mood_selected_day">%1$s 的心情</string>
 </resources>

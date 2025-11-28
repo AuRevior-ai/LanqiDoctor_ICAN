@@ -417,6 +417,11 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.lanqiDoctor.demo.ui.activity.MoodRecordEditorActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name="com.lanqiDoctor.demo.ui.activity.MonthCalendarActivity"
             android:screenOrientation="portrait"
             android:exported="false" />

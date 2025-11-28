@@ -64,6 +64,8 @@
     <color name="icon_tint">#FF5B9FFF</color>      <!-- 荧光蓝 -->
     <color name="button_background">#FFF0F7FF</color>
     <color name="background_white_alpha">#4DFFFFFF</color>
+    <color name="mood_track_background">#FFF9F6F1</color>
+    <color name="background_white">#FFFFFFFF</color>
     
     <!-- 荧光色系 -->
     <color name="neon_blue">#FF5B9FFF</color>
@@ -90,6 +92,18 @@
     <color name="grey_600">#FF757575</color>
     <color name="primary_color">#FF4A90E2</color>
     <color name="permission_highlight_bg">#FFF5F5F5</color>
+
+    <!-- 心情主题颜色 -->
+    <color name="mood_very_happy">#FF5DC486</color>
+    <color name="mood_very_happy_bg">#335DC486</color>
+    <color name="mood_happy">#FF6BC4FF</color>
+    <color name="mood_happy_bg">#336BC4FF</color>
+    <color name="mood_neutral">#FF8DA1B6</color>
+    <color name="mood_neutral_bg">#338DA1B6</color>
+    <color name="mood_sad">#FF7A9FFF</color>
+    <color name="mood_sad_bg">#337A9FFF</color>
+    <color name="mood_very_sad">#FF6A7FDB</color>
+    <color name="mood_very_sad_bg">#336A7FDB</color>
     
     <!-- 食谱功能颜色 -->
     <color name="blue">#FF2196F3</color>

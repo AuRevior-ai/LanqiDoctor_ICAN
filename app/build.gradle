@@ -289,6 +289,9 @@ dependencies {
     implementation 'com.scwang.smart:refresh-layout-kernel:2.0.3'
     implementation 'com.scwang.smart:refresh-header-material:2.0.3'
 
+    // 图表组件：https://github.com/PhilJay/MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
     // 日志打印框架：https://github.com/JakeWharton/timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
