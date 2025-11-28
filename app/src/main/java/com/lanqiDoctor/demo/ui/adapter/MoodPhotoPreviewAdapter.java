@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.lanqiDoctor.demo.R;
 
 import java.util.ArrayList;
@@ -81,6 +82,7 @@ public class MoodPhotoPreviewAdapter extends RecyclerView.Adapter<MoodPhotoPrevi
         void bind(String uriString) {
             Glide.with(ivPhoto.getContext())
                     .load(Uri.parse(uriString))
+                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                     .placeholder(R.drawable.bg_image_placeholder)
                     .centerCrop()
                     .into(ivPhoto);

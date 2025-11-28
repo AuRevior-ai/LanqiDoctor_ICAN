@@ -1,6 +1,7 @@
 package com.lanqiDoctor.demo.ui.adapter;
 
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.lanqiDoctor.demo.R;
 
 import java.util.ArrayList;
@@ -103,7 +105,8 @@ public class MoodCalendarAdapter extends RecyclerView.Adapter<MoodCalendarAdapte
             if (cell.hasImage()) {
                 ivDayImage.setVisibility(View.VISIBLE);
                 Glide.with(ivDayImage.getContext())
-                        .load(cell.coverImageUri)
+                        .load(Uri.parse(cell.coverImageUri))
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .placeholder(R.drawable.bg_image_placeholder)
                         .centerCrop()
                         .into(ivDayImage);

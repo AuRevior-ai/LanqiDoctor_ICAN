@@ -1,6 +1,7 @@
 package com.lanqiDoctor.demo.ui.activity;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -36,7 +37,10 @@ import com.lanqiDoctor.demo.model.MoodLevel;
 import com.lanqiDoctor.demo.other.AppConfig;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -44,6 +48,7 @@ import java.util.Set;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import android.webkit.MimeTypeMap;
 
 /**
  * 心情记录编辑页
@@ -73,7 +78,7 @@ public class MoodRecordEditorActivity extends AppActivity {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 EEEE", Locale.CHINA);
 
     private ActivityResultLauncher<Uri> takePhotoLauncher;
-    private ActivityResultLauncher<String> pickImagesLauncher;
+    private ActivityResultLauncher<String[]> pickImagesLauncher;
     private MoodPhotoPreviewAdapter photoAdapter;
     private final List<String> selectedImageUris = new ArrayList<>();
 
@@ -119,6 +124,7 @@ public class MoodRecordEditorActivity extends AppActivity {
         takePhotoLauncher = registerForActivityResult(new ActivityResultContracts.TakePicture(), result -> {
             if (result != null && result) {
                 if (pendingCameraUri != null) {
+                    persistUriPermission(pendingCameraUri);
                     addImageUri(pendingCameraUri.toString());
                 }
             } else {
@@ -131,7 +137,7 @@ public class MoodRecordEditorActivity extends AppActivity {
             pendingCameraUri = null;
         });
 
-        pickImagesLauncher = registerForActivityResult(new ActivityResultContracts.GetMultipleContents(), uris -> {
+        pickImagesLauncher = registerForActivityResult(new ActivityResultContracts.OpenMultipleDocuments(), uris -> {
             if (uris == null || uris.isEmpty()) {
                 toast(R.string.mood_image_pick_failed);
                 return;
@@ -142,7 +148,11 @@ public class MoodRecordEditorActivity extends AppActivity {
                 if (uri == null) {
                     continue;
                 }
-                String value = uri.toString();
+                String value = prepareStoredUri(uri);
+                Uri parsed = Uri.parse(value);
+                if (ContentResolver.SCHEME_CONTENT.equals(parsed.getScheme())) {
+                    persistUriPermission(parsed);
+                }
                 if (!existing.contains(value)) {
                     selectedImageUris.add(value);
                     existing.add(value);
@@ -176,7 +186,12 @@ public class MoodRecordEditorActivity extends AppActivity {
             List<String> uris = editingRecord.getImageUriList();
             selectedImageUris.clear();
             if (uris != null && !uris.isEmpty()) {
-                selectedImageUris.addAll(uris);
+                for (String value : uris) {
+                    String normalized = ensureUriUsable(value);
+                    if (normalized != null) {
+                        selectedImageUris.add(normalized);
+                    }
+                }
             }
         }
     }
@@ -240,7 +255,7 @@ public class MoodRecordEditorActivity extends AppActivity {
     }
 
     private void pickImages() {
-        pickImagesLauncher.launch("image/*");
+        pickImagesLauncher.launch(new String[]{"image/*"});
     }
 
     private boolean ensureCameraPermission() {
@@ -395,5 +410,97 @@ public class MoodRecordEditorActivity extends AppActivity {
             storageDir.mkdirs();
         }
         return File.createTempFile("MOOD_" + timeStamp + "_", ".jpg", storageDir);
+    }
+
+    private void persistUriPermission(@Nullable Uri uri) {
+        if (uri == null) {
+            return;
+        }
+        if (!ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
+            return;
+        }
+        String authority = uri.getAuthority();
+        if (!TextUtils.isEmpty(authority) && authority.equals(AppConfig.getPackageName() + ".provider")) {
+            return;
+        }
+        int flags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION;
+        try {
+            getContentResolver().takePersistableUriPermission(uri, flags);
+        } catch (SecurityException | IllegalArgumentException ignored) {
+            // 某些 Uri（例如来自 FileProvider）不支持持久化授权，忽略即可。
+        }
+    }
+
+    @NonNull
+    private String prepareStoredUri(@NonNull Uri source) {
+        if (!ContentResolver.SCHEME_CONTENT.equals(source.getScheme())) {
+            return source.toString();
+        }
+        String authority = source.getAuthority();
+        if (!TextUtils.isEmpty(authority) && authority.equals(AppConfig.getPackageName() + ".provider")) {
+            return source.toString();
+        }
+        File cacheDir = new File(getFilesDir(), "mood_media");
+        if (!cacheDir.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            cacheDir.mkdirs();
+        }
+        String extension = resolveExtension(source);
+        String fileName = "gif_" + System.currentTimeMillis();
+        File target = new File(cacheDir, extension == null ? fileName : fileName + "." + extension);
+        try (InputStream input = getContentResolver().openInputStream(source);
+             OutputStream output = new FileOutputStream(target)) {
+            if (input == null) {
+                return source.toString();
+            }
+            byte[] buffer = new byte[8192];
+            int len;
+            while ((len = input.read(buffer)) != -1) {
+                output.write(buffer, 0, len);
+            }
+            return Uri.fromFile(target).toString();
+        } catch (IOException | SecurityException e) {
+            return source.toString();
+        }
+    }
+
+    @Nullable
+    private String ensureUriUsable(@NonNull String value) {
+        if (TextUtils.isEmpty(value)) {
+            return null;
+        }
+        Uri uri = Uri.parse(value);
+        if (!ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
+            return value;
+        }
+        String authority = uri.getAuthority();
+        if (!TextUtils.isEmpty(authority) && authority.equals(AppConfig.getPackageName() + ".provider")) {
+            return value;
+        }
+        try (InputStream input = getContentResolver().openInputStream(uri)) {
+            if (input != null) {
+                persistUriPermission(uri);
+                return value;
+            }
+        } catch (SecurityException | IOException ignored) {
+            // 尝试复制到本地目录保证可读
+        }
+        return prepareStoredUri(uri);
+    }
+
+    @Nullable
+    private String resolveExtension(@NonNull Uri uri) {
+        String type = getContentResolver().getType(uri);
+        if (!TextUtils.isEmpty(type)) {
+            return MimeTypeMap.getSingleton().getExtensionFromMimeType(type);
+        }
+        String path = uri.getLastPathSegment();
+        if (!TextUtils.isEmpty(path) && path.contains(".")) {
+            int index = path.lastIndexOf('.');
+            if (index >= 0 && index < path.length() - 1) {
+                return path.substring(index + 1);
+            }
+        }
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package com.lanqiDoctor.demo.ui.adapter;
 
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.lanqiDoctor.demo.R;
 import com.lanqiDoctor.demo.entity.MoodRecord;
 import com.lanqiDoctor.demo.model.MoodLevel;
@@ -97,7 +99,8 @@ public class MoodRecordAdapter extends RecyclerView.Adapter<MoodRecordAdapter.Mo
             if (images != null && !images.isEmpty()) {
                 ivMoodPhoto.setVisibility(View.VISIBLE);
                 Glide.with(ivMoodPhoto.getContext())
-                        .load(images.get(0))
+                        .load(Uri.parse(images.get(0)))
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .placeholder(R.drawable.bg_image_placeholder)
                         .centerCrop()
                         .into(ivMoodPhoto);

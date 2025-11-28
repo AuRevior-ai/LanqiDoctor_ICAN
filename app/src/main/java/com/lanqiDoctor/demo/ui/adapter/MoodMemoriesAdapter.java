@@ -1,5 +1,6 @@
 package com.lanqiDoctor.demo.ui.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.lanqiDoctor.demo.R;
 import com.lanqiDoctor.demo.entity.MoodRecord;
 import com.lanqiDoctor.demo.model.MoodLevel;
@@ -78,7 +80,8 @@ public class MoodMemoriesAdapter extends RecyclerView.Adapter<MoodMemoriesAdapte
             List<String> images = record.getImageUriList();
             if (images != null && !images.isEmpty()) {
                 Glide.with(ivCover.getContext())
-                        .load(images.get(0))
+                        .load(Uri.parse(images.get(0)))
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .placeholder(R.drawable.bg_image_placeholder)
                         .centerCrop()
                         .into(ivCover);

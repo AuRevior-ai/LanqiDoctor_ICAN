@@ -372,17 +372,17 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
 
         List<BarEntry> entries = new ArrayList<>();
         List<String> axisLabels = new ArrayList<>();
-        List<Integer> colors = new ArrayList<>();
         int index = 0;
         for (MoodLevel level : MoodLevel.values()) {
             entries.add(new BarEntry(index, counts.get(level)));
             axisLabels.add(level.getEmoji());
-            colors.add(ContextCompat.getColor(requireContext(), level.getColorRes()));
             index++;
         }
 
         BarDataSet dataSet = new BarDataSet(entries, null);
-        dataSet.setColors(colors);
+        dataSet.setColor(ContextCompat.getColor(requireContext(), R.color.neon_blue));
+        dataSet.setGradientColor(ContextCompat.getColor(requireContext(), R.color.blue_gradient_start),
+                ContextCompat.getColor(requireContext(), R.color.neon_blue));
         dataSet.setValueTextColor(ContextCompat.getColor(requireContext(), R.color.text_primary));
         dataSet.setValueTextSize(10f);
         dataSet.setValueFormatter(new ValueFormatter() {
@@ -399,7 +399,12 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
         chartMoodOverview.getXAxis().setLabelCount(axisLabels.size());
 
         YAxis leftAxis = chartMoodOverview.getAxisLeft();
+        leftAxis.setAxisMinimum(0f);
         leftAxis.setAxisMaximum(maxCount == 0 ? 4f : maxCount + 1f);
+        leftAxis.setGranularity(1f);
+        leftAxis.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary));
+        leftAxis.setGridColor(ContextCompat.getColor(requireContext(), R.color.background_white_alpha));
+        leftAxis.setAxisLineColor(ContextCompat.getColor(requireContext(), R.color.background_white_alpha));
         chartMoodOverview.invalidate();
     }
 
@@ -419,11 +424,9 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
         }
 
         List<BarEntry> entries = new ArrayList<>(weekLabels.length);
-        float maxValue = 0f;
         for (int i = 0; i < weekLabels.length; i++) {
             boolean hasData = counts[i] > 0;
             float value = hasData ? totalScores[i] / counts[i] : 0f;
-            maxValue = Math.max(maxValue, value);
             entries.add(new BarEntry(i, value));
         }
 
