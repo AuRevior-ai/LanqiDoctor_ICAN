@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -26,6 +27,7 @@ import com.lanqiDoctor.demo.model.MoodLevel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.EnumMap;
 import java.util.List;
@@ -182,6 +184,7 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
         chart.setDragEnabled(false);
         chart.setViewPortOffsets(40f, 32f, 16f, 32f);
         chart.setNoDataText(getString(R.string.mood_statistics_no_data));
+        chart.setDrawGridBackground(false);
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -416,16 +419,12 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
         }
 
         List<BarEntry> entries = new ArrayList<>(weekLabels.length);
-        List<String> axisLabels = new ArrayList<>(weekLabels.length);
         float maxValue = 0f;
         for (int i = 0; i < weekLabels.length; i++) {
             boolean hasData = counts[i] > 0;
             float value = hasData ? totalScores[i] / counts[i] : 0f;
             maxValue = Math.max(maxValue, value);
             entries.add(new BarEntry(i, value));
-
-            MoodLevel mood = hasData ? moodFromScore(value) : null;
-            axisLabels.add(mood != null ? mood.getEmoji() : "—");
         }
 
         BarDataSet dataSet = new BarDataSet(entries, null);
@@ -438,15 +437,26 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
                 return value == 0f ? "" : String.format(Locale.getDefault(), "%.1f", value);
             }
         });
+        dataSet.setGradientColor(ContextCompat.getColor(requireContext(), R.color.blue_gradient_start),
+                ContextCompat.getColor(requireContext(), R.color.neon_blue));
 
         BarData barData = new BarData(dataSet);
         barData.setBarWidth(0.5f);
         chartWeeklyDistribution.setData(barData);
-        chartWeeklyDistribution.getXAxis().setValueFormatter(new IndexAxisValueFormatter(axisLabels));
-        chartWeeklyDistribution.getXAxis().setLabelCount(axisLabels.size());
+        chartWeeklyDistribution.getXAxis().setValueFormatter(new IndexAxisValueFormatter(Arrays.asList(weekLabels)));
+        chartWeeklyDistribution.getXAxis().setLabelCount(weekLabels.length);
 
         YAxis leftAxis = chartWeeklyDistribution.getAxisLeft();
-        leftAxis.setAxisMaximum(Math.max(5f, maxValue + 0.5f));
+        leftAxis.setAxisMinimum(1f);
+        leftAxis.setAxisMaximum(5f);
+        leftAxis.setLabelCount(5, true);
+        leftAxis.setValueFormatter(createEmojiAxisFormatter());
+        leftAxis.setGranularity(1f);
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setGridColor(ContextCompat.getColor(requireContext(), R.color.background_white_alpha));
+        leftAxis.setAxisLineColor(ContextCompat.getColor(requireContext(), R.color.background_white_alpha));
+        leftAxis.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary));
+        chartWeeklyDistribution.getAxisRight().setEnabled(false);
         chartWeeklyDistribution.invalidate();
     }
 
@@ -495,6 +505,16 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
             default:
                 return 1;
         }
+    }
+
+    private ValueFormatter createEmojiAxisFormatter() {
+        return new ValueFormatter() {
+            @Override
+            public String getAxisLabel(float value, AxisBase axis) {
+                MoodLevel moodLevel = moodFromScore(value);
+                return moodLevel != null ? moodLevel.getEmoji() : "";
+            }
+        };
     }
 
     private void setToMonthStart(Calendar calendar) {
