@@ -66,6 +66,7 @@ public class MoodCalendarFragment extends BaseMoodFragment implements MoodTrackP
         btnMonthNext = findViewById(R.id.btn_month_next);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setNestedScrollingEnabled(false);
         adapter = new MoodRecordAdapter();
         adapter.setActionListener(new MoodRecordAdapter.MoodRecordActionListener() {
             @Override
@@ -102,6 +103,7 @@ public class MoodCalendarFragment extends BaseMoodFragment implements MoodTrackP
         recyclerView.setAdapter(adapter);
 
         rvCalendar.setLayoutManager(new GridLayoutManager(getContext(), 7));
+        rvCalendar.setNestedScrollingEnabled(false);
         calendarAdapter = new MoodCalendarAdapter();
         calendarAdapter.setOnDayInteractionListener(new MoodCalendarAdapter.OnDayInteractionListener() {
             @Override

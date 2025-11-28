@@ -26,7 +26,6 @@ import com.lanqiDoctor.demo.model.MoodLevel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.EnumMap;
 import java.util.List;
@@ -369,12 +368,12 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
         }
 
         List<BarEntry> entries = new ArrayList<>();
-        List<String> labels = new ArrayList<>();
+        List<String> axisLabels = new ArrayList<>();
         List<Integer> colors = new ArrayList<>();
         int index = 0;
         for (MoodLevel level : MoodLevel.values()) {
             entries.add(new BarEntry(index, counts.get(level)));
-            labels.add(getString(level.getLabelRes()));
+            axisLabels.add(level.getEmoji());
             colors.add(ContextCompat.getColor(requireContext(), level.getColorRes()));
             index++;
         }
@@ -393,8 +392,8 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
         BarData barData = new BarData(dataSet);
         barData.setBarWidth(0.5f);
         chartMoodOverview.setData(barData);
-        chartMoodOverview.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
-        chartMoodOverview.getXAxis().setLabelCount(labels.size());
+        chartMoodOverview.getXAxis().setValueFormatter(new IndexAxisValueFormatter(axisLabels));
+        chartMoodOverview.getXAxis().setLabelCount(axisLabels.size());
 
         YAxis leftAxis = chartMoodOverview.getAxisLeft();
         leftAxis.setAxisMaximum(maxCount == 0 ? 4f : maxCount + 1f);
@@ -417,11 +416,16 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
         }
 
         List<BarEntry> entries = new ArrayList<>(weekLabels.length);
+        List<String> axisLabels = new ArrayList<>(weekLabels.length);
         float maxValue = 0f;
         for (int i = 0; i < weekLabels.length; i++) {
-            float value = counts[i] == 0 ? 0f : totalScores[i] / counts[i];
+            boolean hasData = counts[i] > 0;
+            float value = hasData ? totalScores[i] / counts[i] : 0f;
             maxValue = Math.max(maxValue, value);
             entries.add(new BarEntry(i, value));
+
+            MoodLevel mood = hasData ? moodFromScore(value) : null;
+            axisLabels.add(mood != null ? mood.getEmoji() : "—");
         }
 
         BarDataSet dataSet = new BarDataSet(entries, null);
@@ -438,8 +442,8 @@ public class MoodStatisticsFragment extends BaseMoodFragment implements MoodTrac
         BarData barData = new BarData(dataSet);
         barData.setBarWidth(0.5f);
         chartWeeklyDistribution.setData(barData);
-        chartWeeklyDistribution.getXAxis().setValueFormatter(new IndexAxisValueFormatter(Arrays.asList(weekLabels)));
-        chartWeeklyDistribution.getXAxis().setLabelCount(weekLabels.length);
+        chartWeeklyDistribution.getXAxis().setValueFormatter(new IndexAxisValueFormatter(axisLabels));
+        chartWeeklyDistribution.getXAxis().setLabelCount(axisLabels.size());
 
         YAxis leftAxis = chartWeeklyDistribution.getAxisLeft();
         leftAxis.setAxisMaximum(Math.max(5f, maxValue + 0.5f));
