@@ -31,6 +31,8 @@ public final class SplashActivity extends AppActivity {
     private LottieAnimationView mLottieView;
     private SlantedTextView mDebugView;
 
+    private boolean mNavigated;
+
     @Override
     protected int getLayoutId() {
         return R.layout.splash_activity;
@@ -46,8 +48,7 @@ public final class SplashActivity extends AppActivity {
             // 如果Lottie动画视图为空，直接跳转到主页面
             android.util.Log.e("SplashActivity", "LottieAnimationView is null, skipping animation");
             postDelayed(() -> {
-                startActivity(new Intent(SplashActivity.this, HealthMainActivity.class));
-                finish();
+                navigateToHome();
             }, 1000);
             return;
         }
@@ -58,10 +59,7 @@ public final class SplashActivity extends AppActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 mLottieView.removeAnimatorListener(this);
-                startActivity(new Intent(SplashActivity.this, HealthMainActivity.class));
-                //HomeActivity.start(getContext());
-
-                finish();
+                navigateToHome();
             }
         });
     }
@@ -74,21 +72,18 @@ public final class SplashActivity extends AppActivity {
         } else {
             mDebugView.setVisibility(View.INVISIBLE);
         }
-    
-        // 修改：检查登录状态后再决定跳转
-        postDelayed(() -> {
-            UserStateManager userStateManager = UserStateManager.getInstance(this);
-            if (userStateManager.isUserLoggedIn()) {
-                // 已登录，直接进入首页
-//                HomeActivity.start(getContext());
-                startActivity(new Intent(SplashActivity.this, HealthMainActivity.class));
-                finish();
-            } else {
-                // 未登录，跳转到登录页
-                LoginActivity.start(getContext(), "", "");
-                finish();
-            }
-        }, 2000);
+
+        // 当前登录服务器异常：启动后直接进入登录后的首页（HealthMainActivity）
+        postDelayed(this::navigateToHome, 2000);
+    }
+
+    private void navigateToHome() {
+        if (mNavigated) {
+            return;
+        }
+        mNavigated = true;
+        startActivity(new Intent(SplashActivity.this, HealthMainActivity.class));
+        finish();
     }
 
     @NonNull
